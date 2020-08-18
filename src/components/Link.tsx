@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 import { Colors } from "../constants";
 
 interface ILink {
@@ -18,11 +17,7 @@ export default ({ href, title }: ILink) => {
 
   return (
     <Link href={href} passHref>
-      <Item style={style}>{title}</Item>
+      <a style={style}>{title}</a>
     </Link>
   );
 };
-
-const Item = styled.a`
-  text-decoration: none;
-`;

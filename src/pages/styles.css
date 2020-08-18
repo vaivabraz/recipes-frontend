@@ -5,3 +5,7 @@ a {
   line-height: 24;
   font-weight: 100;
 }
+
+body {
+  margin: 0;
+}

@@ -1,20 +1,11 @@
-import Head from "next/head";
-import { Layout } from "../components";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  return (
-    <Layout>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-      </main>
+    const router = useRouter();
 
-      <footer></footer>
-    </Layout>
-  );
+    useEffect(() => {
+        router.replace("/recipes");
+    }, []);
+    return null;
 }

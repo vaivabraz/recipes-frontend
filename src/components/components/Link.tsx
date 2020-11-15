@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Colors } from "../constants";
+import styled from "styled-components";
+import { Colors } from "../../constants";
 
 interface ILink {
   href: string;
@@ -11,13 +12,17 @@ interface ILink {
 export default ({ href, title }: ILink) => {
   const router = useRouter();
   const style = { color: Colors.DarkGreen };
-  if (router.pathname === href) {
+  if (router.pathname.startsWith(href)) {
     style.color = Colors.ActiveColor;
   }
 
   return (
     <Link href={href} passHref>
-      <a style={style}>{title}</a>
+      <Item style={style}>{title}</Item>
     </Link>
   );
 };
+
+const Item = styled.a`
+  font-weight: 500;
+`;

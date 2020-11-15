@@ -25,7 +25,7 @@ export const hardcodedRecipes = [
         preparation: "biski to biski ano ir vuala aad",
         notes: "",
         summary: "",
-        image: "123",
+        image: "",
         time: "",
         portions: null,
         author: "TestUser",

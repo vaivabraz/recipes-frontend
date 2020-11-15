@@ -2,18 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Colors } from "../../constants";
 import { useRouter } from "next/router";
+import { ShortRecipe } from "../../types";
 
 interface IRecipeCard {
-    recipe: {
-        image: string;
-        title: string;
-        slug: string;
-    };
+    recipe: ShortRecipe;
 }
 
 const RecipeCard = ({ recipe }: IRecipeCard) => {
     const router = useRouter();
-    const image = recipe?.image || "/salad.jpg";
+    const image = recipe.image || "/salad.jpg";
     const title = recipe.title;
 
     const handleOnClick = () => {

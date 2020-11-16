@@ -36,14 +36,13 @@ const Card = styled.button`
   &:hover {
     border: 1px ${Colors.DarkBorder} solid;
     background-color: ${Colors.SoftGrey};
-    text-shadow: 0 0 0.3px black;
   }
 `;
 
 const Image = styled.img`
   border: 1px ${Colors.Border} solid;
   max-width: 92%;
-  &:hover {
+  ${Card}:hover & {
     max-width: 98%;
   }
 `;
@@ -56,6 +55,10 @@ const TitleContainer = styled.div`
   display: flex;
 `;
 
-const Title = styled.p``;
+const Title = styled.p`
+  ${Card}:hover & {
+    font-weight: bolder;
+  }
+`;
 
 export default RecipeCard;

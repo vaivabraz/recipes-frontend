@@ -4,7 +4,8 @@
   border: none;
   margin: 0;
   padding: 0;
-  font-weight: lighter
+  font-weight: lighter;
+  color:#032615;
 }
 html {
   font-size: 10px;
@@ -39,4 +40,9 @@ p {
 ul {
   list-style-type: none;
   list-style: none;
+}
+
+li {
+  font-size: 16px;
+  line-height: 24px;
 }

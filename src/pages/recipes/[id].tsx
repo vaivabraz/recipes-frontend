@@ -1,27 +1,16 @@
-import Head from "next/head";
-import Layout from "../../components/Layout";
+import { Layout, FullRecipeView } from "../../components/";
 import { useRouter } from "next/router";
+import { FullRecipe } from "../../types";
+import { userRecipeHardcoded } from "../../hardcodedData";
 
 export default function Recipe() {
   const router = useRouter();
+  const recipe: FullRecipe = userRecipeHardcoded;
+  // <p>Recipe id: {router.query.id}</p>
+
   return (
     <Layout>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <p>Recipe id: {router.query.id}</p>
-      </main>
-
-      <footer></footer>
+      <FullRecipeView recipe={recipe} />
     </Layout>
   );
 }
-
-Recipe.getInitialProps = ({ query }) => {
-  const posts = [];
-  return {
-    post: posts[query.id],
-  };
-};

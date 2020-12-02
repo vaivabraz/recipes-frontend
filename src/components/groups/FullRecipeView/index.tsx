@@ -108,6 +108,7 @@ const Info = styled.div`
     font-weight: bolder;
   }
   p {
+    padding-top: 2px; //bolder font lowers slightly
     margin-left: 0.5rem;
   }
 `;

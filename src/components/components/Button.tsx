@@ -4,14 +4,14 @@ import { Colors } from "../../constants";
 
 type Props = {
   text: string;
-  size: string;
+  size?: string;
   action?: () => void;
 };
 
 const Button: React.FC<Props> = ({ text, action, size }) => {
   return (
     <ButtonBox size={size} onClick={action}>
-      {text}
+      <Text size={size}>{text}</Text>
     </ButtonBox>
   );
 };
@@ -26,14 +26,12 @@ const ButtonBox = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
   height: 38px;
   border: 1px ${Colors.Border} solid;
   background-color: white;
   ${({ size }) =>
     size === "small" &&
     `
-    font-size: 16px;
     height: 30px;
 `}
   &:hover {
@@ -44,5 +42,25 @@ const ButtonBox = styled.button`
   &:active {
     background-color: ${Colors.ActiveColor};
     color: ${Colors.SoftGrey};
+  }
+`;
+
+const Text = styled.p`
+  padding: 1rem;
+  font-size: 1.4vmax;
+
+  ${({ size }) =>
+    size === "small" &&
+    `
+    font-size: 16px;
+`}
+
+  @media screen and (max-width: 940px) {
+    font-size: 20px;
+    ${({ size }) =>
+      size === "small" &&
+      `
+    font-size: 16px;
+`}
   }
 `;

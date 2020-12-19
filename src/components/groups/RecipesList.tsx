@@ -6,9 +6,6 @@ import { RecipesListHardcoded } from "../../hardcodedData";
 const RecipesList = () => {
   return (
     <MainContainer>
-      <TitleContainer>
-        <h1>Receptai</h1>
-      </TitleContainer>
       <List>
         {RecipesListHardcoded.map((recipe) => (
           <RecipeCard key={recipe.slug} recipe={recipe} />
@@ -20,13 +17,8 @@ const RecipesList = () => {
 
 const MainContainer = styled.main``;
 
-const TitleContainer = styled.div`
-  height: 6rem;
-  align-items: center;
-  justify-content: center;
-`;
-
 const List = styled.div`
+  padding-top: 3rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

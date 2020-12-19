@@ -10,8 +10,6 @@ const Layout = (props) => (
 
 const LayoutContainer = styled.div``;
 
-const BodyContainer = styled.div`
-  margin: 3rem;
-`;
+const BodyContainer = styled.div``;
 
 export default Layout;

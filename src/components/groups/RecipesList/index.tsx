@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { RecipeCard } from "../";
-import { RecipesListHardcoded } from "../../hardcodedData";
+import RecipeCard from "./RecipeCard";
+import { RecipesListHardcoded } from "../../../hardcodedData";
 
 const RecipesList = () => {
   return (

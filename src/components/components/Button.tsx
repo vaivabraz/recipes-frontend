@@ -35,13 +35,13 @@ const ButtonBox = styled.button`
     height: 30px;
 `}
   &:hover {
-    background-color: ${Colors.SoftGrey};
-    color: ${Colors.DarkGreen};
+    background-color: ${Colors.Background};
+    /* color: ${Colors.DarkGreen}; */
   }
 
   &:active {
-    background-color: ${Colors.ActiveColor};
-    color: ${Colors.SoftGrey};
+    background-color: ${Colors.AccentColor};
+    color: ${Colors.Background};
   }
 `;
 

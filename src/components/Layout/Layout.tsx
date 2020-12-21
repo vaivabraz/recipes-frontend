@@ -11,7 +11,7 @@ const Layout = (props) => (
 );
 
 const LayoutContainer = styled.div`
-  background-color: ${Colors.SoftGrey};
+  background-color: ${Colors.Background};
 `;
 
 const BodyContainer = styled.div`

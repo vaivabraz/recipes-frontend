@@ -27,24 +27,25 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
 };
 
 const Card = styled.button`
-  background-color: white;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.4s;
+
+  background-color: ${Colors.Background};
   border: 1px ${Colors.Border} solid;
   width: 21rem;
   height: 30rem;
   margin: 0.5rem;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
   &:hover {
-    border: 1px ${Colors.DarkBorder} solid;
-    background-color: ${Colors.SoftGrey};
+    border: 1px ${Colors.BorderDarker} solid;
   }
 `;
 
 const Image = styled.img`
-  border: 1px ${Colors.Border} solid;
-  max-width: 92%;
-  ${Card}:hover & {
-    max-width: 98%;
-  }
+  width: 100%;
 `;
 
 const TitleContainer = styled.div`
@@ -57,8 +58,9 @@ const TitleContainer = styled.div`
 
 const Title = styled.p`
   ${Card}:hover & {
+    color: ${Colors.AccentColor};
     font-weight: bolder;
   }
 `;
 
-export default RecipeCard;
+export default React.memo(RecipeCard);

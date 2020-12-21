@@ -125,7 +125,7 @@ const Author = styled.div`
   p {
     padding-left: 0.5rem;
     display: inline-block;
-    color: ${Colors.ActiveColor};
+    color: ${Colors.AccentColor};
   }
 `;
 

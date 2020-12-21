@@ -35,6 +35,6 @@ const CategoryItem = styled.a`
   flex-direction: row;
   margin-right: 0.5rem;
   p {
-    color: ${Colors.ActiveColor};
+    color: ${Colors.AccentColor};
   }
 `;

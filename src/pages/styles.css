@@ -5,7 +5,8 @@
   margin: 0;
   padding: 0;
   font-weight: lighter;
-  color:#383633;
+  color:#4C3F2F;
+  letter-spacing: 0.1em;
 }
 html {
   font-size: 10px;
@@ -50,4 +51,8 @@ ul {
 li {
   font-size: 16px;
   line-height: 24px;
+}
+
+button {
+  cursor: pointer;
 }

@@ -12,9 +12,9 @@ interface ILink {
 
 export default ({ href, title, bold }: ILink) => {
   const router = useRouter();
-  const style = { color: Colors.DarkGreen };
+  const style = { color: Colors.Text };
   if (router.pathname.startsWith(href)) {
-    style.color = Colors.ActiveColor;
+    style.color = Colors.AccentColor;
   }
 
   return (

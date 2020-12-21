@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Colors } from "../../constants";
 import { Link } from "../";
 
 const SubMenu = () => (
@@ -9,10 +8,13 @@ const SubMenu = () => (
         <Link href="/createNew" title="Sukurti nauja"></Link>
       </MenuItem>
       <MenuItem>
-        <Link href="/" title="Kategorijos"></Link>
+        <Text>Visi receptai</Text>
       </MenuItem>
       <MenuItem>
-        <Link href="/" title="Paieska"></Link>
+        <Text>Kategorijos (TBD)</Text>
+      </MenuItem>
+      <MenuItem>
+        <Text>Paieska (TBD)</Text>
       </MenuItem>
     </MenuList>
   </SubMenuContainer>
@@ -23,8 +25,6 @@ const SubMenuContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: ${Colors.SoftGrey}; */
-  padding-right: 6rem;
   @media screen and (max-width: 940px) {
   }
 `;
@@ -37,5 +37,7 @@ const MenuItem = styled.li`
   float: left;
   padding-left: 3rem;
 `;
+
+const Text = styled.p``;
 
 export default SubMenu;

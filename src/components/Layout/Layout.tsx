@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 import SubMenu from "./SubMenu";
 import styled from "styled-components";
-
+import { Colors } from "../../constants";
 const Layout = (props) => (
   <LayoutContainer>
     <Navbar />
@@ -10,8 +10,12 @@ const Layout = (props) => (
   </LayoutContainer>
 );
 
-const LayoutContainer = styled.div``;
+const LayoutContainer = styled.div`
+  background-color: ${Colors.SoftGrey};
+`;
 
-const BodyContainer = styled.div``;
+const BodyContainer = styled.div`
+  padding: 0rem 9rem;
+`;
 
 export default Layout;

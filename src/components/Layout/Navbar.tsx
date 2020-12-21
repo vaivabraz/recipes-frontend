@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import { Colors } from "../../constants";
 import { Link } from "../";
 import NavBarIllustration from "../../asset/svg/NavBarIllustration";
 
 const Navbar = () => (
   <NavbarContainer>
+    <IllustrationContainer>
+      <NavBarIllustration />
+    </IllustrationContainer>
     <MenuList>
       <MenuItem>
         <Link href="/recipes" title="Receptai" bold></Link>
@@ -16,9 +18,6 @@ const Navbar = () => (
         <Link href="/about" title="Atsijungti" bold></Link>
       </MenuItem>
     </MenuList>
-    <div style={{ position: "absolute" }}>
-      <NavBarIllustration />
-    </div>
   </NavbarContainer>
 );
 
@@ -28,8 +27,6 @@ const NavbarContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* background-color: ${Colors.SoftGrey}; */
-  padding-right: 6rem;
   /* @media screen and (max-width: 940px) {
     height: 3rem;
     justify-content: center;
@@ -43,6 +40,11 @@ const MenuItem = styled.li`
   display: inline;
   float: left;
   padding-left: 3rem;
+`;
+
+const IllustrationContainer = styled.div`
+  position: absolute;
+  pointer-events: none;
 `;
 
 export default Navbar;

@@ -12,7 +12,6 @@ const Recipes = () => {
 };
 
 const BodyContainer = styled.div`
-  padding: 0rem 9rem;
   display: grid;
   @media screen and (max-width: 940px) {
     grid-template-columns: 100%;

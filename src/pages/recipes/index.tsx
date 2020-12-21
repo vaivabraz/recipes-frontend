@@ -1,4 +1,4 @@
-import { Layout, RecipesList, SideContainer } from "../../components";
+import { Layout, RecipesList } from "../../components";
 import styled from "styled-components";
 
 const Recipes = () => {
@@ -6,15 +6,14 @@ const Recipes = () => {
     <Layout>
       <BodyContainer>
         <RecipesList />
-        <SideContainer />
       </BodyContainer>
     </Layout>
   );
 };
 
 const BodyContainer = styled.div`
+  padding: 0rem 9rem;
   display: grid;
-  grid-template-columns: 80% auto;
   @media screen and (max-width: 940px) {
     grid-template-columns: 100%;
   }

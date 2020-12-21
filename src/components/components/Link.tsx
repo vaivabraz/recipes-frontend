@@ -7,9 +7,10 @@ import { Colors } from "../../constants";
 interface ILink {
   href: string;
   title: string;
+  bold?: boolean;
 }
 
-export default ({ href, title }: ILink) => {
+export default ({ href, title, bold }: ILink) => {
   const router = useRouter();
   const style = { color: Colors.DarkGreen };
   if (router.pathname.startsWith(href)) {
@@ -18,11 +19,13 @@ export default ({ href, title }: ILink) => {
 
   return (
     <Link href={href} passHref>
-      <Item style={style}>{title}</Item>
+      <Item bold={bold} style={style}>
+        {title}
+      </Item>
     </Link>
   );
 };
 
 const Item = styled.a`
-  font-weight: 500;
+  font-weight: ${(props) => (props.bold ? 500 : null)};
 `;

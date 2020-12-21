@@ -8,5 +8,4 @@ export { default as SideContainer } from "./groups/SideContainer";
 export { default as TextSection } from "./components/TextSection";
 export { default as FullRecipeView } from "./groups/FullRecipeView";
 
-export { default as Layout } from "./Layout";
-export { default as Navbar } from "./Navbar";
+export { default as Layout } from "./Layout/Layout";

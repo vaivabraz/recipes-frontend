@@ -16,6 +16,7 @@ const LayoutContainer = styled.div`
 
 const BodyContainer = styled.div`
   padding: 0rem 9rem;
+  padding-bottom: 3rem;
 `;
 
 export default Layout;

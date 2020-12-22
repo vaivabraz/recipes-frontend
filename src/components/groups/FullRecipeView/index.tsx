@@ -66,7 +66,7 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
 export default FullRecipeView;
 
 const Title = styled.div`
-  padding: 1rem 6rem 3rem;
+  padding: 3rem;
 `;
 
 const Body = styled.div`

@@ -19,48 +19,24 @@ const Button: React.FC<Props> = ({ text, action, size }) => {
 export default Button;
 
 const ButtonBox = styled.button`
-  -webkit-transition-duration: 0.3s; /* Safari */
+  -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  min-width: 12rem;
-  max-width: 24rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 38px;
+  min-width: 12rem;
   border: 1px ${Colors.Border} solid;
-  background-color: white;
-  ${({ size }) =>
-    size === "small" &&
-    `
-    height: 30px;
-`}
+  background-color: ${Colors.Background};
   &:hover {
-    background-color: ${Colors.Background};
-    /* color: ${Colors.DarkGreen}; */
-  }
-
-  &:active {
-    background-color: ${Colors.AccentColor};
-    color: ${Colors.Background};
+    border: 1px ${Colors.BorderDarker} solid;
   }
 `;
 
 const Text = styled.p`
   padding: 1rem;
-  font-size: 1.4vmax;
-
-  ${({ size }) =>
-    size === "small" &&
-    `
-    font-size: 16px;
-`}
-
-  @media screen and (max-width: 940px) {
-    font-size: 20px;
-    ${({ size }) =>
-      size === "small" &&
-      `
-    font-size: 16px;
-`}
+  font-size: 16px;
+  ${ButtonBox}:hover & {
+    color: ${Colors.AccentColor};
+    font-weight: bolder;
   }
 `;

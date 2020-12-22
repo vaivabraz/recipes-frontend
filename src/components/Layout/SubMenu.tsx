@@ -8,9 +8,6 @@ const SubMenu = () => (
         <Link href="/createNew" title="Sukurti nauja"></Link>
       </MenuItem>
       <MenuItem>
-        <Text>Visi receptai</Text>
-      </MenuItem>
-      <MenuItem>
         <Text>Kategorijos (TBD)</Text>
       </MenuItem>
       <MenuItem>

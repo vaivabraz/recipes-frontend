@@ -5,7 +5,7 @@ const SubMenu = () => (
   <SubMenuContainer>
     <MenuList>
       <MenuItem>
-        <Link href="/createNew" title="Sukurti nauja"></Link>
+        <Link href="/createNewRecipe" title="Sukurti nauja"></Link>
       </MenuItem>
       <MenuItem>
         <Text>Kategorijos (TBD)</Text>

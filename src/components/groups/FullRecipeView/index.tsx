@@ -15,7 +15,7 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
   const image = recipe.image || "/salad.jpg";
 
   return (
-    <div>
+    <Container>
       <Title>
         <h1>{recipe.title}</h1>
       </Title>
@@ -59,14 +59,20 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
           </BottomContainer>
         </RightColumn>
       </Body>
-    </div>
+    </Container>
   );
 };
 
 export default FullRecipeView;
 
+const Container = styled.div`
+  padding: 0 3rem;
+  margin: 1rem;
+  border: 1px ${Colors.Border} solid;
+`;
+
 const Title = styled.div`
-  padding: 3rem;
+  padding: 4rem 3rem;
 `;
 
 const Body = styled.div`

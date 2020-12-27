@@ -10,7 +10,7 @@ function useFormValidation(
   submitFormAfterValidation: (values: valuesType) => void
 ) {
   const [values, setValues] = useState(initialState);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<valuesType>({});
   const [isSubmitting, setSubmitting] = useState(false);
 
   function handleChange(event) {
@@ -33,6 +33,7 @@ function useFormValidation(
   }, [errors]);
 
   function handleBlur() {
+    //TODO: validate only current input?
     const validationErrors = validate(values);
     setErrors(validationErrors);
   }

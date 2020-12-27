@@ -52,9 +52,9 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
               </a>
             </Author>
             <ButtonsBox>
-              <Button size="small" action={() => {}} text="Redaguoti" />
+              <Button onClick={() => {}} text="Redaguoti" />
               <Separator />
-              <Button size="small" action={() => {}} text="Istrinti" />
+              <Button onClick={() => {}} text="Istrinti" />
             </ButtonsBox>
           </BottomContainer>
         </RightColumn>

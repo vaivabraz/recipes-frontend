@@ -1,17 +1,15 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 import { Colors } from "../../constants";
 
-type Props = {
+interface buttonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  size?: string;
-  action?: () => void;
-};
+}
 
-const Button: React.FC<Props> = ({ text, action, size }) => {
+const Button: React.FC<buttonInterface> = ({ text, ...buttonProps }) => {
   return (
-    <ButtonBox size={size} onClick={action}>
-      <Text size={size}>{text}</Text>
+    <ButtonBox {...buttonProps}>
+      <Text>{text}</Text>
     </ButtonBox>
   );
 };

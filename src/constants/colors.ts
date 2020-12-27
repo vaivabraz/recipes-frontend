@@ -6,6 +6,8 @@ export default {
   Background: "#ffffff",
   BackgroundLight: "#ffffff",
   Text: "#4C3F2F",
+
+  errorsRed: "#b63333",
 };
 
 /*

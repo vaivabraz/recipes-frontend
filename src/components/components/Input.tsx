@@ -29,6 +29,11 @@ const Input: React.FC<inputInterface> = ({
 
 export default React.memo(Input);
 
+export const InputStyle = css`
+  padding: 1rem;
+  border: 1px solid;
+  border-color: ${(props) => (props.error ? Colors.errorsRed : Colors.Border)};
+`;
 const InputContainer = styled.div`
   margin: 1rem;
   display: flex;
@@ -47,18 +52,14 @@ const Error = styled.h5`
   color: ${Colors.errorsRed};
 `;
 
-const InputStyle = css`
-  display: flex;
-  flex: 1;
-  padding: 1rem;
-  border: 1px solid;
-  border-color: ${(props) => (props.error ? Colors.errorsRed : Colors.Border)};
-`;
-
 const InputLine = styled.input`
   ${InputStyle}
+  display: flex;
+  flex: 1;
 `;
 const InputMultiline = styled.textarea`
   ${InputStyle}
+  display: flex;
+  flex: 1;
   resize: none;
 `;

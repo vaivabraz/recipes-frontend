@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type valuesType = {
   [key: string]: any;
@@ -11,7 +11,6 @@ function useFormValidation(
 ) {
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState<valuesType>({});
-  const [isSubmitting, setSubmitting] = useState(false);
 
   function handleChange(event) {
     setValues({
@@ -20,29 +19,22 @@ function useFormValidation(
     });
   }
 
-  useEffect(() => {
-    if (isSubmitting) {
-      const noErrors = Object.keys(errors).length === 0;
-      if (noErrors) {
-        submitFormAfterValidation(values);
-        setSubmitting(false);
-      } else {
-        setSubmitting(false);
-      }
-    }
-  }, [errors]);
-
   function handleBlur() {
-    //TODO: validate only current input?
-    const validationErrors = validate(values);
-    setErrors(validationErrors);
+    const hasErrors = Object.keys(errors).length !== 0;
+    if (hasErrors) {
+      const validationErrors = validate(values);
+      setErrors(validationErrors);
+    }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     const validationErrors = validate(values);
     setErrors(validationErrors);
-    setSubmitting(true);
+    const noErrors = Object.keys(errors).length === 0;
+    if (noErrors) {
+      submitFormAfterValidation(values);
+    }
   }
 
   return {
@@ -51,7 +43,6 @@ function useFormValidation(
     handleBlur,
     values,
     errors,
-    isSubmitting,
   };
 }
 

@@ -41,7 +41,7 @@ const InputContainer = styled.div`
   flex: 1;
 `;
 
-const Label = styled.h5`
+export const Label = styled.h5`
   font-weight: bolder;
   padding: 0 1rem;
 `;

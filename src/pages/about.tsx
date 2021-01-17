@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className="title">Welcome to ABOUT page</h1>
+        <h1>Welcome to ABOUT page</h1>
       </main>
 
       <footer></footer>

@@ -24,4 +24,5 @@ export type FullRecipe = {
 export type IngredientsListItem = {
   product: string;
   quantity: string;
+  id: number;
 };

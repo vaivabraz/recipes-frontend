@@ -2,6 +2,8 @@ export default {
   Border: "#DBDBDB",
   BorderDarker: "#c4c2c2",
 
+  DarkGrey: "#888179",
+
   AccentColor: "#E1A200",
   Background: "#ffffff",
   BackgroundLight: "#ffffff",

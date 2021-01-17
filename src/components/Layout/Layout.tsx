@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import SubMenu from "./SubMenu";
 import styled from "styled-components";
 import { Colors } from "../../constants";
+
 const Layout = (props) => (
   <LayoutContainer>
     <Navbar />

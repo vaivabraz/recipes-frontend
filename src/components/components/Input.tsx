@@ -33,6 +33,21 @@ export const InputStyle = css`
   padding: 1rem;
   border: 1px solid;
   border-color: ${(props) => (props.error ? Colors.errorsRed : Colors.Border)};
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: ${Colors.DarkGrey};
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: ${Colors.DarkGrey};
+  }
+
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: ${Colors.DarkGrey};
+  }
 `;
 const InputContainer = styled.div`
   margin: 1rem;

@@ -19,6 +19,13 @@ function useFormValidation(
     });
   }
 
+  function handleCustomChange(key, value) {
+    setValues({
+      ...values,
+      [key]: value,
+    });
+  }
+
   function handleBlur() {
     const hasErrors = Object.keys(errors).length !== 0;
     if (hasErrors) {
@@ -40,6 +47,7 @@ function useFormValidation(
   return {
     handleSubmit,
     handleChange,
+    handleCustomChange,
     handleBlur,
     values,
     errors,

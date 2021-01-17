@@ -39,7 +39,7 @@ export default React.memo(IngredientLine);
 
 const Line = styled.div`
   display: flex;
-  margin: 1rem;
+  margin: 0.5rem 1rem;
 `;
 
 const ProductInput = styled.input`

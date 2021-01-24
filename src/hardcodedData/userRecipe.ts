@@ -1,21 +1,33 @@
-export const userRecipe = {
+import { FullRecipeType } from "../types";
+
+export const userRecipe: FullRecipeType = {
   title: "Labai skanios salotos",
   portions: 4,
   time: "30min",
-  ingredients: [
-    {
-      product: "Pomidorai",
-      quantity: "2",
-    },
-    {
-      product: "Alyvuoges",
-      quantity: "100 g",
-    },
-    {
-      product: "salotu lapai",
-      quantity: "didele guzte",
-    },
-  ],
+  ingredients: {
+    groupIngredients: false,
+    ingredientsGroups: [{ groupName: "", id: "", index: 0 }],
+    ingredientsList: [
+      {
+        product: "Pomidorai",
+        quantity: "2",
+        groupIndex: 0,
+        id: 0,
+      },
+      {
+        product: "Alyvuoges",
+        quantity: "100 g",
+        groupIndex: 0,
+        id: 1,
+      },
+      {
+        product: "salotu lapai",
+        quantity: "didele guzte",
+        groupIndex: 0,
+        id: 2,
+      },
+    ],
+  },
   preparation: "Viska supjaustai, sumaisai ir vuola pagaminta!!",
   image: "",
   categories: ["uzkandziai", "greitai"],

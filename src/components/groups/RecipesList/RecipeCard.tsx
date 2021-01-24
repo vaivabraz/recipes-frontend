@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { Colors } from "../../../constants";
 import { useRouter } from "next/router";
-import { ShortRecipe } from "../../../types";
+import { ShortRecipeType } from "../../../types";
 
 interface IRecipeCard {
-  recipe: ShortRecipe;
+  recipe: ShortRecipeType;
 }
 
 const RecipeCard = ({ recipe }: IRecipeCard) => {

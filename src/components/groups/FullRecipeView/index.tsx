@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 import { Colors } from "../../../constants";
-import { FullRecipe } from "../../../types";
+import { FullRecipeType } from "../../../types";
 import { Button, TextSection } from "../../components";
 import CategoriesList from "./CategoriesList";
 import IngredientsList from "./IngredientsList";
 
 type FullRecipeViewProps = {
-  recipe: FullRecipe;
+  recipe: FullRecipeType;
 };
 
 const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
@@ -38,7 +38,7 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
           </Info>
         </LeftColumn>
         <RightColumn>
-          <IngredientsList ingredients={recipe.ingredients} />
+          <IngredientsList ingredients={recipe.ingredients.ingredientsList} />
           <TextSection title="Paruosimas: " text={recipe.preparation} />
           {recipe.notes && (
             <TextSection title="Pastabos: " text={recipe.notes} />

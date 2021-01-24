@@ -1,14 +1,14 @@
-export type ShortRecipe = {
+export type ShortRecipeType = {
   image: string;
   title: string;
   slug: string;
 };
 
-export type FullRecipe = {
+export type FullRecipeType = {
   title: string;
   portions: number;
   time: string;
-  ingredients: IngredientsListItem[];
+  ingredients: IngredientsInRecipeType;
   preparation: string;
   image: string;
   categories: string[];
@@ -21,8 +21,21 @@ export type FullRecipe = {
   _id: string;
 };
 
-export type IngredientsListItem = {
+export type IngredientsInRecipeType = {
+  groupIngredients: Boolean;
+  ingredientsGroups: IngredientsGroupsType[];
+  ingredientsList: IngredientsListItemType[];
+};
+
+export type IngredientsListItemType = {
   product: string;
   quantity: string;
   id: number;
+  groupIndex: number;
+};
+
+export type IngredientsGroupsType = {
+  groupName: String;
+  id: String;
+  index: Number;
 };

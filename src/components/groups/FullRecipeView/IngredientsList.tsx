@@ -6,6 +6,7 @@ type Props = {
 };
 
 const IngredientsList: React.FC<Props> = ({ ingredients }) => {
+  //TODO: perdaryt, kad priimtu nauja ingridientu tipa
   if (!ingredients?.length) {
     return null;
   }

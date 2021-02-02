@@ -30,7 +30,7 @@ const Input: React.FC<inputInterface> = ({
 export default React.memo(Input);
 
 export const InputStyle = css`
-  padding: 1rem;
+  padding: 0.5rem;
   border: 1px solid;
   border-color: ${(props) => (props.error ? Colors.errorsRed : Colors.Border)};
   ::placeholder {
@@ -50,7 +50,7 @@ export const InputStyle = css`
   }
 `;
 const InputContainer = styled.div`
-  margin: 1rem;
+  margin: 0.5rem;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -58,12 +58,12 @@ const InputContainer = styled.div`
 
 export const Label = styled.h5`
   font-weight: bolder;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 `;
 
 const Error = styled.h5`
   font-weight: bolder;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   color: ${Colors.errorsRed};
 `;
 

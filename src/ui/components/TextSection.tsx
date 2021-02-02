@@ -19,11 +19,11 @@ const TextSection = ({ title, text, children, style }: TextSectionType) => {
 };
 
 const Paragraph = styled.div`
-  padding-bottom: 20px;
+  padding-bottom: 1rem;
 `;
 
 const Title = styled.h4`
-  padding-bottom: 5px;
+  padding-bottom: 0.2rem;
   font-weight: bolder;
 `;
 

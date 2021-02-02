@@ -22,7 +22,7 @@ const ButtonBox = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 12rem;
+  min-width: 6rem;
   border: 1px ${Colors.Border} solid;
   background-color: ${Colors.Background};
   &:hover {
@@ -31,8 +31,7 @@ const ButtonBox = styled.button`
 `;
 
 const Text = styled.p`
-  padding: 1rem;
-  font-size: 16px;
+  padding: 0.5rem;
   ${ButtonBox}:hover & {
     color: ${Colors.AccentColor};
     font-weight: bolder;

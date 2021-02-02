@@ -23,7 +23,6 @@ const ButtonBox = styled.button`
 `;
 
 const Text = styled.p`
-  font-size: 16px;
   color: ${Colors.AccentColor};
   font-weight: bolder;
 `;

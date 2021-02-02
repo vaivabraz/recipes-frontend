@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-import MinusButton from "../../../asset/svg/MinusButton";
-import { Colors } from "../../../constants";
-import { InputStyle } from "../../components";
+import { IngredientsListItemType } from "../../../../types";
+import MinusButton from "../../../../asset/svg/MinusButton";
+import { Colors } from "../../../../constants";
+import { InputStyle } from "../../../components";
 
-const IngredientLine = ({ entry, onChange, onRemove }) => {
+type Props = {
+  key: any;
+  entry: IngredientsListItemType;
+  onChange: (event, id) => void;
+  onRemove: (event, id) => void;
+};
+
+const IngredientLine = ({ entry, onChange, onRemove }: Props) => {
   const onInputChange = (e) => {
     onChange(e, entry.id);
   };
@@ -21,12 +29,14 @@ const IngredientLine = ({ entry, onChange, onRemove }) => {
         value={entry.product}
         onChange={onInputChange}
         name={"product"}
+        autoComplete="off"
       />
       <QuantityInput
         placeholder="Kiekis"
         value={entry.quantity}
         onChange={onInputChange}
         name={"quantity"}
+        autoComplete="off"
       />
       <Button onClick={onRemoveProduct}>
         <MinusButton />

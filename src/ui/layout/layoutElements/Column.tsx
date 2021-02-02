@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BREAKPOINTS } from "../utils";
+import { BREAKPOINTS } from "../../utils";
 
 type Props = {
   children: React.ReactNode;

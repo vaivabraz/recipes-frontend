@@ -55,6 +55,7 @@ const StyledColumn = styled.div`
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
+  padding: 1rem;
   ${(props) => props.small && width(BREAKPOINTS.small, props.small)};
   ${(props) => props.medium && width(BREAKPOINTS.medium, props.medium)};
   ${(props) => props.large && width(BREAKPOINTS.large, props.large)};

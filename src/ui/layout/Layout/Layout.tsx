@@ -14,17 +14,17 @@ const Layout = (props) => (
   </LayoutContainer>
 );
 
-const LayoutContainer = styled.div`
+const LayoutContainer = styled(Column)`
   background-color: ${Colors.Background};
-  display: flex;
-  flex-direction: column;
   align-items: center;
 `;
 
 const BodyContainer = styled(Column).attrs(() => ({
-  small: 12,
+  small: 11,
   medium: 10,
   large: 10,
-}))``;
+}))`
+  padding: 0;
+`;
 
 export default Layout;

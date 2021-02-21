@@ -5,7 +5,7 @@ import styled from "styled-components";
 export default function About() {
   return (
     <Layout>
-      <Row style={{ backgroundColor: "red" }}>
+      <Row>
         <StyledColumn>
           <p>
             asdasd -- 1 --- ssdhksdhf f hjsl fsfhskl fhksd fls;df; sflhf asdasd

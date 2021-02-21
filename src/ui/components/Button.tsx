@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { Colors } from "../../constants";
 
 interface buttonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string;
+  text?: string;
 }
 
-const Button: React.FC<buttonInterface> = ({ text, ...buttonProps }) => {
+const Button: React.FC<buttonInterface> = ({ text, children, ...props }) => {
   return (
-    <ButtonBox {...buttonProps}>
-      <Text>{text}</Text>
+    <ButtonBox {...props}>
+      {children}
+      {text && <Text>{text}</Text>}
     </ButtonBox>
   );
 };
@@ -19,15 +20,17 @@ export default Button;
 const ButtonBox = styled.button`
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 6rem;
-  border: 1px ${Colors.Border} solid;
   background-color: ${Colors.Background};
+  border: 1px ${Colors.Border} solid;
   &:hover {
     border: 1px ${Colors.BorderDarker} solid;
   }
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-width: 6rem;
 `;
 
 const Text = styled.p`

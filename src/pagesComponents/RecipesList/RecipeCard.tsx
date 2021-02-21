@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Colors } from "../../../constants";
+import { Colors } from "../../constants";
 import { useRouter } from "next/router";
-import { ShortRecipeType } from "../../../types";
+import { ShortRecipeType } from "../../types";
+import { Button } from "../../ui";
 
 interface IRecipeCard {
   recipe: ShortRecipeType;
@@ -16,6 +17,7 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
   const handleOnClick = () => {
     router.replace(`/recipes/${recipe.slug}`);
   };
+
   return (
     <Card onClick={handleOnClick}>
       <TitleContainer>
@@ -26,22 +28,9 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
   );
 };
 
-const Card = styled.button`
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.4s;
-
-  background-color: ${Colors.Background};
-  border: 1px ${Colors.Border} solid;
-  width: 21rem;
-  height: 30rem;
-  margin: 0.5rem;
-  display: flex;
+const Card = styled(Button)`
   flex-direction: column;
-  align-items: center;
   justify-content: flex-end;
-  &:hover {
-    border: 1px ${Colors.BorderDarker} solid;
-  }
 `;
 
 const Image = styled.img`
@@ -49,11 +38,9 @@ const Image = styled.img`
 `;
 
 const TitleContainer = styled.div`
-  height: 7.5rem;
-  padding: 0.5rem;
+  padding: 1.5rem;
   align-items: center;
   justify-content: center;
-  display: flex;
 `;
 
 const Title = styled.p`

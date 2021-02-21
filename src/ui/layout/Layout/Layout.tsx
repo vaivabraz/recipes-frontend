@@ -9,7 +9,7 @@ const Layout = (props) => (
     <Navbar />
     <SubMenu />
     <VSpace />
-    <BodyContainer>{props.children}</BodyContainer>
+    <Column>{props.children}</Column>
     <VSpace />
   </LayoutContainer>
 );
@@ -17,14 +17,6 @@ const Layout = (props) => (
 const LayoutContainer = styled(Column)`
   background-color: ${Colors.Background};
   align-items: center;
-`;
-
-const BodyContainer = styled(Column).attrs(() => ({
-  small: 11,
-  medium: 10,
-  large: 10,
-}))`
-  padding: 0;
 `;
 
 export default Layout;

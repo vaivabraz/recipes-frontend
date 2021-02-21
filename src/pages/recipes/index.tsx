@@ -1,4 +1,5 @@
-import { Layout, RecipesList } from "../../components";
+import { RecipesList } from "../../components";
+import { Layout } from "../../ui";
 import styled from "styled-components";
 
 const Recipes = () => {

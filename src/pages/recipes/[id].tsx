@@ -1,4 +1,5 @@
-import { Layout, FullRecipeView } from "../../components/";
+import { FullRecipeView } from "../../components/";
+import { Layout } from "../../ui";
 import { useRouter } from "next/router";
 import { FullRecipeType } from "../../types";
 import { userRecipeHardcoded } from "../../hardcodedData";

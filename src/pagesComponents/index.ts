@@ -1,3 +1,3 @@
 export { RecipesList } from "./RecipesList";
-// export { default as FullRecipeView } from "./groups/FullRecipeView";
+export { RecipeView } from "./RecipeView";
 // export { default as CreateNewRecipeView } from "./groups/CreateNewRecipeView";

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Text from "./Text";
 
 type TextSectionType = {
   title?: string;
@@ -11,8 +12,8 @@ type TextSectionType = {
 const TextSection = ({ title, text, children, style }: TextSectionType) => {
   return (
     <Paragraph style={style}>
-      <Title>{title}</Title>
-      {text ? <p>{text}</p> : null}
+      <Text type={"h4"} text={title} />
+      {text ? <Text style={{ paddingLeft: "1rem" }} text={text} /> : null}
       {children}
     </Paragraph>
   );
@@ -20,11 +21,6 @@ const TextSection = ({ title, text, children, style }: TextSectionType) => {
 
 const Paragraph = styled.div`
   padding-bottom: 1rem;
-`;
-
-const Title = styled.h4`
-  padding-bottom: 0.2rem;
-  font-weight: bolder;
 `;
 
 export default TextSection;

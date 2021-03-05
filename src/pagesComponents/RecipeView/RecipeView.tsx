@@ -24,6 +24,10 @@ type FullRecipeViewProps = {
 const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
   const image = recipe.image || "/salad.jpg";
   //TODO: change alignment on small screens
+  //TODO: add ability to show separated times
+  //TODO: add ability to show preparation steps
+  //TODO: image is not correct
+
   return (
     <Container>
       <Row>

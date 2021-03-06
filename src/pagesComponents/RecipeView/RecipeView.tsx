@@ -3,15 +3,7 @@ import styled from "styled-components";
 
 import { Colors } from "../../constants";
 import { FullRecipeType } from "../../types";
-import {
-  Row,
-  Column,
-  Button,
-  TextSection,
-  Header,
-  Text,
-  HSpace,
-} from "../../ui";
+import { Row, Column, Button, TextSection, Text, HSpace } from "../../ui";
 
 import CategoriesList from "./CategoriesList";
 import IngredientsListView from "./IngredientsListView";
@@ -32,7 +24,7 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
     <Container>
       <Row>
         <TitleContainer>
-          <Header text={recipe.title} />
+          <Text type="h2" text={recipe.title} />
           <Text text={recipe.summary} />
         </TitleContainer>
       </Row>

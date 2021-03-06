@@ -1,6 +1,8 @@
 import React, { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
+
 import { Colors } from "../../constants";
+import { Text } from "../../ui";
 
 interface buttonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
@@ -10,7 +12,7 @@ const Button: React.FC<buttonInterface> = ({ text, children, ...props }) => {
   return (
     <ButtonBox {...props}>
       {children}
-      {text && <Text>{text}</Text>}
+      {text && <Text type="button">{text}</Text>}
     </ButtonBox>
   );
 };
@@ -24,19 +26,15 @@ const ButtonBox = styled.button`
   border: 1px ${Colors.Border} solid;
   &:hover {
     border: 1px ${Colors.BorderDarker} solid;
+    h5 {
+      color: ${Colors.AccentColor};
+      font-weight: bolder;
+    }
   }
 
   display: flex;
-  flex: 1;
   align-items: center;
   justify-content: center;
   min-width: 6rem;
-`;
-
-const Text = styled.p`
-  padding: 0.5rem;
-  ${ButtonBox}:hover & {
-    color: ${Colors.AccentColor};
-    font-weight: bolder;
-  }
+  padding: 0.5rem 2rem;
 `;

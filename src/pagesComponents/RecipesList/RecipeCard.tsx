@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Colors } from "../../constants";
 import { useRouter } from "next/router";
 import { ShortRecipeType } from "../../types";
-import { Button } from "../../ui";
+import { Button, Text } from "../../ui";
 
 interface IRecipeCard {
   recipe: ShortRecipeType;
@@ -21,7 +20,7 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
   return (
     <Card onClick={handleOnClick}>
       <TitleContainer>
-        <Title>{title}</Title>
+        <Text text={title} />
       </TitleContainer>
       <Image src={image} title={title} alt={title} />
     </Card>
@@ -29,6 +28,8 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
 };
 
 const Card = styled(Button)`
+  flex: 1;
+  padding: 0;
   flex-direction: column;
   justify-content: flex-end;
 `;
@@ -41,13 +42,6 @@ const TitleContainer = styled.div`
   padding: 1.5rem;
   align-items: center;
   justify-content: center;
-`;
-
-const Title = styled.p`
-  ${Card}:hover & {
-    color: ${Colors.AccentColor};
-    font-weight: bolder;
-  }
 `;
 
 export default React.memo(RecipeCard);

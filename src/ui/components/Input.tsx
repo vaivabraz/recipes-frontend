@@ -49,6 +49,11 @@ export const InputStyle = css`
     /* Microsoft Edge */
     color: ${Colors.DarkGrey};
   }
+  &:focus,
+  &:hover {
+    outline: none;
+    box-shadow: 0 0.4rem 0.375rem -0.375rem ${Colors.ShadowNude};
+  }
 `;
 
 const InputContainer = styled.div`

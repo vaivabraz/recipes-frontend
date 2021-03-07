@@ -16,7 +16,7 @@ const typeStyles = {
   h2: { fontSize: "31.25px", lineHeight: "53px" }, //page headre?
   h3: { fontSize: "25px", lineHeight: "41px" },
   h4: { fontSize: "20px", lineHeight: "34px", fontWeight: "bolder" }, //textSection Header
-  h5: { fontSize: "16px", lineHeight: "27px", fontWeight: "bolder" }, //input label
+  h5: { fontSize: "16px", lineHeight: "27px", fontWeight: "bolder" }, //input label, label above smaller sections
   body1: { fontSize: "16px", lineHeight: "27px" },
   body2: { fontSize: "14px", lineHeight: "24px" },
   subtitle1: { fontSize: "16px", lineHeight: "27px" },

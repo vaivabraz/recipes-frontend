@@ -26,6 +26,7 @@ const ButtonBox = styled.button`
   border: 1px ${Colors.Border} solid;
   &:hover {
     border: 1px ${Colors.BorderDarker} solid;
+    box-shadow: 0 0.4rem 0.375rem -0.375rem ${Colors.ShadowNude};
     h5 {
       color: ${Colors.AccentColor};
       font-weight: bolder;

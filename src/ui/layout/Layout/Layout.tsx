@@ -9,7 +9,7 @@ const Layout = (props) => (
     <Navbar />
     <SubMenu />
     <VSpace />
-    <Column>{props.children}</Column>
+    <Column large={10}>{props.children}</Column>
     <VSpace />
   </LayoutContainer>
 );

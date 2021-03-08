@@ -2,15 +2,18 @@ import React, { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 
 import { Colors } from "../../constants";
+import { Text } from "../../ui";
 
 interface buttonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
   Icon: any;
+  text?: string;
 }
 
-const ButtonSvg: React.FC<buttonInterface> = ({ Icon, ...props }) => {
+const ButtonSvg: React.FC<buttonInterface> = ({ Icon, text, ...props }) => {
   return (
     <ButtonBox {...props}>
       <Icon />
+      <Text type="button" text={text} />
     </ButtonBox>
   );
 };
@@ -23,11 +26,13 @@ const ButtonBox = styled.button`
   background-color: ${Colors.Background};
   display: flex;
   align-items: center;
-  justify-content: center;
   svg {
-    fill: ${Colors.AccentColor}; //TODO: negrazi spalva!!!
+    fill: ${Colors.DarkGrey}; //TODO: negrazi spalva!!!
   }
   svg:hover {
     fill: ${Colors.DarkGrey};
+  }
+  h5 {
+    padding-left: 0.5rem;
   }
 `;

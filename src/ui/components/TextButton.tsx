@@ -24,4 +24,5 @@ const ButtonBox = styled.button`
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
   background-color: ${Colors.Background};
+  padding-top: 2px;
 `;

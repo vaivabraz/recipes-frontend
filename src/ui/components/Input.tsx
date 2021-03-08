@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes } from "react";
 import styled, { css } from "styled-components";
 import { Colors } from "../../constants";
-import { Text } from "../../ui";
+import { Text, Column } from "../../ui";
 
 interface inputInterface extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -16,7 +16,7 @@ const Input: React.FC<inputInterface> = ({
   ...inputProps
 }) => {
   return (
-    <InputContainer>
+    <Column>
       {label && <Text type="h5">{label}</Text>}
       {multiline ? (
         <InputMultiline rows={4} error={error} {...inputProps} />
@@ -24,7 +24,7 @@ const Input: React.FC<inputInterface> = ({
         <InputLine autoComplete="off" error={error} {...inputProps} />
       )}
       {error && <Text color="error">{error}</Text>}
-    </InputContainer>
+    </Column>
   );
 };
 
@@ -54,13 +54,6 @@ export const InputStyle = css`
     outline: none;
     box-shadow: 0 0.4rem 0.375rem -0.375rem ${Colors.ShadowNude};
   }
-`;
-
-const InputContainer = styled.div`
-  margin: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 `;
 
 const InputLine = styled.input`

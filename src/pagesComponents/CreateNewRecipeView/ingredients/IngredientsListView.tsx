@@ -1,9 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 
-import { IngredientsListItemType } from "../../../../types";
-import PlusButton from "../../../../asset/svg/PlusButton";
-import { Colors } from "../../../../constants";
+import { IngredientsListItemType } from "../../../types";
+import PlusButton from "../../../asset/svg/PlusButton";
+import { ButtonSvg } from "../../../ui";
 
 import IngredientLine from "./IngredientLine";
 
@@ -36,26 +35,13 @@ const IngredientsListView = ({
           onRemove={handleRemoveIngredient}
         />
       ))}
-      <Button onClick={handleAddIngredientClick}>
-        <PlusButton />
-        <h5>Pridėti ingridienta</h5>
-      </Button>
+      <ButtonSvg
+        onClick={handleAddIngredientClick}
+        Icon={PlusButton}
+        text="Pridėti ingridienta"
+      />
     </>
   );
 };
 
 export default React.memo(IngredientsListView);
-
-const Button = styled.button`
-  background-color: white;
-  align-items: center;
-  display: flex;
-  margin: 0 1rem;
-  svg {
-    fill: ${Colors.DarkGrey};
-  }
-  h5 {
-    color: ${Colors.DarkGrey};
-    padding-left: 0.5rem;
-  }
-`;

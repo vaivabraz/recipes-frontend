@@ -21,7 +21,7 @@ const typeStyles = {
   body2: { fontSize: "14px", lineHeight: "24px" },
   subtitle1: { fontSize: "16px", lineHeight: "27px" },
   subtitle2: { fontSize: "14px", lineHeight: "24px" },
-  button: { fontSize: "16px", lineHeight: "24px" },
+  button: { fontSize: "16px", lineHeight: "27px" },
   caption: { fontSize: "12px", lineHeight: "20px" },
 };
 

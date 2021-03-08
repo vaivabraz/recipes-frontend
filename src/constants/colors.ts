@@ -9,6 +9,8 @@ export default {
   BackgroundLight: "#ffffff",
   Text: "#4C3F2F",
 
+  ShadowNude: "#c4a399",
+
   errorsRed: "#b63333",
 };
 

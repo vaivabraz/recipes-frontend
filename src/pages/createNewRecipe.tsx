@@ -1,22 +1,12 @@
-import { Layout } from "../components";
-import styled from "styled-components";
+import { CreateRecipeView } from "../pagesComponents";
+import { Layout } from "../ui";
 
 const CreateNewRecipe = () => {
   return (
     <Layout>
-      <BodyContainer>
-        <Title>
-          <h1>Sukurti nauja recepta</h1>
-        </Title>
-      </BodyContainer>
+      <CreateRecipeView />
     </Layout>
   );
 };
 
-const BodyContainer = styled.div``;
-
 export default CreateNewRecipe;
-
-const Title = styled.div`
-  padding: 4rem 3rem;
-`;

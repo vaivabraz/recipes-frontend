@@ -7,16 +7,18 @@ interface inputInterface extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: {};
   multiline?: boolean;
+  containerStyle?: object;
 }
 
 const Input: React.FC<inputInterface> = ({
   label,
   error,
   multiline,
+  containerStyle,
   ...inputProps
 }) => {
   return (
-    <Column>
+    <Column style={containerStyle}>
       {label && <Text type="h5">{label}</Text>}
       {multiline ? (
         <InputMultiline rows={4} error={error} {...inputProps} />

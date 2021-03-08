@@ -10,6 +10,7 @@ type Props = {
   offsetSmall?: ColumnOffset;
   offsetMedium?: ColumnOffset;
   offsetLarge?: ColumnOffset;
+  style?: object;
 };
 
 export type ColumnSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
@@ -21,10 +22,17 @@ export const Column = ({
   small = "auto",
   medium = null,
   large = null,
+  style,
   ...props
 }: Props) => {
   return (
-    <StyledColumn small={small} medium={medium} large={large} {...props} />
+    <StyledColumn
+      small={small}
+      medium={medium}
+      large={large}
+      style={style}
+      {...props}
+    />
   );
 };
 

@@ -14,35 +14,49 @@ type Props = {
 const PreparationSteps = ({ steps, onChange }: Props) => {
   const handleChangeStep = ({ target }, index, groupIndex) => {
     const allStepsCopy = steps.stepsList.slice();
-
-    const currentGroupStepsCopy = allStepsCopy.filter(
-      (i) => i.groupIndex === groupIndex
-    );
-    const otherGroupsStepsCopy = allStepsCopy.filter(
-      (i) => i.groupIndex !== groupIndex
-    );
-    currentGroupStepsCopy[index].step = target.value;
+    let updatedStepsList;
+    if (steps.groupPreparationSteps) {
+      const currentGroupStepsCopy = allStepsCopy.filter(
+        (i) => i.groupIndex === groupIndex
+      );
+      const otherGroupsStepsCopy = allStepsCopy.filter(
+        (i) => i.groupIndex !== groupIndex
+      );
+      currentGroupStepsCopy[index].step = target.value;
+      updatedStepsList = [...otherGroupsStepsCopy, ...currentGroupStepsCopy];
+    } else {
+      allStepsCopy[index].step = target.value;
+      updatedStepsList = allStepsCopy;
+    }
 
     onChange("preparation", {
       ...steps,
-      stepsList: [...otherGroupsStepsCopy, ...currentGroupStepsCopy],
+      stepsList: updatedStepsList,
     });
   };
 
   const handleRemoveStep = (event, index, groupIndex) => {
     event.preventDefault();
     const allStepsCopy = steps.stepsList.slice();
-    const currentGroupStepsCopy = allStepsCopy.filter(
-      (i) => i.groupIndex === groupIndex
-    );
-    const otherGroupsStepsCopy = allStepsCopy.filter(
-      (i) => i.groupIndex !== groupIndex
-    );
+    let updatedStepsList;
+    if (steps.groupPreparationSteps) {
+      const currentGroupStepsCopy = allStepsCopy.filter(
+        (i) => i.groupIndex === groupIndex
+      );
+      const otherGroupsStepsCopy = allStepsCopy.filter(
+        (i) => i.groupIndex !== groupIndex
+      );
 
-    currentGroupStepsCopy.splice(index, 1);
+      currentGroupStepsCopy.splice(index, 1);
+      updatedStepsList = [...otherGroupsStepsCopy, ...currentGroupStepsCopy];
+    } else {
+      allStepsCopy.splice(index, 1);
+      updatedStepsList = allStepsCopy;
+    }
+
     onChange("preparation", {
       ...steps,
-      stepsList: [...otherGroupsStepsCopy, ...currentGroupStepsCopy],
+      stepsList: updatedStepsList,
     });
   };
 

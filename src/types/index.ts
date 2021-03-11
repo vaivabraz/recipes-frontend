@@ -35,7 +35,22 @@ export type IngredientsListItemType = {
 };
 
 export type IngredientsGroupsType = {
-  groupName: String;
-  id: String;
-  index: Number;
+  groupName: string;
+  index: number;
+};
+
+export type PreparationStepsInRecipeType = {
+  groupPreparationSteps: Boolean;
+  stepsGroups: StepsGroupsType[];
+  stepsList: StepsListItemType[];
+};
+
+export type StepsGroupsType = {
+  groupName: string;
+  index: number;
+};
+
+export type StepsListItemType = {
+  step: string;
+  groupIndex: number;
 };

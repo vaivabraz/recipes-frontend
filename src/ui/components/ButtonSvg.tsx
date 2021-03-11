@@ -13,7 +13,7 @@ const ButtonSvg: React.FC<buttonInterface> = ({ Icon, text, ...props }) => {
   return (
     <ButtonBox {...props}>
       <Icon />
-      <Text type="button" text={text} />
+      {text && <Text type="button" text={text} />}
     </ButtonBox>
   );
 };

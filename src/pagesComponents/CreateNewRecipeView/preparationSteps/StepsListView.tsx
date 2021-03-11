@@ -8,9 +8,9 @@ import Step from "./Step";
 
 type Props = {
   stepsList: StepsListItemType[];
-  handleChangeStep: (event, id) => void;
-  handleRemoveStep: (event, id) => void;
-  handleAddStep: (event, id) => void;
+  handleChangeStep: (event, id, groupIndex) => void;
+  handleRemoveStep: (event, id, groupIndex) => void;
+  handleAddStep: (event, groupIndex) => void;
   groupIndex: Number;
 };
 

@@ -10,17 +10,17 @@ type Props = {
   index: number;
   key: any;
   entry: StepsListItemType;
-  onChange: (event, id) => void;
-  onRemove: (event, id) => void;
+  onChange: (event, id, groupIndex) => void;
+  onRemove: (event, id, groupIndex) => void;
 };
 
 const Step = ({ index, entry, onChange, onRemove }: Props) => {
   const onInputChange = (e) => {
-    onChange(e, index);
+    onChange(e, index, entry.groupIndex);
   };
 
   const onRemoveProduct = (e) => {
-    onRemove(e, index);
+    onRemove(e, index, entry.groupIndex);
   };
 
   return (

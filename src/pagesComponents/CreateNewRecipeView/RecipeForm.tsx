@@ -5,6 +5,7 @@ import { Input, Button } from "../../ui";
 
 import validateRecipe from "./validateRecipe";
 import Ingredients from "./ingredients/Ingredients";
+import PreparationSteps from "./preparationSteps/PreparationSteps";
 
 type RecipeFormProps = {
   handleSubmitForm: (e: any) => void;
@@ -41,14 +42,9 @@ const RecipeForm = ({ initialRecipe, handleSubmitForm }: RecipeFormProps) => {
         ingredients={values.ingredients}
         onChange={handleCustomChange}
       />
-      <Input
-        label={"Paruosimas"}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        name="preparation"
-        value={values.preparation}
-        error={errors?.preparation}
-        multiline
+      <PreparationSteps
+        steps={values.preparation}
+        onChange={handleCustomChange}
       />
       <Input
         label={"Pastabos"}

@@ -1,7 +1,11 @@
 export const initialRecipe = {
   _id: null, //?
   title: "",
-  preparation: "", //pakeist i objekta
+  preparation: {
+    groupPreparationSteps: false,
+    stepsGroups: [{ groupName: "", id: "", index: 0 }],
+    stepsList: [{ step: "", id: 1, groupIndex: 0 }],
+  },
   notes: "",
   summary: "",
   image: "", //?

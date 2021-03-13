@@ -54,3 +54,14 @@ export type StepsListItemType = {
   step: string;
   groupIndex: number;
 };
+
+export type PreparationTimeInRecipeType = {
+  splitTime: boolean;
+  totalTime: string;
+  timeRanges: PreparationTimeRangeType[];
+};
+
+export type PreparationTimeRangeType = {
+  processName: string;
+  time: string;
+};

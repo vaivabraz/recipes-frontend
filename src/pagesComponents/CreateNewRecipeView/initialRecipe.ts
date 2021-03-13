@@ -6,12 +6,6 @@ export const initialRecipe = {
     stepsGroups: [{ groupName: "", id: "", index: 0 }],
     stepsList: [{ step: "", id: 1, groupIndex: 0 }],
   },
-  notes: "",
-  summary: "",
-  image: "", //?
-  time: "", //pakeisti i objekta
-  portions: "",
-  categories: [],
   ingredients: {
     groupIngredients: false,
     ingredientsGroups: [{ groupName: "", id: "", index: 0 }],
@@ -21,6 +15,22 @@ export const initialRecipe = {
       { product: "", quantity: "", id: 2, groupIndex: 0 },
     ],
   },
+  notes: "",
+  summary: "",
+  portions: "",
+  time: {
+    splitTime: false,
+    totalTime: "",
+    timeRanges: [
+      {
+        processName: "",
+        time: "",
+      },
+    ],
+  },
+
+  image: "", //?
+  categories: [],
   slug: "",
   //linkas?
   //private or public

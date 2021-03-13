@@ -43,7 +43,7 @@ export default React.memo(Step);
 
 const Line = styled.div`
   display: flex;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
 `;
 
 const StepInput = styled(Input)`

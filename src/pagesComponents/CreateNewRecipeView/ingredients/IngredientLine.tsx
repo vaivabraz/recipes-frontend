@@ -54,7 +54,7 @@ const Line = styled(Row)`
 const ProductInput = styled.input`
   ${InputStyle}
   flex: 1;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
 `;
 
 const QuantityInput = styled.input`

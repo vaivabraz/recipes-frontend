@@ -6,7 +6,12 @@ export const userRecipe: FullRecipeType = {
   time: "30min",
   ingredients: {
     groupIngredients: false,
-    ingredientsGroups: [{ groupName: "", id: "", index: 0 }],
+    ingredientsGroups: [
+      {
+        groupName: "",
+        index: 0,
+      },
+    ],
     ingredientsList: [
       {
         product: "Pomidorai",
@@ -28,7 +33,8 @@ export const userRecipe: FullRecipeType = {
       },
     ],
   },
-  preparation: "Viska supjaustai, sumaisai ir vuola pagaminta!!",
+  preparation:
+    "Viska supjaustai, sumaisai ir vuola pagaminta!! Viska supjaustai, sumaisai ir vuola pagaminta!! Viska supjaustai, sumaisai ir vuola pagaminta!! Viska supjaustai, sumaisai ir vuola pagaminta!! Viska supjaustai, sumaisai ir vuola pagaminta!!",
   image: "",
   categories: ["uzkandziai", "greitai"],
   notes: "labai skanus",

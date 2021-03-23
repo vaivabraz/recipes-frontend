@@ -43,6 +43,7 @@ const Text = ({
     ...typeStyles[type],
     color: color && colors[color], // : Colors.Text,
     ...style,
+    textAlign: "center",
   };
   return <h5 style={styles}>{childToRender}</h5>;
 };

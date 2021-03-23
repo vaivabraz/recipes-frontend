@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Router from "next/router";
 import useForm from "../../utils/useForm";
 import { AuthenticationService } from "../../services";
 
@@ -45,7 +46,10 @@ const LoginView = () => {
         </Button>
         <VSpace height={3} />
         <Text text="arba" />
-        <TextButton text={"Sukurti naują vartotoją"} onClick={() => {}} />
+        <TextButton
+          text={"Sukurti naują vartotoją"}
+          onClick={() => Router.push("/register")}
+        />
       </Container>
     </ScreenContainer>
   );

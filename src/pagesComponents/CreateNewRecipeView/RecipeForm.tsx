@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import useFormValidation from "./useFormValidation";
+import useFormValidation from "../../utils/useFormValidation";
 import { Input, Button, Row } from "../../ui";
 
 import validateRecipe from "./validateRecipe";

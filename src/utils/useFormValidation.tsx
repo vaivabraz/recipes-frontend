@@ -1,16 +1,12 @@
 import { useState } from "react";
 
-type valuesType = {
-  [key: string]: any;
-};
-
-function useFormValidation(
-  initialState: valuesType,
-  validate: (values: valuesType) => {},
-  submitFormAfterValidation: (values: valuesType) => void
+function useFormValidation<StateType = {}, ErrorsType = {}>(
+  initialState: StateType,
+  validate: (values: StateType) => ErrorsType,
+  submitFormAfterValidation: (values: StateType) => void
 ) {
   const [values, setValues] = useState(initialState);
-  const [errors, setErrors] = useState<valuesType>({});
+  const [errors, setErrors] = useState<Partial<ErrorsType>>({});
 
   function handleChange(event) {
     setValues({

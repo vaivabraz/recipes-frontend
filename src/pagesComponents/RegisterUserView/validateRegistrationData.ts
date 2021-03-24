@@ -1,7 +1,7 @@
-import { registrationDataType, registrationErrorsType } from "./types";
+import { RegistrationDataType, RegistrationErrorsType } from "./types";
 
-export function validateRegistrationData(values: registrationDataType) {
-  const errors = {} as registrationErrorsType;
+export function validateRegistrationData(values: RegistrationDataType) {
+  const errors = {} as RegistrationErrorsType;
 
   const emailValidationRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -13,6 +13,8 @@ export function validateRegistrationData(values: registrationDataType) {
   if (!passwordValidationRegex.test(values.password1)) {
     errors.password1 =
       "Slaptažodis turi:\n - Būti bent 8 simbolių ilgio;\n - Turėti bent po vieną raidę ir skaitmenį";
+  } else if (!values.password2) {
+    errors.password2 = "Pakartokite slaptazodi!";
   } else if (values.password1 !== values.password2) {
     errors.password2 = "Ivesti slaptazodziai nesutampa!";
   }

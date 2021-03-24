@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import useForm from "../../utils/useForm";
+import Router from "next/router";
 import { RegistrationService } from "../../services";
-
 import {
   Row,
   Column,
@@ -12,21 +11,34 @@ import {
   TextButton,
   VSpace,
 } from "../../ui";
-import Router from "next/router";
+import useFormValidation from "../../utils/useFormValidation";
+import { validateRegistrationData } from "./validateRegistrationData";
+import { RegistrationDataType, RegistrationErrorsType } from "./types";
 
 const RegisterUserView = () => {
-  const initialData = {
-    username: "",
-    password: "",
+  const initialData: RegistrationDataType = {
+    email: "",
+    password1: "",
     password2: "",
   };
-  const [values, setFormValue] = useForm(initialData);
+
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    errors,
+  } = useFormValidation<RegistrationDataType, RegistrationErrorsType>(
+    initialData,
+    validateRegistrationData,
+    () => {}
+  );
 
   const registerUser = () => {
     // RegistrationService.registerUser(values);
     // history.push("/");
   };
-  //TODO1: add validations
+
   return (
     <ScreenContainer>
       <Container>
@@ -35,19 +47,25 @@ const RegisterUserView = () => {
         <StyledInput
           placeholder="elektroninis paštas"
           label="Prisijungimo vardas"
-          name="username"
-          value={values.username}
-          onChange={setFormValue}
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+          error={errors.email}
+          onBlur={handleBlur}
         />
+        {errors.email && <Text color="error">{errors.email}</Text>}
         <VSpace />
         <StyledInput
           placeholder="slaptažodis"
           label="Slaptazodis"
           type="password"
-          name="password"
-          value={values.password}
-          onChange={setFormValue}
+          name="password1"
+          value={values.password1}
+          onChange={handleChange}
+          error={errors.password1}
+          onBlur={handleBlur}
         />
+        {errors.password1 && <Text color="error">{errors.password1}</Text>}
         <VSpace />
         <StyledInput
           placeholder="pakartoti slaptažodį"
@@ -55,10 +73,12 @@ const RegisterUserView = () => {
           type="password"
           name="password2"
           value={values.password2}
-          onChange={setFormValue}
+          onChange={handleChange}
+          error={errors.password2}
         />
+        {errors.password2 && <Text color="error">{errors.password2}</Text>}
         <VSpace height={2} />
-        <Button onClick={registerUser}>Registruotis</Button>
+        <Button onClick={handleSubmit}>Registruotis</Button>
         <VSpace height={3} />
         <Text text="jau turi paskyrą?" />
         <TextButton

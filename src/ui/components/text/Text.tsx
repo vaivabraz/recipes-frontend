@@ -44,6 +44,7 @@ const Text = ({
     color: color && colors[color], // : Colors.Text,
     ...style,
     textAlign: "center",
+    whiteSpace: "pre-wrap",
   };
   return <h5 style={styles}>{childToRender}</h5>;
 };

@@ -1,11 +1,14 @@
 import GlobalStyles from "../ui/styles/global";
 import { AppProvider } from "../store/context";
+import { WithAxios } from "../services/axios";
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <AppProvider>
-      <GlobalStyles />
-      <Component {...pageProps} />
+      <WithAxios>
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </WithAxios>
     </AppProvider>
   );
 }

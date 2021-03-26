@@ -1,11 +1,11 @@
 import GlobalStyles from "../ui/styles/global";
+import { AppProvider } from "../contextStore/context";
 
-// This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <AppProvider>
       <GlobalStyles />
       <Component {...pageProps} />
-    </>
+    </AppProvider>
   );
 }

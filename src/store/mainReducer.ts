@@ -1,9 +1,9 @@
 import { InitialStateType } from "./initialState";
-import { productReducer, userReducer, Actions } from "./reducers";
+import { productReducer, userReducer, ActionsType } from "./reducers";
 
 export const mainReducer = (
   { products, user }: InitialStateType,
-  action: Actions
+  action: ActionsType
 ) => ({
   products: productReducer(products, action),
   user: userReducer(user, action),

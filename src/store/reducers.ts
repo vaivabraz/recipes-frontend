@@ -1,31 +1,31 @@
 import { ProductType, UserType } from "./initialState";
 import { ActionMap } from "./utils";
 
-export type Actions = ActionMap<ActionsPayload>[keyof ActionMap<ActionsPayload>];
+export type ActionsType = ActionMap<ActionsPayload>[keyof ActionMap<ActionsPayload>];
 
-export enum ActionTypes {
+export enum Actions {
   Create = "CREATE_PRODUCT",
   Delete = "DELETE_PRODUCT",
   AddToken = "ADD_TOKEN",
 }
 
 export type ActionsPayload = {
-  [ActionTypes.Create]: {
+  [Actions.Create]: {
     id: number;
     name: string;
     price: number;
   };
-  [ActionTypes.Delete]: {
+  [Actions.Delete]: {
     id: number;
   };
-  [ActionTypes.AddToken]: {
+  [Actions.AddToken]: {
     token: string;
   };
 };
 
-export const productReducer = (state: ProductType[], action: Actions) => {
+export const productReducer = (state: ProductType[], action: ActionsType) => {
   switch (action.type) {
-    case ActionTypes.Create:
+    case Actions.Create:
       return [
         ...state,
         {
@@ -34,16 +34,16 @@ export const productReducer = (state: ProductType[], action: Actions) => {
           price: action.payload.price,
         },
       ];
-    case ActionTypes.Delete:
+    case Actions.Delete:
       return [...state.filter((product) => product.id !== action.payload.id)];
     default:
       return state;
   }
 };
 
-export const userReducer = (state: UserType, action: Actions) => {
+export const userReducer = (state: UserType, action: ActionsType) => {
   switch (action.type) {
-    case ActionTypes.AddToken:
+    case Actions.AddToken:
       return { ...state, token: action.payload.token };
     default:
       return state;

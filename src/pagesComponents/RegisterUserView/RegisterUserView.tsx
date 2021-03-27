@@ -10,6 +10,7 @@ import {
   InputStyle,
   TextButton,
   VSpace,
+  ErrorText,
 } from "../../ui";
 import useFormValidation from "../../utils/useFormValidation";
 import { validateRegistrationData } from "./validateRegistrationData";
@@ -53,7 +54,7 @@ const RegisterUserView = () => {
           error={errors.email}
           onBlur={handleBlur}
         />
-        {errors.email && <Text color="error">{errors.email}</Text>}
+        <ErrorText error={errors.email} />
         <VSpace />
         <StyledInput
           placeholder="slaptažodis"
@@ -65,7 +66,7 @@ const RegisterUserView = () => {
           error={errors.password1}
           onBlur={handleBlur}
         />
-        {errors.password1 && <Text color="error">{errors.password1}</Text>}
+        <ErrorText error={errors.password1} />
         <VSpace />
         <StyledInput
           placeholder="pakartoti slaptažodį"
@@ -76,7 +77,7 @@ const RegisterUserView = () => {
           onChange={handleChange}
           error={errors.password2}
         />
-        {errors.password2 && <Text color="error">{errors.password2}</Text>}
+        <ErrorText error={errors.password2} />
         <VSpace height={2} />
         <Button onClick={handleSubmit}>Registruotis</Button>
         <VSpace height={3} />

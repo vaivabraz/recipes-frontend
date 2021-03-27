@@ -1,9 +1,9 @@
 import { useContext, useMemo } from "react";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { Actions, AppContext } from "../../store";
-import { instance as axios } from "./axiosConfig";
-import jwtDecode from "jwt-decode";
 import { AuthenticationService } from "../";
+import { instance as axios } from "./axiosConfig";
+import { IsTokenValidOrUndefined } from "./utils";
 
 const WithAxios = ({ children }) => {
   const { state, dispatch } = useContext(AppContext);
@@ -26,24 +26,11 @@ const WithAxios = ({ children }) => {
         return response;
       },
       (error: AxiosError) => {
-        const IsTokenValidOrUndefined = () => {
-          const accessToken = state.user.token;
-          if (!accessToken) {
-            return true;
-          }
-
-          const { exp }: any = jwtDecode(accessToken);
-          if (Date.now() >= exp * 1000) {
-            return false;
-          } else {
-            return true;
-          }
-        };
-
-        const fn = async (resolve) => {
+        const fn = async (resolve, reject) => {
           if (error.response?.status === 404) {
             let originalConfig = error.config;
-            const isTokenExpired = !IsTokenValidOrUndefined();
+            const accessToken = state.user.token;
+            const isTokenExpired = !IsTokenValidOrUndefined(accessToken);
             if (isTokenExpired) {
               const response = await AuthenticationService.refreshSession();
               dispatch({
@@ -55,7 +42,8 @@ const WithAxios = ({ children }) => {
             }
             resolve();
           }
-          return Promise.reject(error);
+
+          return reject(error.response);
         };
         return new Promise(fn);
       }

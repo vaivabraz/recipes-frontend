@@ -43,7 +43,7 @@ const WithAxios = ({ children }) => {
             resolve();
           }
 
-          return reject(error.response);
+          return reject(error.response || error);
         };
         return new Promise(fn);
       }

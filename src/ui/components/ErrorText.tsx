@@ -9,4 +9,5 @@ export const ErrorText: React.FC<ErrorTextProps> = ({ error }) => {
   if (error) {
     return <Text color="error">{error}</Text>;
   }
+  return null;
 };

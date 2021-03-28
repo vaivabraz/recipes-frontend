@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import Router from "next/router";
-import { RegistrationService } from "../../services";
+import { AuthenticationService, RegistrationService } from "../../services";
 import {
   Row,
   Column,
@@ -15,12 +15,38 @@ import {
 import useFormValidation from "../../utils/useFormValidation";
 import { validateRegistrationData } from "./validateRegistrationData";
 import { RegistrationDataType, RegistrationErrorsType } from "./types";
+import { Actions, AppContext } from "../../store";
 
 const RegisterUserView = () => {
   const initialData: RegistrationDataType = {
     email: "",
     password1: "",
     password2: "",
+  };
+
+  const { dispatch } = useContext(AppContext);
+  const [errorEmail, setErrorEmail] = useState("");
+
+  const registerUser = async () => {
+    setErrorEmail("");
+    const result = await RegistrationService.registerUser({
+      email: values.email,
+      password: values.password1,
+    });
+    if (result.error === "EMAIL_ALREADY_USED") {
+      setErrorEmail("Toks vartotojas jau egzistuoja");
+      return;
+    }
+    if (result.username) {
+      const { accessToken, error } = await AuthenticationService.loginUser({
+        email: values.email,
+        password: values.password1,
+      });
+      if (accessToken) {
+        dispatch({ type: Actions.AddToken, payload: { token: accessToken } });
+        Router.replace("/recipes");
+      }
+    }
   };
 
   const {
@@ -32,13 +58,8 @@ const RegisterUserView = () => {
   } = useFormValidation<RegistrationDataType, RegistrationErrorsType>(
     initialData,
     validateRegistrationData,
-    () => {}
+    registerUser
   );
-
-  const registerUser = () => {
-    // RegistrationService.registerUser(values);
-    // history.push("/");
-  };
 
   return (
     <ScreenContainer>
@@ -51,10 +72,10 @@ const RegisterUserView = () => {
           name="email"
           value={values.email}
           onChange={handleChange}
-          error={errors.email}
+          error={errors.email || errorEmail}
           onBlur={handleBlur}
         />
-        <ErrorText error={errors.email} />
+        <ErrorText error={errors.email || errorEmail} />
         <VSpace />
         <StyledInput
           placeholder="slaptažodis"

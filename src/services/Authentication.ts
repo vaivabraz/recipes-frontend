@@ -1,4 +1,3 @@
-import { setAccessToken } from "../fakeStore";
 import axios from "./axios";
 
 type LoginResponse = {
@@ -50,6 +49,14 @@ class AuthenticationService {
     } catch (e) {
       console.log("-AuthenticationService-refreshSession", e);
       return {};
+    }
+  }
+
+  async logout() {
+    try {
+      await axios.get("user/logout");
+    } catch (e) {
+      console.log("-AuthenticationService-logout", e);
     }
   }
 }

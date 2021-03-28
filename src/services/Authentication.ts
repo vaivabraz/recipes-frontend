@@ -11,7 +11,7 @@ type LoginAPIResponse = {
 };
 
 type RefreshSessionResponse = {
-  accessToken: string;
+  accessToken?: string;
 };
 type RefreshSessionAPIResponse = {
   accessToken: string;
@@ -37,6 +37,7 @@ class AuthenticationService {
       }
       //TODO implement general error handling
       console.log("-AuthenticationService-loginUser", e);
+      return {};
     }
   }
 
@@ -48,6 +49,7 @@ class AuthenticationService {
       return { accessToken: response?.data?.accessToken };
     } catch (e) {
       console.log("-AuthenticationService-refreshSession", e);
+      return {};
     }
   }
 }

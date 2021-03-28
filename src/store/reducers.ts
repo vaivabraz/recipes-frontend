@@ -7,6 +7,7 @@ export enum Actions {
   Create = "CREATE_PRODUCT",
   Delete = "DELETE_PRODUCT",
   AddToken = "ADD_TOKEN",
+  AddUsername = "ADD_USERNAME",
 }
 
 export type ActionsPayload = {
@@ -20,6 +21,9 @@ export type ActionsPayload = {
   };
   [Actions.AddToken]: {
     token: string;
+  };
+  [Actions.AddUsername]: {
+    username: string;
   };
 };
 
@@ -45,6 +49,8 @@ export const userReducer = (state: UserType, action: ActionsType) => {
   switch (action.type) {
     case Actions.AddToken:
       return { ...state, token: action.payload.token };
+    case Actions.AddUsername:
+      return { ...state, username: action.payload.username };
     default:
       return state;
   }

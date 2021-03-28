@@ -5,13 +5,28 @@ import Navbar from "./Navbar";
 import SubMenu from "./SubMenu";
 import { Colors } from "../../../constants";
 import { VSpace, Column } from "../";
-import { AppContext } from "../../../store";
+import { Actions, AppContext } from "../../../store";
+import { UserService } from "../../../services";
 
 const Layout = ({ children }) => {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const router = useRouter();
 
   //TODO:if state.loading -> show loading overlay
+  useEffect(() => {
+    async function fetchMe() {
+      const response = await UserService.getCurrentUser();
+      console.log(response);
+      if (response.username) {
+        dispatch({
+          type: Actions.AddUsername,
+          payload: { username: response.username },
+        });
+      }
+      //TODO: save other received data
+    }
+    fetchMe();
+  }, []);
 
   useEffect(() => {
     if (!state.user.token) {

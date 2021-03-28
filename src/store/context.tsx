@@ -11,7 +11,8 @@ const AppContext = createContext<{
   dispatch: () => null,
 });
 
-const AppProvider: React.FC = ({ children }) => {
+const AppProvider: React.FC<{ token: string }> = ({ children, token }) => {
+  initialState.user.token = token;
   const [state, dispatch] = useReducer(mainReducer, initialState);
 
   return (

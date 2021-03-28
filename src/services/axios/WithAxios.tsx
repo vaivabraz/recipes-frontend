@@ -32,12 +32,14 @@ const WithAxios = ({ children }) => {
             const accessToken = state.user.token;
             const isTokenExpired = !IsTokenValidOrUndefined(accessToken);
             if (isTokenExpired) {
-              const response = await AuthenticationService.refreshSession();
+              const {
+                accessToken,
+              } = await AuthenticationService.refreshSession();
               dispatch({
                 type: Actions.AddToken,
-                payload: { token: response.data.accessToken },
+                payload: { token: accessToken },
               });
-              originalConfig.headers.Authorization = `vbck ${response.data.accessToken}`;
+              originalConfig.headers.Authorization = `vbck ${accessToken}`;
               return axios(originalConfig);
             }
             resolve();

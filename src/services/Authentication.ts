@@ -10,6 +10,13 @@ type LoginAPIResponse = {
   accessToken: string;
 };
 
+type RefreshSessionResponse = {
+  accessToken: string;
+};
+type RefreshSessionAPIResponse = {
+  accessToken: string;
+};
+
 class AuthenticationService {
   async loginUser(formData: {
     email: string;
@@ -33,6 +40,16 @@ class AuthenticationService {
     }
   }
 
+  async refreshSession(): Promise<RefreshSessionResponse> {
+    try {
+      const response = await axios.post<RefreshSessionAPIResponse>(
+        "refresh_session"
+      );
+      return { accessToken: response?.data?.accessToken };
+    } catch (e) {
+      console.log("-AuthenticationService-refreshSession", e);
+    }
+  }
 }
 
 export default new AuthenticationService();

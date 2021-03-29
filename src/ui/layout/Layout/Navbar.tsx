@@ -10,9 +10,9 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <IllustrationContainer>
+      {/* <IllustrationContainer>
         <NavBarIllustration />
-      </IllustrationContainer>
+      </IllustrationContainer> */}
       <Row>
         <Link href="/recipes" title="Receptai" bold />
         <HSpace width={2} />

@@ -7,10 +7,11 @@ import { IsTokenValidOrUndefined } from "./utils";
 
 const WithAxios = ({ children }) => {
   const { state, dispatch } = useContext(AppContext);
+  const token = state.user.token;
   useMemo(() => {
     axios.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        const accessToken = state.user.token;
+        const accessToken = token;
         if (accessToken) {
           config.headers.common["Authorization"] = `vbck ${accessToken}`;
         }
@@ -29,7 +30,7 @@ const WithAxios = ({ children }) => {
         const fn = async (resolve, reject) => {
           if (error.response?.status === 404) {
             let originalConfig = error.config;
-            const accessToken = state.user.token;
+            const accessToken = token;
             const isTokenExpired = !IsTokenValidOrUndefined(accessToken);
             if (isTokenExpired) {
               const {
@@ -50,7 +51,7 @@ const WithAxios = ({ children }) => {
         return new Promise(fn);
       }
     );
-  }, []);
+  }, [token]);
 
   return children;
 };

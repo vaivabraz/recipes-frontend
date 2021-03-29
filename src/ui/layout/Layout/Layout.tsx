@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
     async function fetchMe() {
       const response = await UserService.getCurrentUser();
       console.log(response);
-      if (response.username) {
+      if (response?.username) {
         dispatch({
           type: Actions.AddUsername,
           payload: { username: response.username },
@@ -25,15 +25,13 @@ const Layout = ({ children }) => {
       }
       //TODO: save other received data
     }
-    fetchMe();
-  }, []);
-
-  useEffect(() => {
     if (!state.user.token) {
       router.push("/login");
       return;
+    } else if (!state.user.username) {
+      fetchMe();
     }
-  }, [state.user.token]);
+  }, [state.user.token, state.user.username]);
 
   return (
     <LayoutContainer>

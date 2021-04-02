@@ -34,7 +34,7 @@ function useFormValidation<StateType = {}, ErrorsType = {}>(
     e.preventDefault();
     const validationErrors = validate(values);
     setErrors(validationErrors);
-    const noErrors = Object.keys(errors).length === 0;
+    const noErrors = Object.keys(validationErrors).length === 0;
     if (noErrors) {
       submitFormAfterValidation(values);
     }

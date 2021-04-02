@@ -38,14 +38,11 @@ const RegisterUserView = () => {
       return;
     }
     if (result.username) {
-      const { accessToken, error } = await AuthenticationService.loginUser({
+      await AuthenticationService.loginUser({
         email: values.email,
         password: values.password1,
       });
-      if (accessToken) {
-        dispatch({ type: Actions.AddToken, payload: { token: accessToken } });
-        Router.replace("/recipes");
-      }
+      Router.replace("/recipes");
     }
   };
 

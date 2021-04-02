@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Navbar from "./Navbar";
@@ -9,40 +9,44 @@ import { Actions, AppContext } from "../../../store";
 import { UserService } from "../../../services";
 
 const Layout = ({ children }) => {
+  const [loading, setLoading] = useState(false);
   const { state, dispatch } = useContext(AppContext);
   const router = useRouter();
 
-  //TODO:if state.loading -> show loading overlay
   useEffect(() => {
     async function fetchMe() {
       const response = await UserService.getCurrentUser();
-      console.log(response);
       if (response?.username) {
         dispatch({
           type: Actions.AddUsername,
           payload: { username: response.username },
         });
+      } else {
+        router.push("/login");
       }
-      //TODO: save other received data
+      setLoading(false);
     }
-    if (!state.user.token) {
-      router.push("/login");
-      return;
-    } else if (!state.user.username) {
+
+    if (!state.user.username) {
+      setLoading(true);
       fetchMe();
     }
-  }, [state.user.token, state.user.username]);
+  }, []);
 
-  return (
-    <LayoutContainer>
-      <Navbar />
-      <SubMenu />
-      <VSpace />
-      <Column large={10}>{children}</Column>
-      <VSpace />
-    </LayoutContainer>
-  );
+  if (!loading && state.user.username) {
+    return (
+      <LayoutContainer>
+        <Navbar />
+        <SubMenu />
+        <VSpace />
+        <Column large={10}>{children}</Column>
+        <VSpace />
+      </LayoutContainer>
+    );
+  }
+  return <div>loading</div>;
 };
+
 const LayoutContainer = styled(Column)`
   background-color: ${Colors.Background};
   align-items: center;

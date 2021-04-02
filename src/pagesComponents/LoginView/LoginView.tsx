@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Router from "next/router";
 import useForm from "../../utils/useForm";
@@ -14,14 +14,13 @@ import {
   InputStyle,
   ErrorText,
 } from "../../ui";
-import { AppContext, Actions } from "../../store";
 
 const LoginView = () => {
   const initialData = {
     email: "",
     password: "",
   };
-  const { dispatch } = useContext(AppContext);
+
   const [values, setFormValue] = useForm(initialData);
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
@@ -33,16 +32,15 @@ const LoginView = () => {
       values
     );
 
-    if (accessToken) {
-      dispatch({ type: Actions.AddToken, payload: { token: accessToken } });
-      Router.replace("/recipes");
-    } else if (error) {
+    if (error) {
       if (error === "USER_NOT_FOUND") {
         setErrorEmail("Toks vartotojas nerastas");
       } else if (error === "INVALID_PASSWORD") {
         setErrorPassword("Slaptazodis netinka");
       }
+      return;
     }
+    Router.replace("/recipes");
   };
 
   return (

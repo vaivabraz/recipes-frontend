@@ -11,10 +11,6 @@ const WithAxios = ({ children }) => {
   useMemo(() => {
     axios.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        const accessToken = token;
-        if (accessToken) {
-          config.headers.common["Authorization"] = `vbck ${accessToken}`;
-        }
         return config;
       },
       (error: AxiosError) => {

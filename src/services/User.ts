@@ -11,7 +11,9 @@ class UserService {
     try {
       const response = await axios.get<GetMeApiResponse>("user/me");
       return response?.data;
-    } catch (e) {}
+    } catch (e) {
+      console.log("getCurrentUser error", e);
+    }
   }
 }
 

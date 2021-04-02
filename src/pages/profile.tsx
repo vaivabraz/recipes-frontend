@@ -1,14 +1,17 @@
-import { Layout, TextButton } from "../ui";
 import { useContext } from "react";
+import { useRouter } from "next/router";
+import { Layout, TextButton } from "../ui";
 import { Actions, AppContext } from "../store";
 import { AuthenticationService } from "../services";
 
 export default function Profile() {
   const { dispatch } = useContext(AppContext);
+  const router = useRouter();
 
   const logout = async () => {
-    dispatch({ type: Actions.AddToken, payload: { token: "" } });
     await AuthenticationService.logout();
+    dispatch({ type: Actions.ResetAll });
+    router.push("/login");
   };
 
   return (

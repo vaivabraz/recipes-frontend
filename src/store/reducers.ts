@@ -1,9 +1,10 @@
-import { ProductType, UserType } from "./initialState";
+import { initialState, ProductType, UserType } from "./initialState";
 import { ActionMap } from "./utils";
 
 export type ActionsType = ActionMap<ActionsPayload>[keyof ActionMap<ActionsPayload>];
 
 export enum Actions {
+  ResetAll = "RESET_ALL",
   Create = "CREATE_PRODUCT",
   Delete = "DELETE_PRODUCT",
   AddToken = "ADD_TOKEN",
@@ -11,6 +12,7 @@ export enum Actions {
 }
 
 export type ActionsPayload = {
+  [Actions.ResetAll]: null;
   [Actions.Create]: {
     id: number;
     name: string;
@@ -47,6 +49,11 @@ export const productReducer = (state: ProductType[], action: ActionsType) => {
 
 export const userReducer = (state: UserType, action: ActionsType) => {
   switch (action.type) {
+    case Actions.ResetAll:
+      return {
+        username: "",
+        token: "",
+      };
     case Actions.AddToken:
       return { ...state, token: action.payload.token };
     case Actions.AddUsername:

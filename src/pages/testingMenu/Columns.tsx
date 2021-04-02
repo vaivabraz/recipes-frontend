@@ -1,8 +1,7 @@
-import { Layout } from "../ui";
-import { Row, Column } from "../ui";
+import { Row, Column, Layout } from "../../ui";
 import styled from "styled-components";
 
-export default function About() {
+export default function Columns() {
   return (
     <Layout>
       <Row>

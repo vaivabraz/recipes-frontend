@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Router from "next/router";
 import useForm from "../../utils/useForm";
@@ -12,14 +12,36 @@ import {
   TextButton,
   VSpace,
   InputStyle,
+  ErrorText,
 } from "../../ui";
 
 const LoginView = () => {
   const initialData = {
-    username: "",
+    email: "",
     password: "",
   };
+
   const [values, setFormValue] = useForm(initialData);
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+
+  const startLogin = async () => {
+    setErrorEmail("");
+    setErrorPassword("");
+    const { accessToken, error } = await AuthenticationService.loginUser(
+      values
+    );
+
+    if (error) {
+      if (error === "USER_NOT_FOUND") {
+        setErrorEmail("Toks vartotojas nerastas");
+      } else if (error === "INVALID_PASSWORD") {
+        setErrorPassword("Slaptazodis netinka");
+      }
+      return;
+    }
+    Router.replace("/recipes");
+  };
 
   return (
     <ScreenContainer>
@@ -28,10 +50,12 @@ const LoginView = () => {
         <VSpace height={5} />
         <StyledInput
           placeholder="elektroninis paštas"
-          name="username"
-          value={values.username}
+          name="email"
+          value={values.email}
           onChange={setFormValue}
+          error={errorEmail}
         />
+        <ErrorText error={errorEmail} />
         <VSpace />
         <StyledInput
           placeholder="slaptažodis"
@@ -39,11 +63,11 @@ const LoginView = () => {
           name="password"
           value={values.password}
           onChange={setFormValue}
+          error={errorPassword}
         />
+        <ErrorText error={errorPassword} />
         <VSpace height={2} />
-        <Button onClick={() => AuthenticationService.loginUser(values)}>
-          Prisijungti
-        </Button>
+        <Button onClick={startLogin}>Prisijungti</Button>
         <VSpace height={3} />
         <Text text="arba" />
         <TextButton

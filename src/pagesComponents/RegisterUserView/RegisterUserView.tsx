@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import Router from "next/router";
-import { RegistrationService } from "../../services";
+import { AuthenticationService, RegistrationService } from "../../services";
 import {
   Row,
   Column,
@@ -10,16 +10,40 @@ import {
   InputStyle,
   TextButton,
   VSpace,
+  ErrorText,
 } from "../../ui";
 import useFormValidation from "../../utils/useFormValidation";
 import { validateRegistrationData } from "./validateRegistrationData";
 import { RegistrationDataType, RegistrationErrorsType } from "./types";
+import { Actions, AppContext } from "../../store";
 
 const RegisterUserView = () => {
   const initialData: RegistrationDataType = {
     email: "",
     password1: "",
     password2: "",
+  };
+
+  const { dispatch } = useContext(AppContext);
+  const [errorEmail, setErrorEmail] = useState("");
+
+  const registerUser = async () => {
+    setErrorEmail("");
+    const result = await RegistrationService.registerUser({
+      email: values.email,
+      password: values.password1,
+    });
+    if (result.error === "EMAIL_ALREADY_USED") {
+      setErrorEmail("Toks vartotojas jau egzistuoja");
+      return;
+    }
+    if (result.username) {
+      await AuthenticationService.loginUser({
+        email: values.email,
+        password: values.password1,
+      });
+      Router.replace("/recipes");
+    }
   };
 
   const {
@@ -31,13 +55,8 @@ const RegisterUserView = () => {
   } = useFormValidation<RegistrationDataType, RegistrationErrorsType>(
     initialData,
     validateRegistrationData,
-    () => {}
+    registerUser
   );
-
-  const registerUser = () => {
-    // RegistrationService.registerUser(values);
-    // history.push("/");
-  };
 
   return (
     <ScreenContainer>
@@ -50,10 +69,10 @@ const RegisterUserView = () => {
           name="email"
           value={values.email}
           onChange={handleChange}
-          error={errors.email}
+          error={errors.email || errorEmail}
           onBlur={handleBlur}
         />
-        {errors.email && <Text color="error">{errors.email}</Text>}
+        <ErrorText error={errors.email || errorEmail} />
         <VSpace />
         <StyledInput
           placeholder="slaptažodis"
@@ -65,7 +84,7 @@ const RegisterUserView = () => {
           error={errors.password1}
           onBlur={handleBlur}
         />
-        {errors.password1 && <Text color="error">{errors.password1}</Text>}
+        <ErrorText error={errors.password1} />
         <VSpace />
         <StyledInput
           placeholder="pakartoti slaptažodį"
@@ -76,7 +95,7 @@ const RegisterUserView = () => {
           onChange={handleChange}
           error={errors.password2}
         />
-        {errors.password2 && <Text color="error">{errors.password2}</Text>}
+        <ErrorText error={errors.password2} />
         <VSpace height={2} />
         <Button onClick={handleSubmit}>Registruotis</Button>
         <VSpace height={3} />

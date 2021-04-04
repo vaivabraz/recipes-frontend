@@ -11,6 +11,7 @@ type Props = {
   offsetMedium?: ColumnOffset;
   offsetLarge?: ColumnOffset;
   style?: object;
+  responsive: boolean;
 };
 
 export type ColumnSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
@@ -23,6 +24,7 @@ export const Column = ({
   medium = null,
   large = null,
   style,
+  responsive,
   ...props
 }: Props) => {
   return (
@@ -31,12 +33,13 @@ export const Column = ({
       medium={medium}
       large={large}
       style={style}
+      responsive={responsive}
       {...props}
     />
   );
 };
 
-const width = (breakpointWidth: number, columnWidth: ColumnWidth) => {
+const width = (breakpointWidth: string, columnWidth: ColumnWidth) => {
   if (columnWidth === "auto") {
     return `
     display: flex;
@@ -47,7 +50,7 @@ const width = (breakpointWidth: number, columnWidth: ColumnWidth) => {
     `;
   }
   return `
-    @media (min-width: ${breakpointWidth}px) {
+    @media (min-width: ${breakpointWidth}) {
       max-width: ${calculateColumnWidth(columnWidth)}%;
       flex-basis: ${calculateColumnWidth(columnWidth)}%;
     }
@@ -63,9 +66,12 @@ const StyledColumn = styled.div`
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-  padding: 1rem;
+  padding: ${(props) => (props.responsive ? null : "1rem")};
   width: 100%;
   ${(props) => props.small && width(BREAKPOINTS.small, props.small)};
   ${(props) => props.medium && width(BREAKPOINTS.medium, props.medium)};
   ${(props) => props.large && width(BREAKPOINTS.large, props.large)};
+  @media (min-width: ${BREAKPOINTS.small}) {
+    padding: 1rem;
+  }
 `;

@@ -12,8 +12,8 @@ type TextSectionType = {
 //TODO: h2 turi sumazet kai mazas ekranas
 
 const typeStyles = {
-  h1: { fontSize: "39.06px", lineHeight: "66px" },
-  h2: { fontSize: "31.25px", lineHeight: "53px" }, //page headre?
+  h1: { fontSize: "39.06px", lineHeight: "66px", textAlign: "center" },
+  h2: { fontSize: "31.25px", lineHeight: "53px", textAlign: "center" }, //page headre?
   h3: { fontSize: "25px", lineHeight: "41px" },
   h4: { fontSize: "20px", lineHeight: "34px", fontWeight: "bolder" }, //textSection Header
   h5: { fontSize: "16px", lineHeight: "27px", fontWeight: "bolder" }, //input label, label above smaller sections
@@ -40,11 +40,10 @@ const Text = ({
 }: TextSectionType) => {
   const childToRender = text || children;
   const styles = {
+    whiteSpace: "pre-wrap",
     ...typeStyles[type],
     color: color && colors[color], // : Colors.Text,
     ...style,
-    textAlign: "center",
-    whiteSpace: "pre-wrap",
   };
   return <h5 style={styles}>{childToRender}</h5>;
 };

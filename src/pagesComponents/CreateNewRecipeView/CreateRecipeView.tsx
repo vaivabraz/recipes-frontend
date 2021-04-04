@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Colors } from "../../constants";
 import { FullRecipeType } from "../../types";
-import { Row, Column, Text } from "../../ui";
+import { Row, Column, Text, BREAKPOINTS } from "../../ui";
 import RecipeForm from "./RecipeForm";
 import { initialRecipe } from "./initialRecipe";
 
@@ -13,18 +13,18 @@ type FullRecipeViewProps = {
 
 const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
   return (
-    <Container>
+    <Container responsive={true}>
       <Row>
         <TitleContainer>
           <Text type="h2" text="Sukurti nauja recepta" />
         </TitleContainer>
       </Row>
       <Row>
-        <LeftColumn large={4}>
+        <LeftColumn large={4} responsive={true}>
           <Text type="h5" text="Pridėti nuotraukà " />
           <AttachmentsPlaceholder />
         </LeftColumn>
-        <RightColumn large={8}>
+        <RightColumn large={8} responsive={true}>
           <RecipeForm
             initialRecipe={initialRecipe}
             handleSubmitForm={() => console.log("submit! ups!")}
@@ -38,7 +38,9 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
 export default CreateRecipeView;
 
 const Container = styled(Column)`
-  border: 1px ${Colors.Border} solid;
+  @media (min-width: ${BREAKPOINTS.small}) {
+    border: 1px ${Colors.Border} solid;
+  }
 `;
 
 const TitleContainer = styled(Column)`
@@ -47,12 +49,9 @@ const TitleContainer = styled(Column)`
 
 const LeftColumn = styled(Column)`
   align-items: center;
-  padding-left: 1rem;
 `;
 
-const RightColumn = styled(Column)`
-  padding-left: 1rem;
-`;
+const RightColumn = styled(Column)``;
 
 const AttachmentsPlaceholder = styled.div`
   height: 200px;

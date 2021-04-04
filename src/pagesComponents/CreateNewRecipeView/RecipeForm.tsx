@@ -23,9 +23,6 @@ const RecipeForm = ({ initialRecipe, handleSubmitForm }: RecipeFormProps) => {
     errors,
   } = useFormValidation(initialRecipe, validateRecipe, handleSubmitForm);
 
-  //paruosimas turetu buti imanomas isskirstyti zingsniais ir taip pat grupuoti
-  //paruodimo zingsnius irgi turetu but galima sugrupuoti
-  //grupuoti laika
   //atpazinti linkus!
   //prideti private/public
 

@@ -19,18 +19,18 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
           <Text type="h2" text="Sukurti nauja recepta" />
         </TitleContainer>
       </Row>
-      <Row>
-        <LeftColumn large={4} responsive={true}>
+      <Content>
+        <LeftColumn small={12} medium={4} responsive={true}>
           <Text type="h5" text="Pridėti nuotraukà " />
           <AttachmentsPlaceholder />
         </LeftColumn>
-        <RightColumn large={8} responsive={true}>
+        <RightColumn small={12} medium={8} responsive={true}>
           <RecipeForm
             initialRecipe={initialRecipe}
             handleSubmitForm={() => console.log("submit! ups!")}
           />
         </RightColumn>
-      </Row>
+      </Content>
     </Container>
   );
 };
@@ -40,6 +40,12 @@ export default CreateRecipeView;
 const Container = styled(Column)`
   @media (min-width: ${BREAKPOINTS.small}) {
     border: 1px ${Colors.Border} solid;
+  }
+`;
+const Content = styled(Row)`
+  flex-direction: column-reverse;
+  @media (min-width: ${BREAKPOINTS.medium}) {
+    flex-direction: initial;
   }
 `;
 

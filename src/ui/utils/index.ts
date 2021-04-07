@@ -5,3 +5,11 @@ export const BREAKPOINTS = {
   large: "1280px",
   extraLarge: "1920px",
 };
+
+export const intBREAKPOINTS = {
+  extraSmall: 0,
+  small: 600,
+  medium: 960,
+  large: 1280,
+  extraLarge: 1920,
+};

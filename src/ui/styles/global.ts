@@ -54,5 +54,24 @@ h5 {
   font-size: 16px;
   line-height: 24px;
 }
+
+:root {
+  --Accent: #b10f14;
+  --BorderColor: "#DBDBDB";
+  --BorderDarker: "#c4c2c2";
+  --DarkGrey: "#888179";
+  --HeaderBackground:#fff8f0;
+  --AccentColor: "#E1A200";
+  --Background: "#ffffff";
+  --BackgroundLight: "#ffffff";
+  --Text: "#4C3F2F";
+  --ShadowNude: "#c4a399";
+  --Shadow: 0 0.4rem 0.375rem -0.375rem #c4a399;
+  --BorderLine: 1px #DBDBDB solid;
+  --errorsRed: "#b63333";
+
+
+  --ShadowCard: var(--Grey6) 0px 2px 4px 0px;
+}
   
 `;

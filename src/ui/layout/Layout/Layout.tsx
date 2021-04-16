@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import Navbar from "./Navbar";
-import SubMenu from "./SubMenu";
+import Navbar from "./NavBar";
 import { Colors } from "../../../constants";
 import { VSpace, Column } from "../";
 import { Actions, AppContext } from "../../../store";
@@ -35,9 +34,8 @@ const Layout = ({ children }) => {
 
   if (!loading && state.user.username) {
     return (
-      <LayoutContainer>
+      <LayoutContainer responsive={true}>
         <Navbar />
-        <SubMenu />
         <VSpace />
         <Column responsive={true} large={10}>
           {children}

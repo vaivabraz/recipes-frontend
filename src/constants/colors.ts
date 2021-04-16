@@ -4,7 +4,7 @@ export default {
 
   DarkGrey: "#888179",
 
-  AccentColor: "#E1A200",
+  AccentColor: "#b75114",
   Background: "#ffffff",
   BackgroundLight: "#ffffff",
   Text: "#4C3F2F",

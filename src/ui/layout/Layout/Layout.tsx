@@ -36,7 +36,6 @@ const Layout = ({ children }) => {
     return (
       <LayoutContainer responsive={true}>
         <Navbar />
-        <VSpace />
         <Column responsive={true} large={10}>
           {children}
         </Column>

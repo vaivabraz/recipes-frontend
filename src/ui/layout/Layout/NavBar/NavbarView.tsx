@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import useWindowSize from "../../../../hooks/useWindowSize";
 import { AppContext } from "../../../../store";
-// import MobileNavbar from "./MobileNavbar";
+import MobileNavbar from "./MobileNavbar";
 import DesktopNavbar from "./DesktopNavbar";
 
 const NavbarView = () => {
@@ -26,9 +26,9 @@ const NavbarView = () => {
   ];
   const size = useWindowSize();
 
-  // if (size === "small") {
-  //   return <MobileNavbar NavBarItems={NavBarItems} />;
-  // }
+  if (size === "small") {
+    return <MobileNavbar NavBarItems={NavBarItems} />;
+  }
   return <DesktopNavbar NavBarItems={NavBarItems} />;
 };
 

@@ -4,7 +4,7 @@ import { Link, Row, HSpace } from "../../ui";
 const SubMenu = () => (
   <SubMenuContainer>
     <Row>
-      <Link href="/createNewRecipe" title="Sukurti nauja"></Link>
+      <Link href="/recipes/createNewRecipe" title="Sukurti nauja"></Link>
       {/* <Text>Kategorijos (TBD)</Text> */}
       <HSpace width={3} />
       <Text>Paieska (TBD)</Text>

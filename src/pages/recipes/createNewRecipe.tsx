@@ -1,5 +1,5 @@
-import { CreateRecipeView } from "../pagesComponents";
-import { Layout } from "../ui";
+import { CreateRecipeView } from "../../pagesComponents";
+import { Layout } from "../../ui";
 
 const CreateNewRecipe = () => {
   return (

@@ -1,45 +1,37 @@
 import React from "react";
 import styled from "styled-components";
+import { BREAKPOINTS } from "../../utils";
+
+type TextTypes =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "body1"
+  | "body2"
+  | "subtitle1"
+  | "subtitle2"
+  | "button"
+  | "caption";
+
+type TextColors = "accent" | "dimmed" | "error";
 
 type TextSectionType = {
   text?: string | Number;
-  type?: string;
+  type?: TextTypes;
   children?: any;
   style?: object;
-  color?: "accent" | "dimmed" | "error";
+  color?: TextColors;
 };
 
-//TODO: h2 turi sumazet kai mazas ekranas
-
-const typeStyles = {
-  h1: { fontSize: "39.06px", lineHeight: "66px", textAlign: "center" },
-  h2: { fontSize: "31.25px", lineHeight: "53px", textAlign: "center" }, //page headre?
-  h3: { fontSize: "25px", lineHeight: "41px" },
-  h4: { fontSize: "20px", lineHeight: "34px", fontWeight: "bolder" }, //textSection Header
-  h5: { fontSize: "16px", lineHeight: "27px", fontWeight: "bolder" }, //input label, label above smaller sections
-  body1: { fontSize: "16px", lineHeight: "27px" },
-  body2: { fontSize: "14px", lineHeight: "24px" },
-  subtitle1: { fontSize: "16px", lineHeight: "27px" },
-  subtitle2: { fontSize: "14px", lineHeight: "24px" },
-  button: { fontSize: "16px", lineHeight: "27px" },
-  caption: { fontSize: "12px", lineHeight: "20px" },
-};
-
-const Text = ({
-  text,
-  children,
-  type = "body1",
-  color,
-  style,
-}: TextSectionType) => {
+const Text = ({ text, children, type, color, style }: TextSectionType) => {
   const childToRender = text || children;
-  const styles = {
-    ...typeStyles[type],
-    ...style,
-  };
-  const className = color ?? "";
+  const classNameColors = color ?? "";
+  const classNameType = type ?? "body1";
+  const className = classNameColors + " " + classNameType;
   return (
-    <Txt className={className} style={styles}>
+    <Txt className={className} style={style}>
       {childToRender}
     </Txt>
   );
@@ -57,6 +49,62 @@ const Txt = styled.h5`
   }
   &.error {
     color: var(--errorsRed);
+  }
+
+  &.h1 {
+    font-size: 39.06px;
+    line-height: 66px;
+    text-align: center;
+  }
+  &.h2 {
+    font-size: 31.25px;
+    line-height: 53px;
+    text-align: center;
+    @media (max-width: ${BREAKPOINTS.small}) {
+      font-size: 25px;
+      line-height: 41px;
+    }
+    //page headre?
+  }
+  &.h3 {
+    font-size: 25px;
+    line-height: 41px;
+  }
+  &.h4 {
+    font-size: 20px;
+    line-height: 34px;
+    font-weight: bolder;
+    //textSection Header
+  }
+  &.h5 {
+    font-size: 16px;
+    line-height: 27px;
+    font-weight: bolder;
+    //input label, label above smaller sections
+  }
+  &.body1 {
+    font-size: 16px;
+    line-height: 27px;
+  }
+  &.body2 {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  &.subtitle1 {
+    font-size: 16px;
+    line-height: 27px;
+  }
+  &.subtitle2 {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  &.button {
+    font-size: 16px;
+    line-height: 27px;
+  }
+  &.caption {
+    font-size: 12px;
+    line-height: 20px;
   }
 `;
 

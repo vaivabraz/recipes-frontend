@@ -21,7 +21,7 @@ const TimeRangeLine = ({ timeRange, index, onChange, onRemove }: Props) => {
   };
 
   return (
-    <StyledRow>
+    <Container>
       <ProcessContainer>
         <Input
           placeholder={"Procesas"}
@@ -31,32 +31,34 @@ const TimeRangeLine = ({ timeRange, index, onChange, onRemove }: Props) => {
           containerStyle={{ padding: 0 }}
         />
       </ProcessContainer>
-      <TimeContainer>
-        <Input
-          placeholder={"Laikas"}
-          onChange={handleChange}
-          name="time"
-          value={timeRange.time}
-          containerStyle={{ padding: 0 }}
-        />
-      </TimeContainer>
-      <ButtonSvg onClick={onRemoveTimeRange} Icon={MinusButton} />
-    </StyledRow>
+      <ProcessContainer>
+        <TimeContainer>
+          <Input
+            placeholder={"Laikas"}
+            onChange={handleChange}
+            name="time"
+            value={timeRange.time}
+            containerStyle={{ padding: 0 }}
+          />
+        </TimeContainer>
+        <ButtonSvg onClick={onRemoveTimeRange} Icon={MinusButton} />
+      </ProcessContainer>
+    </Container>
   );
 };
 
 export default React.memo(TimeRangeLine);
 
-const StyledRow = styled(Row)`
-  padding-bottom: 0.5rem;
+const Container = styled(Row)`
+  flex-wrap: nowrap;
 `;
+
 const ProcessContainer = styled.div`
   display: flex;
-  flex: 2;
-  margin-right: 0.5rem;
+  padding-bottom: 0.5rem;
 `;
 const TimeContainer = styled.div`
   display: flex;
-  flex: 1;
+  margin-left: 0.5rem;
   margin-right: 0.5rem;
 `;

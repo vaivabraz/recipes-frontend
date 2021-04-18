@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import useFormValidation from "../../utils/useFormValidation";
-import { Input, Button, Row } from "../../ui";
+import { Input, Button, Row, BREAKPOINTS } from "../../ui";
 
 import validateRecipe from "./validateRecipe";
 import Ingredients from "./ingredients/Ingredients";
@@ -59,7 +59,7 @@ const RecipeForm = ({ initialRecipe, handleSubmitForm }: RecipeFormProps) => {
         value={values.summary}
       />
 
-      <Row>
+      <PortionsTimeContainer>
         <PortionsContainer>
           <Input
             label={"Porciju skaicius"}
@@ -72,7 +72,7 @@ const RecipeForm = ({ initialRecipe, handleSubmitForm }: RecipeFormProps) => {
         <TimeContainer>
           <Time time={values.time} onChange={handleCustomChange} />
         </TimeContainer>
-      </Row>
+      </PortionsTimeContainer>
       <div>
         <Button disabled={false} text="Sukurti" onClick={handleSubmit} />
       </div>
@@ -90,9 +90,14 @@ const InputBox = styled.form`
 const PortionsContainer = styled.div`
   display: inline;
   flex: 1;
-  padding-top: 2px; //to align with time container
 `;
 const TimeContainer = styled.div`
   display: flex;
   flex: 2;
+`;
+
+const PortionsTimeContainer = styled(Row)`
+  @media (max-width: ${BREAKPOINTS.small}) {
+    flex-direction: column;
+  }
 `;

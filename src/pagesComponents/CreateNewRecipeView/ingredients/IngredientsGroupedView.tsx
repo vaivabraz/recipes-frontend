@@ -119,7 +119,7 @@ const IngredientsGroupedView = ({
   };
 
   return (
-    <Container>
+    <>
       {ingredients.ingredientsGroups.map((i) => (
         <GroupedView key={i.index}>
           <Line>
@@ -135,17 +135,15 @@ const IngredientsGroupedView = ({
               Icon={MinusButton}
             />
           </Line>
-          <GroupedIngredients>
-            <IngredientsListView
-              ingredientsList={ingredients.ingredientsList.filter(
-                (line) => line.groupIndex === i.index
-              )}
-              handleAddIngredient={handleAddIngredient}
-              handleChangeIngredient={handleChangeIngredient}
-              handleRemoveIngredient={handleRemoveIngredient}
-              groupIndex={i.index}
-            />
-          </GroupedIngredients>
+          <IngredientsListView
+            ingredientsList={ingredients.ingredientsList.filter(
+              (line) => line.groupIndex === i.index
+            )}
+            handleAddIngredient={handleAddIngredient}
+            handleChangeIngredient={handleChangeIngredient}
+            handleRemoveIngredient={handleRemoveIngredient}
+            groupIndex={i.index}
+          />
         </GroupedView>
       ))}
 
@@ -154,29 +152,23 @@ const IngredientsGroupedView = ({
         Icon={PlusButton}
         text="Pridėti grupę"
       />
-    </Container>
+    </>
   );
 };
 
 export default React.memo(IngredientsGroupedView);
 
-const Container = styled.div``;
-
 const Line = styled.div`
   display: flex;
-  margin: 0.5rem 1rem;
+  margin: 0 0.5rem 0.5rem 0;
 `;
 
 const GroupNameInput = styled.input`
   ${InputStyle}
   flex: 1;
-  margin: 0 1rem;
+  margin-right: 0.5rem;
 `;
 
 const GroupedView = styled.div`
-  margin: 1rem 0;
-`;
-
-const GroupedIngredients = styled.div`
-  padding-left: 3rem;
+  padding-bottom: 1rem;
 `;

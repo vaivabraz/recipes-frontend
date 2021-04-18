@@ -23,5 +23,5 @@ const ButtonBox = styled.button`
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
   background-color: var(--Background);
-  padding-top: 2px;
+  /* padding-top: 2px; */
 `;

@@ -66,6 +66,7 @@ const NavbarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
+  margin-bottom: 1rem;
 `;
 
 const MenuHeader = styled.div`

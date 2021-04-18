@@ -39,7 +39,7 @@ const IngredientLine = ({ entry, onChange, onRemove }: Props) => {
           name={"quantity"}
           autoComplete="off"
         />
-        <ButtonSvg onClick={onRemoveProduct} Icon={MinusButton} />
+        <RemoveButton onClick={onRemoveProduct} Icon={MinusButton} />
       </>
     </Line>
   );
@@ -61,4 +61,8 @@ const QuantityInput = styled.input`
   ${InputStyle}
   width: 10rem;
   margin: 0 0.5rem 0.5rem 0.5rem;
+`;
+
+const RemoveButton = styled(ButtonSvg)`
+  margin-bottom: 0.5rem;
 `;

@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 import { StepsListItemType } from "../../../types";
 import PlusButton from "../../../asset/svg/PlusButton";
@@ -37,7 +38,7 @@ const StepsListView = ({
         />
       ))}
 
-      <ButtonSvg
+      <AddStepButton
         onClick={handleAddStepClick}
         Icon={PlusButton}
         text="Pridėti zingsni"
@@ -47,3 +48,7 @@ const StepsListView = ({
 };
 
 export default React.memo(StepsListView);
+
+const AddStepButton = styled(ButtonSvg)`
+  padding-left: 1rem;
+`;

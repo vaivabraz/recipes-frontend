@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 import { IngredientsListItemType } from "../../../types";
 import PlusButton from "../../../asset/svg/PlusButton";
@@ -35,7 +36,7 @@ const IngredientsListView = ({
           onRemove={handleRemoveIngredient}
         />
       ))}
-      <ButtonSvg
+      <AddIngredientButton
         onClick={handleAddIngredientClick}
         Icon={PlusButton}
         text="Pridėti ingridienta"
@@ -45,3 +46,7 @@ const IngredientsListView = ({
 };
 
 export default React.memo(IngredientsListView);
+
+const AddIngredientButton = styled(ButtonSvg)`
+  padding-left: 1rem;
+`;

@@ -104,7 +104,7 @@ const StepsGroupedView = ({
   };
 
   return (
-    <Container>
+    <>
       {steps.stepsGroups.map((i) => (
         <GroupedView key={i.index}>
           <Line>
@@ -120,17 +120,15 @@ const StepsGroupedView = ({
               Icon={MinusButton}
             />
           </Line>
-          <GroupedSteps>
-            <StepsListView
-              stepsList={steps.stepsList.filter(
-                (line) => line.groupIndex === i.index
-              )}
-              handleChangeStep={handleChangeStep}
-              handleRemoveStep={handleRemoveStep}
-              handleAddStep={handleAddStep}
-              groupIndex={i.index}
-            />
-          </GroupedSteps>
+          <StepsListView
+            stepsList={steps.stepsList.filter(
+              (line) => line.groupIndex === i.index
+            )}
+            handleChangeStep={handleChangeStep}
+            handleRemoveStep={handleRemoveStep}
+            handleAddStep={handleAddStep}
+            groupIndex={i.index}
+          />
         </GroupedView>
       ))}
 
@@ -139,29 +137,23 @@ const StepsGroupedView = ({
         Icon={PlusButton}
         text="Pridėti grupę"
       />
-    </Container>
+    </>
   );
 };
 
 export default React.memo(StepsGroupedView);
 
-const Container = styled.div``;
-
 const Line = styled.div`
   display: flex;
-  margin: 0.5rem 1rem;
+  margin: 0 0.5rem 0.5rem 0;
 `;
 
 const GroupNameInput = styled.input`
   ${InputStyle}
   flex: 1;
-  margin: 0 1rem;
+  margin-right: 0.5rem;
 `;
 
 const GroupedView = styled.div`
-  margin: 1rem 0;
-`;
-
-const GroupedSteps = styled.div`
-  padding-left: 3rem;
+  padding-bottom: 1rem;
 `;

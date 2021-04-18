@@ -4,6 +4,7 @@ import { BREAKPOINTS } from "../../utils";
 
 type Props = {
   children: React.ReactNode;
+  extraSmall?: ColumnArg;
   small?: ColumnArg;
   medium?: ColumnArg;
   large?: ColumnArg;
@@ -20,6 +21,7 @@ export type ColumnOffset = ColumnSize | null;
 type ColumnArg = ColumnWidth | null;
 
 export const Column = ({
+  extraSmall = null,
   small = "auto",
   medium = null,
   large = null,
@@ -29,6 +31,7 @@ export const Column = ({
 }: Props) => {
   return (
     <StyledColumn
+      extraSmall={extraSmall}
       small={small}
       medium={medium}
       large={large}
@@ -68,6 +71,8 @@ const StyledColumn = styled.div`
   flex-direction: column;
   padding: ${(props) => (props.responsive ? null : "1rem")};
   width: 100%;
+  ${(props) =>
+    props.extraSmall && width(BREAKPOINTS.extraSmall, props.extraSmall)};
   ${(props) => props.small && width(BREAKPOINTS.small, props.small)};
   ${(props) => props.medium && width(BREAKPOINTS.medium, props.medium)};
   ${(props) => props.large && width(BREAKPOINTS.large, props.large)};

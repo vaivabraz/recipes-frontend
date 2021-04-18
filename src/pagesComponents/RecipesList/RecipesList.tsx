@@ -8,7 +8,7 @@ const RecipesList = () => {
   return (
     <RecipesContainer>
       {RecipesListHardcoded.map((recipe) => (
-        <Column large={3} medium={6} small={12}>
+        <Column large={3} medium={4} small={6} extraSmall={12}>
           <RecipeCard key={recipe.slug} recipe={recipe} />
         </Column>
       ))}

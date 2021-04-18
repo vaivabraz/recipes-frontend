@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Colors } from "../../constants";
 import { FullRecipeType } from "../../types";
 import { Row, Column, Button, TextSection, Text, HSpace } from "../../ui";
 
@@ -71,7 +70,7 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
 export default FullRecipeView;
 
 const Container = styled(Column)`
-  border: 1px ${Colors.Border} solid;
+  border: var(--BorderLine);
 `;
 
 const TitleContainer = styled(Column)`
@@ -91,7 +90,7 @@ const Image = styled.img`
   max-width: 100%;
   min-width: 250px;
   margin-bottom: 1rem;
-  border: 1px ${Colors.Border} solid;
+  border: var(--BorderLine);
 `;
 
 const Info = styled.div`

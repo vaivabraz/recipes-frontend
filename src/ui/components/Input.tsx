@@ -1,6 +1,5 @@
 import React, { InputHTMLAttributes } from "react";
 import styled, { css } from "styled-components";
-import { Colors } from "../../constants";
 import { Text, Column } from "../../ui";
 
 interface inputInterface extends InputHTMLAttributes<HTMLInputElement> {
@@ -17,13 +16,14 @@ const Input: React.FC<inputInterface> = ({
   containerStyle,
   ...inputProps
 }) => {
+  const className = error ? "error" : "";
   return (
     <Column style={containerStyle}>
       {label && <Text type="h5">{label}</Text>}
       {multiline ? (
-        <InputMultiline rows={4} error={error} {...inputProps} />
+        <InputMultiline rows={4} className={className} {...inputProps} />
       ) : (
-        <InputLine autoComplete="off" error={error} {...inputProps} />
+        <InputLine autoComplete="off" className={className} {...inputProps} />
       )}
       {error && <Text color="error">{error}</Text>}
     </Column>
@@ -35,26 +35,29 @@ export default React.memo(Input);
 export const InputStyle = css`
   padding: 0.5rem;
   border: 1px solid;
-  border-color: ${(props) => (props.error ? Colors.errorsRed : Colors.Border)};
+  border-color: var(--BorderColor);
+  &.error {
+    border-color: var(--errorsRed);
+  }
   ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: ${Colors.DarkGrey};
+    color: var(--DarkGrey);
     opacity: 1; /* Firefox */
   }
 
   :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    color: ${Colors.DarkGrey};
+    color: var(--DarkGrey);
   }
 
   ::-ms-input-placeholder {
     /* Microsoft Edge */
-    color: ${Colors.DarkGrey};
+    color: var(--DarkGrey);
   }
   &:focus,
   &:hover {
     outline: none;
-    box-shadow: 0 0.4rem 0.375rem -0.375rem ${Colors.ShadowNude};
+    box-shadow: var(--Shadow);
   }
 `;
 

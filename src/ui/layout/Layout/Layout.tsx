@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Navbar from "./NavBar";
-import { Colors } from "../../../constants";
 import { VSpace, Column } from "../";
 import { Actions, AppContext } from "../../../store";
 import { UserService } from "../../../services";
@@ -47,7 +46,7 @@ const Layout = ({ children }) => {
 };
 
 const LayoutContainer = styled(Column)`
-  background-color: ${Colors.Background};
+  background-color: var(--Background);
   align-items: center;
 `;
 

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Colors } from "../../constants";
 import { FullRecipeType } from "../../types";
 import { Row, Column, Text, BREAKPOINTS } from "../../ui";
 import RecipeForm from "./RecipeForm";
@@ -39,7 +38,7 @@ export default CreateRecipeView;
 
 const Container = styled(Column)`
   @media (min-width: ${BREAKPOINTS.small}) {
-    border: 1px ${Colors.Border} solid;
+    border: var(--BorderLine);
   }
 `;
 const Content = styled(Row)`
@@ -62,6 +61,6 @@ const RightColumn = styled(Column)``;
 const AttachmentsPlaceholder = styled.div`
   height: 200px;
   width: 200px;
-  border: 1px ${Colors.Border} solid;
+  border: var(--BorderLine);
   padding: 3rem;
 `;

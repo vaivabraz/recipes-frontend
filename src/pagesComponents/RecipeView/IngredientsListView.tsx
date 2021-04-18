@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { TextSection, Text, Row } from "../../ui";
 import { IngredientsInRecipeType, IngredientsListItemType } from "../../types";
-import { Colors } from "../../constants";
 
 const IngredientsListGrouped: React.FC<Props> = ({ ingredients }) => {
   return (
@@ -77,7 +76,7 @@ const ListItemDot = styled.div`
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
-  border: 1px solid ${Colors.BorderDarker};
+  border: 1px solid var(--BorderDarker);
   width: 8px;
   height: 8px;
   margin: 0.5rem;

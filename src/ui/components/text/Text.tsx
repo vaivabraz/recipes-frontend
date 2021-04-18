@@ -1,5 +1,5 @@
 import React from "react";
-import { Colors } from "../../../constants";
+import styled from "styled-components";
 
 type TextSectionType = {
   text?: string | Number;
@@ -25,12 +25,6 @@ const typeStyles = {
   caption: { fontSize: "12px", lineHeight: "20px" },
 };
 
-const colors = {
-  accent: Colors.AccentColor,
-  dimmed: Colors.BorderDarker, //TODO: change!
-  error: Colors.errorsRed,
-};
-
 const Text = ({
   text,
   children,
@@ -40,12 +34,30 @@ const Text = ({
 }: TextSectionType) => {
   const childToRender = text || children;
   const styles = {
-    whiteSpace: "pre-wrap",
     ...typeStyles[type],
-    color: color && colors[color], // : Colors.Text,
     ...style,
   };
-  return <h5 style={styles}>{childToRender}</h5>;
+  const className = color ?? "";
+  return (
+    <Txt className={className} style={styles}>
+      {childToRender}
+    </Txt>
+  );
 };
+
+const Txt = styled.h5`
+  white-space: pre-wrap;
+  color: var(--Text);
+
+  &.accent {
+    color: var(--AccentColor);
+  }
+  &.dimmed {
+    color: var(--BorderDarker);
+  }
+  &.error {
+    color: var(--errorsRed);
+  }
+`;
 
 export default Text;

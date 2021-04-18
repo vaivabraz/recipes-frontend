@@ -1,7 +1,6 @@
 import React, { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 
-import { Colors } from "../../constants";
 import { Text } from "../../ui";
 
 interface buttonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,14 +22,14 @@ export default ButtonSvg;
 const ButtonBox = styled.button`
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  background-color: ${Colors.Background};
+  background-color: var(--Background);
   display: flex;
   align-items: center;
   svg {
-    fill: ${Colors.DarkGrey}; //TODO: negrazi spalva!!!
+    fill: var(--DarkGrey); //TODO: negrazi spalva!!!
   }
   svg:hover {
-    fill: ${Colors.DarkGrey};
+    fill: var(--DarkGrey);
   }
   h5 {
     padding-left: 0.5rem;

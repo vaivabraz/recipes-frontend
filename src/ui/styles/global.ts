@@ -56,12 +56,11 @@ h5 {
 }
 
 :root {
-  --Accent: #b10f14;
   --BorderColor: #DBDBDB;
   --BorderDarker: #c4c2c2;
   --DarkGrey: #888179;
   --HeaderBackground: #fff8f0;
-  --AccentColor: #E1A200;
+  --AccentColor: #b75114;
   --Background: #ffffff;
   --BackgroundLight: #ffffff;
   --Text: #4C3F2F;
@@ -71,7 +70,6 @@ h5 {
   --Shadow: 0 0.4rem 0.375rem -0.375rem var(--ShadowNude);
   --BorderLine: 1px var(--BorderColor) solid;
   --BorderRadius:15px;
-
 }
   
 `;

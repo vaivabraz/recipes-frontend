@@ -1,7 +1,6 @@
 import React, { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 
-import { Colors } from "../../constants";
 import { Text } from "../../ui";
 
 interface buttonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -22,13 +21,13 @@ export default Button;
 const ButtonBox = styled.button`
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  background-color: ${Colors.Background};
-  border: 1px ${Colors.Border} solid;
+  background-color: var(--Background);
+  border: var(--BorderLine);
   &:hover {
-    border: 1px ${Colors.BorderDarker} solid;
-    box-shadow: 0 0.4rem 0.375rem -0.375rem ${Colors.ShadowNude};
+    border: 1px var(--BorderDarker) solid;
+    box-shadow: var(--Shadow);
     h5 {
-      color: ${Colors.AccentColor};
+      color: var(--AccentColor);
       font-weight: bolder;
     }
   }

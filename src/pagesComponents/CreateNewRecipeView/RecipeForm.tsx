@@ -1,28 +1,27 @@
 import styled from "styled-components";
 
-import useFormValidation from "../../utils/useFormValidation";
-import { Input, Button, Row, BREAKPOINTS } from "../../ui";
+import { NewFullRecipeType } from "../../types";
+import { Input, Row, BREAKPOINTS } from "../../ui";
 
-import validateRecipe from "./validateRecipe";
 import Ingredients from "./ingredients/Ingredients";
 import PreparationSteps from "./preparationSteps/PreparationSteps";
 import Time from "./preparationTime/Time";
 
 type RecipeFormProps = {
-  handleSubmitForm: (e: any) => void;
-  initialRecipe: any;
+  handleChange: any;
+  handleCustomChange: any;
+  handleBlur: any;
+  values: NewFullRecipeType;
+  errors: any;
 };
 
-const RecipeForm = ({ initialRecipe, handleSubmitForm }: RecipeFormProps) => {
-  const {
-    handleSubmit,
-    handleChange,
-    handleCustomChange,
-    handleBlur,
-    values,
-    errors,
-  } = useFormValidation(initialRecipe, validateRecipe, handleSubmitForm);
-
+const RecipeForm = ({
+  handleChange,
+  handleCustomChange,
+  handleBlur,
+  values,
+  errors,
+}: RecipeFormProps) => {
   //atpazinti linkus!
   //prideti private/public
 
@@ -43,6 +42,13 @@ const RecipeForm = ({ initialRecipe, handleSubmitForm }: RecipeFormProps) => {
       <PreparationSteps
         steps={values.preparation}
         onChange={handleCustomChange}
+      />
+      <Input
+        label={"Nuoroda"}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        name="link"
+        value={values.link}
       />
       <Input
         label={"Pastabos"}
@@ -73,9 +79,6 @@ const RecipeForm = ({ initialRecipe, handleSubmitForm }: RecipeFormProps) => {
           <Time time={values.time} onChange={handleCustomChange} />
         </TimeContainer>
       </PortionsTimeContainer>
-      <div>
-        <Button disabled={false} text="Sukurti" onClick={handleSubmit} />
-      </div>
     </InputBox>
   );
 };

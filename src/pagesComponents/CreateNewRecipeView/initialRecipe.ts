@@ -1,14 +1,15 @@
-export const initialRecipe = {
-  _id: null, //?
+import { NewFullRecipeType } from "../../types";
+
+export const initialRecipe: NewFullRecipeType = {
   title: "",
   preparation: {
     groupPreparationSteps: false,
-    stepsGroups: [{ groupName: "", id: "", index: 0 }],
-    stepsList: [{ step: "", id: 1, groupIndex: 0 }],
+    stepsGroups: [{ groupName: "", index: 0 }],
+    stepsList: [{ step: "", groupIndex: 0 }],
   },
   ingredients: {
     groupIngredients: false,
-    ingredientsGroups: [{ groupName: "", id: "", index: 0 }],
+    ingredientsGroups: [{ groupName: "", index: 0 }],
     ingredientsList: [
       { product: "", quantity: "", id: 0, groupIndex: 0 },
       { product: "", quantity: "", id: 1, groupIndex: 0 },
@@ -17,7 +18,7 @@ export const initialRecipe = {
   },
   notes: "",
   summary: "",
-  portions: "",
+  portions: null,
   time: {
     splitTime: false,
     totalTime: "",
@@ -31,7 +32,7 @@ export const initialRecipe = {
 
   image: "", //?
   categories: [],
-  slug: "",
+  link: "",
   //linkas?
   //private or public
 };

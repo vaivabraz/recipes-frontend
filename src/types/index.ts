@@ -4,16 +4,20 @@ export type ShortRecipeType = {
   slug: string;
 };
 
-export type FullRecipeType = {
+export type NewFullRecipeType = {
   title: string;
   portions: number;
-  time: string;
+  time: PreparationTimeInRecipeType;
   ingredients: IngredientsInRecipeType;
-  preparation: string;
+  preparation: PreparationStepsInRecipeType;
   image: string;
   categories: string[];
   notes?: string;
   summary: string;
+  link: string;
+};
+
+export type FullRecipeType = NewFullRecipeType & {
   date: number;
   author: string;
   slug: string;

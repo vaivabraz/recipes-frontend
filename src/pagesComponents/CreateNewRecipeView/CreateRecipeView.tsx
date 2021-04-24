@@ -1,16 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 
-import { FullRecipeType } from "../../types";
-import { Row, Column, Text, BREAKPOINTS } from "../../ui";
+import useFormValidation from "../../utils/useFormValidation";
+import { NewFullRecipeType } from "../../types";
+import { Row, Column, Text, BREAKPOINTS, Button } from "../../ui";
 import RecipeForm from "./RecipeForm";
 import { initialRecipe } from "./initialRecipe";
+import validateRecipe from "./validateRecipe";
 
 type FullRecipeViewProps = {
-  recipe?: FullRecipeType;
+  recipe?: NewFullRecipeType;
 };
 
 const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
+  const {
+    handleSubmit,
+    handleChange,
+    handleCustomChange,
+    handleBlur,
+    values,
+    errors,
+  } = useFormValidation<NewFullRecipeType>(initialRecipe, validateRecipe, () =>
+    console.log("submit! ups!")
+  );
+
   return (
     <Container responsive={true}>
       <Row>
@@ -25,11 +38,17 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
         </LeftColumn>
         <RightColumn small={12} medium={8} responsive={true}>
           <RecipeForm
-            initialRecipe={initialRecipe}
-            handleSubmitForm={() => console.log("submit! ups!")}
+            handleChange={handleChange}
+            handleCustomChange={handleCustomChange}
+            handleBlur={handleBlur}
+            values={values}
+            errors={errors}
           />
         </RightColumn>
       </Content>
+      <ButtonContainer>
+        <Button disabled={false} text="Sukurti" onClick={handleSubmit} />
+      </ButtonContainer>
     </Container>
   );
 };
@@ -63,4 +82,9 @@ const AttachmentsPlaceholder = styled.div`
   width: 200px;
   border: var(--BorderLine);
   padding: 3rem;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;

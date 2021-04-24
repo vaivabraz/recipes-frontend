@@ -32,6 +32,9 @@ const Card = styled(Button)`
   padding: 0;
   flex-direction: column;
   justify-content: flex-end;
+  border-radius: var(--BorderRadius);
+  box-shadow: var(--Shadow);
+  overflow: auto;
 `;
 
 const Image = styled.img`
@@ -39,9 +42,12 @@ const Image = styled.img`
 `;
 
 const TitleContainer = styled.div`
+  flex: 1;
+  display: flex;
   padding: 1.5rem;
   align-items: center;
   justify-content: center;
+  text-align: center;
 `;
 
 export default React.memo(RecipeCard);

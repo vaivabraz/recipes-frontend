@@ -1,8 +1,13 @@
 import axios from "./axios";
 
+// = {
+//   email: "testinis@test.com",
+//   password: "testinis",
+// }
+
 type LoginResponse = {
-  accessToken?: string;
-  error?: "USER_NOT_FOUND" | "INVALID_PASSWORD";
+  // accessToken?: string;
+  // error?: "USER_NOT_FOUND" | "INVALID_PASSWORD";
 };
 
 type LoginAPIResponse = {
@@ -21,23 +26,12 @@ class AuthenticationService {
     email: string;
     password: string;
   }): Promise<LoginResponse> {
-    try {
-      const response = await axios.post<LoginAPIResponse>("user/loginUser", {
-        email: formData.email,
-        password: formData.password,
-        loginType: "simple",
-      });
-      return { accessToken: response?.data?.accessToken };
-    } catch (e) {
-      if (e.status === 400) {
-        if (e.data.errorCode) {
-          return { error: e.data.errorCode };
-        }
-      }
-      //TODO implement general error handling
-      console.log("-AuthenticationService-loginUser", e);
-      return {};
-    }
+    const response = await axios.post<LoginAPIResponse>("user/loginUser", {
+      email: formData.email,
+      password: formData.password,
+      loginType: "simple",
+    });
+    return response.data;
   }
 
   async refreshSession(): Promise<RefreshSessionResponse> {

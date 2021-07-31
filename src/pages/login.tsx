@@ -1,5 +1,5 @@
-import { LoginView } from "../pagesComponents";
+import { LoginScreen } from "../pagesComponents";
 
 export default function Login() {
-  return <LoginView />;
+  return <LoginScreen />;
 }

@@ -37,12 +37,12 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
                 <Text text={recipe.portions} />
               </>
             )}
-            {recipe.time && <RecipeTime time={recipe.time} />}
+            {/* {recipe.time && <RecipeTime time={recipe.time} />} */}
           </Info>
         </LeftColumn>
         <RightColumn large={7}>
           <IngredientsListView ingredients={recipe.ingredients} />
-          <TextSection title="PARUOŠIMAS: " text={recipe.preparation} />
+          {/* <TextSection title="PARUOŠIMAS: " text={recipe.preparation} /> */}
           {recipe.notes && (
             <TextSection title="PASTABOS: " text={recipe.notes} />
           )}

@@ -17,7 +17,11 @@ import { FullRecipeType } from "../../types";
 export const userRecipe: FullRecipeType = {
   title: "Šventinis spanguolių pyragas",
   portions: 6,
-  time: "30min",
+  time: {
+    splitTime: false,
+    totalTime: "30min",
+    timeRanges: null,
+  },
   ingredients: {
     groupIngredients: true,
     ingredientsGroups: [
@@ -79,8 +83,12 @@ export const userRecipe: FullRecipeType = {
       },
     ],
   },
-  preparation:
-    "Viska supjaustai, sumaisai ir vuola pagaminta!! Viska supjaustai, sumaisai ir vuola pagaminta!! Viska supjaustai, sumaisai ir vuola pagaminta!! Viska supjaustai, sumaisai ir vuola pagaminta!! Viska supjaustai, sumaisai ir vuola pagaminta!! ",
+  preparation: {
+    groupPreparationSteps: false,
+    stepsGroups: [],
+    stepsList: [],
+  },
+
   image: "",
   categories: ["uzkandziai", "greitai"],
   notes: "labai skanus",
@@ -90,4 +98,6 @@ export const userRecipe: FullRecipeType = {
   slug: "labai-skanios-salotos",
   recipeId: 66,
   _id: "nezinau_ar_reikalingas",
+  link: "",
+  private: false,
 };

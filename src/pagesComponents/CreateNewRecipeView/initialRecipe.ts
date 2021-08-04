@@ -29,10 +29,8 @@ export const initialRecipe: NewFullRecipeType = {
       },
     ],
   },
-
-  image: "", //?
-  categories: [],
   link: "",
-  //linkas?
-  //private or public
+  image: "", //?
+  categories: [], //
+  private: false, //
 };

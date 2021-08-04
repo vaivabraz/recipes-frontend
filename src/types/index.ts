@@ -15,6 +15,7 @@ export type NewFullRecipeType = {
   notes?: string;
   summary: string;
   link: string;
+  private: boolean;
 };
 
 export type FullRecipeType = NewFullRecipeType & {

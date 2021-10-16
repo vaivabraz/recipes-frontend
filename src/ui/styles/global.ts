@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-///* @import url('<https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap>'); */
 export default createGlobalStyle`
   * {
     margin: 0;
@@ -57,19 +56,41 @@ h5 {
 
 :root {
   --BorderColor: #DBDBDB;
+
   --BorderDarker: #c4c2c2;
+ 
   --DarkGrey: #888179;
+ 
   --HeaderBackground: #fff8f0;
-  --AccentColor: #b75114;
-  --Background: #ffffff;
-  --BackgroundLight: #ffffff;
-  --Text: #4C3F2F;
+ 
+  --AccentColor: var(--tuscan-red);
+  --AccentColorOld: #b75114;
+
+  --Secondary:var(--khaki-web);
+ 
+  --Background: var(--cultured);
+  --BackgroundLight: var(--white);
+  --BackgroundDark: var(--grullo);
+ 
+  --Text: var(--smoky-black);
+  --TextOld: #4C3F2F;
+ 
   --ShadowNude: #c4a399;
+ 
   --errorsRed: #b63333;
 
   --Shadow: 0 0.4rem 0.375rem -0.375rem var(--ShadowNude);
   --BorderLine: 1px var(--BorderColor) solid;
   --BorderRadius:15px;
+
+
+  --new-york-pink: #cc8b86ff;
+  --white: #ffffffff;
+  --cultured: #f6f3f3ff;
+  --tuscan-red: #7d4f50ff;
+  --khaki-web: #d1be9cff;
+  --grullo: #aa998fff;
+  --smoky-black: #171412ff;
 }
   
 `;

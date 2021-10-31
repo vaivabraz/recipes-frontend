@@ -38,6 +38,8 @@ const Text = ({ text, children, type, color, style }: TextSectionType) => {
 };
 
 const Txt = styled.h5`
+  font-weight: normal;
+  margin: 0;
   white-space: pre-wrap;
   color: var(--Text);
 

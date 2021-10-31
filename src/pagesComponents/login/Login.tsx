@@ -24,12 +24,9 @@ const Login = () => {
     }
   };
 
-  const navigateToRegisterNewUser = () => Router.push("/register");
-
   return (
     <LoginView
       handleLoginFormSubmit={startLogin}
-      handleNavigateToCreateNewUser={navigateToRegisterNewUser}
       serverValidationError={serverValidationError}
     />
   );

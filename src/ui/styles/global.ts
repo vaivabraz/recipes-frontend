@@ -1,24 +1,16 @@
 import { createGlobalStyle } from "styled-components";
+
 export default createGlobalStyle`
   * {
-    margin: 0;
-    padding: 0;
-    outline: 0; 
-    text-decoration: none;
-    border: none;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
-    font-weight: lighter;
-    color:#4C3F2F;
+    font-family: "Montserrat", sans-serif; 
     letter-spacing: 0.1em;
-    font-size: 16px;
-    line-height: 24px;
   }
   *:focus {
     outline: 0;
   }
   html, body, #root ,  div#__next {
     height: 100%;
+    margin:0;
   }
   body {
     -webkit-font-smoothing: antialiased;

@@ -29,7 +29,7 @@ const ScreenContainer = styled.div`
 `;
 
 const HeaderRow = styled.div`
-  height: 90px;
+  height: 30px; //90
 `;
 
 const PostHeaderRow = styled.div`

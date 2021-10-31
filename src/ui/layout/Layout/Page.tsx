@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BREAKPOINTS } from "../../utils";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@mui/material/styles";
 
 const Page: React.FC = ({ children }) => {
   const theme = useTheme();

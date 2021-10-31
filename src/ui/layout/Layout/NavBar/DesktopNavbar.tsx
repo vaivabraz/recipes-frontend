@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link, HSpace, Row } from "../../../";
-import NavBarIllustration from "../../../../asset/svg/NavBarIllustration";
 
 type DesktopNavbarProps = {
   NavBarItems: { href: string; title: string }[];
@@ -9,9 +8,6 @@ type DesktopNavbarProps = {
 const DesktopNavbar: React.FC<DesktopNavbarProps> = ({ NavBarItems }) => {
   return (
     <NavbarContainer>
-      {/* <IllustrationContainer>
-        <NavBarIllustration />
-      </IllustrationContainer> */}
       <Row>
         <HSpace width={2} />
         {NavBarItems.map((i) => {
@@ -28,24 +24,16 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({ NavBarItems }) => {
 };
 
 const NavbarContainer = styled.div`
-  height: 4rem;
+  height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  border-bottom: var(--BorderLine);
-  background-color: var(--HeaderBackground);
-  box-shadow: var(--Shadow);
 `;
 
 const ItemContainer = styled.div`
   display: flex;
-`;
-
-const IllustrationContainer = styled.div`
-  position: absolute;
-  pointer-events: none;
 `;
 
 export default DesktopNavbar;

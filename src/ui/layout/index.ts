@@ -4,3 +4,4 @@ export { Row } from "./layoutElements/Row";
 
 export { default as Layout } from "./Layout/Layout";
 export { default as Page } from "./Layout/Page";
+export { default as PrivatePage } from "./Layout/PrivatePage";

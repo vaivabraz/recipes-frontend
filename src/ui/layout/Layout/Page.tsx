@@ -1,21 +1,62 @@
 import React from "react";
 import styled from "styled-components";
-import { BREAKPOINTS } from "../../utils";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import { TextField } from "@mui/material";
+import { Box } from "@mui/system";
+import { BREAKPOINTS } from "../../utils";
+import Navbar from "./NavBar";
 
-const Page: React.FC = ({ children }) => {
+export type PageProps = {
+  withMenu?: boolean;
+  rightColumn?: React.ReactNode;
+};
+
+const Page: React.FC<PageProps> = ({ children, withMenu, rightColumn }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <ScreenContainer>
       {matches && (
         <>
-          <HeaderRow />
+          {withMenu ? <Navbar /> : <EmptyHeaderRow />}
           <PostHeaderRow />
+          {withMenu && (
+            <>
+              <Box
+                sx={{
+                  backgroundColor: "var(--tuscan-red)",
+                  width: "68px",
+                  height: "68px",
+                  borderRadius: "34px",
+                  position: "absolute",
+                  top: "60px",
+                  left: "130px",
+                }}
+              />
+              <Box
+                sx={{
+                  backgroundColor: "var(--new-york-pink)",
+                  width: "100px",
+                  height: "100px",
+                  borderRadius: "50px",
+                  position: "absolute",
+                  top: "80px",
+                  left: "210px",
+                }}
+              />
+            </>
+          )}
         </>
       )}
-      <ContentContainer>{children}</ContentContainer>
+      <ContentContainer>
+        <LeftColumnContainer>{children}</LeftColumnContainer>
+        {rightColumn && (
+          <RightColumnContainer>
+            <TextField label="Paieska..." fullWidth />
+          </RightColumnContainer>
+        )}
+      </ContentContainer>
     </ScreenContainer>
   );
 };
@@ -28,8 +69,8 @@ const ScreenContainer = styled.div`
   margin: 0;
 `;
 
-const HeaderRow = styled.div`
-  height: 30px; //90
+const EmptyHeaderRow = styled.div`
+  height: 30px;
 `;
 
 const PostHeaderRow = styled.div`
@@ -44,7 +85,6 @@ const PostHeaderRow = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   flex: 1;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: -webkit-fill-available;
@@ -52,8 +92,6 @@ const ContentContainer = styled.div`
   margin-bottom: 30px;
   margin-right: 90px;
   margin-left: 90px;
-  border-radius: 6px;
-  background-color: var(--BackgroundLight);
   @media (max-width: ${BREAKPOINTS.medium}) {
     margin-right: 45px;
     margin-left: 45px;
@@ -61,6 +99,24 @@ const ContentContainer = styled.div`
   @media (max-width: ${BREAKPOINTS.small}) {
     margin: 0;
   }
+`;
+
+const LeftColumnContainer = styled.div`
+  background-color: var(--BackgroundLight);
+  flex-direction: column;
+  border-radius: 6px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const RightColumnContainer = styled.div`
+  padding-left: 36px;
+  width: 324px;
+  height: 100%;
 `;
 
 export default Page;

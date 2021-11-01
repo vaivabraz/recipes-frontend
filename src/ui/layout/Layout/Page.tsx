@@ -3,9 +3,9 @@ import styled from "styled-components";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { TextField } from "@mui/material";
-import { Box } from "@mui/system";
 import { BREAKPOINTS } from "../../utils";
 import Navbar from "./NavBar";
+import Bubble from "./Bubble";
 
 export type PageProps = {
   withMenu?: boolean;
@@ -23,27 +23,17 @@ const Page: React.FC<PageProps> = ({ children, withMenu, rightColumn }) => {
           <PostHeaderRow />
           {withMenu && (
             <>
-              <Box
-                sx={{
-                  backgroundColor: "var(--tuscan-red)",
-                  width: "68px",
-                  height: "68px",
-                  borderRadius: "34px",
-                  position: "absolute",
-                  top: "60px",
-                  left: "130px",
-                }}
+              <Bubble
+                color="var(--tuscan-red)"
+                radius={34}
+                top={60}
+                left={130}
               />
-              <Box
-                sx={{
-                  backgroundColor: "var(--new-york-pink)",
-                  width: "100px",
-                  height: "100px",
-                  borderRadius: "50px",
-                  position: "absolute",
-                  top: "80px",
-                  left: "210px",
-                }}
+              <Bubble
+                color="var(--new-york-pink)"
+                radius={50}
+                top={80}
+                left={210}
               />
             </>
           )}
@@ -64,17 +54,17 @@ const Page: React.FC<PageProps> = ({ children, withMenu, rightColumn }) => {
 const ScreenContainer = styled.div`
   background-color: var(--Background);
   display: flex;
+  flex: 1;
   flex-direction: column;
-  height: 100%;
   margin: 0;
 `;
 
 const EmptyHeaderRow = styled.div`
-  height: 30px;
+  min-height: 30px;
 `;
 
 const PostHeaderRow = styled.div`
-  height: 168px;
+  min-height: 168px;
   background-image: linear-gradient(
     to bottom right,
     var(--BackgroundDark),
@@ -109,13 +99,13 @@ const LeftColumnContainer = styled.div`
   width: 100%;
   display: flex;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 
 const RightColumnContainer = styled.div`
   padding-left: 36px;
-  width: 324px;
+  width: 230px;
   height: 100%;
 `;
 

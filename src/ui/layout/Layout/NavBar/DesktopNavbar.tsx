@@ -24,7 +24,7 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({ NavBarItems }) => {
 };
 
 const NavbarContainer = styled.div`
-  height: 90px;
+  min-height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;

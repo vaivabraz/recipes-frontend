@@ -9,8 +9,10 @@ export default createGlobalStyle`
     outline: 0;
   }
   html, body, #root ,  div#__next {
-    height: 100%;
+    min-height: 100%;
     margin:0;
+    display:flex;
+    flex:1;
   }
   body {
     -webkit-font-smoothing: antialiased;

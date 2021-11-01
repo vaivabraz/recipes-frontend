@@ -1,26 +1,28 @@
+import { Button, Typography } from "@mui/material";
 import styled from "styled-components";
-import { Link, Row, HSpace } from "../../ui";
+import Link from "next/link";
 
 const SubMenu = () => (
   <SubMenuContainer>
-    <Row>
-      <Link href="/recipes/createNewRecipe" title="Sukurti nauja"></Link>
-      {/* <Text>Kategorijos (TBD)</Text> */}
-      <HSpace width={3} />
-      <Text>Paieska (TBD)</Text>
-    </Row>
+    <Typography variant="h2" textAlign="center">
+      Receptai
+    </Typography>
+    <Link href="/recipes/createNewRecipe">
+      <Button variant="contained">Sukurti nauja</Button>
+    </Link>
   </SubMenuContainer>
 );
 
 const SubMenuContainer = styled.div`
-  height: 4rem;
+  min-height: 112px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 36px;
   align-items: center;
+  width: 100%;
   @media screen and (max-width: 940px) {
   }
 `;
-
-const Text = styled.p``;
 
 export default SubMenu;

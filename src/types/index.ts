@@ -2,6 +2,7 @@ export type ShortRecipeType = {
   image: string;
   title: string;
   slug: string;
+  categories: string[];
 };
 
 export type NewFullRecipeType = {

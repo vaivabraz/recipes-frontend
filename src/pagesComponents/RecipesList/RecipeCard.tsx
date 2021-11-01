@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
 import { ShortRecipeType } from "../../types";
-import { Button, Text } from "../../ui";
+import TagsList from "./TagsList";
 
 interface IRecipeCard {
   recipe: ShortRecipeType;
@@ -18,36 +20,53 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
   };
 
   return (
-    <Card onClick={handleOnClick}>
-      <TitleContainer>
-        <Text text={title} />
-      </TitleContainer>
-      <Image src={image} title={title} alt={title} />
-    </Card>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Box
+        component="button"
+        onClick={handleOnClick}
+        sx={{
+          border: "none",
+          backgroundColor: "transparent",
+          position: "relative",
+        }}
+      >
+        <TitleContainer>
+          <Typography variant="subtitle2" textAlign="center">
+            {title}
+          </Typography>
+        </TitleContainer>
+        <Image src={image} title={title} alt={title} />
+      </Box>
+      <TagsList categories={recipe.categories} />
+    </Box>
   );
 };
 
-const Card = styled(Button)`
-  flex: 1;
-  padding: 0;
-  flex-direction: column;
-  justify-content: flex-end;
-  border-radius: var(--BorderRadius);
-  box-shadow: var(--Shadow);
-  overflow: auto;
-`;
-
 const Image = styled.img`
   width: 100%;
+  padding-top: 30px;
 `;
 
 const TitleContainer = styled.div`
   flex: 1;
   display: flex;
-  padding: 1.5rem;
+  padding: 9px;
+  margin: 0 16px;
   align-items: center;
   justify-content: center;
   text-align: center;
+  border: 1px solid var(--tuscan-red);
+  border-radius: 12px;
+  background-color: white;
+  position: absolute;
+  right: 0;
+  left: 0;
+  max-height: 90px;
 `;
 
 export default React.memo(RecipeCard);

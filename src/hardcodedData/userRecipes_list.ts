@@ -1,7 +1,7 @@
 export const hardcodedRecipes = [
   {
     ingredients: [],
-    categories: [],
+    categories: ["skanukai", "vegetariskai", "isbandyta", "tikrai labai skanu"],
     _id: "5eef2fde01c87f5c771944d9",
     title: "Pilnas postman test receptas",
     preparation: "Pilnai uzpildytas postman test user receptas",
@@ -19,9 +19,9 @@ export const hardcodedRecipes = [
   },
   {
     ingredients: [],
-    categories: [],
+    categories: ["vakariene", "15min", "isbandyta"],
     _id: "5efb9e4dc82f550024cc17d0",
-    title: "bandom pakeist pavadinima",
+    title: "bandom pakeist pavadinima nu si karta reikia ilgesnio pavadinimo",
     preparation: "biski to biski ano ir vuala aad",
     notes: "",
     summary: "",

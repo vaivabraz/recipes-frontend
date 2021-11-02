@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-
+import { Button, Box, IconButton, TextField } from "@mui/material";
+import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
+import RemoveCircleOutlineSharpIcon from "@mui/icons-material/RemoveCircleOutlineSharp";
 import { PreparationStepsInRecipeType } from "../../../types";
-import PlusButton from "../../../asset/svg/PlusButton";
-import MinusButton from "../../../asset/svg/MinusButton";
-import { InputStyle, ButtonSvg } from "../../../ui";
-
 import StepsListView from "./StepsListView";
 
 type Props = {
@@ -107,19 +105,26 @@ const StepsGroupedView = ({
     <>
       {steps.stepsGroups.map((i) => (
         <GroupedView key={i.index}>
-          <Line>
-            <GroupNameInput
+          <Box display="flex">
+            <TextField
+              size="small"
               placeholder="Grupes pavadinimas"
               value={i.groupName}
               onChange={handleChangeGroupName}
-              name={i.index}
+              name={i.index.toString()}
               autoComplete="off"
+              sx={{ m: "6px 0", display: "flex", flex: 1 }}
             />
-            <ButtonSvg
+            <IconButton
+              aria-label="remove"
               onClick={(event) => onRemoveGroup(event, i.index)}
-              Icon={MinusButton}
-            />
-          </Line>
+              color="primary"
+              sx={{ margin: "6px 0", padding: "0", width: "40px" }}
+              size="large"
+            >
+              <RemoveCircleOutlineSharpIcon />
+            </IconButton>
+          </Box>
           <StepsListView
             stepsList={steps.stepsList.filter(
               (line) => line.groupIndex === i.index
@@ -131,28 +136,18 @@ const StepsGroupedView = ({
           />
         </GroupedView>
       ))}
-
-      <ButtonSvg
+      <Button
+        startIcon={<AddCircleOutlineSharpIcon />}
         onClick={handleAddGroup}
-        Icon={PlusButton}
-        text="Pridėti grupę"
-      />
+        sx={{ justifyContent: "flex-start" }}
+      >
+        Pridėti grupę
+      </Button>
     </>
   );
 };
 
 export default React.memo(StepsGroupedView);
-
-const Line = styled.div`
-  display: flex;
-  margin: 0 0.5rem 0.5rem 0;
-`;
-
-const GroupNameInput = styled.input`
-  ${InputStyle}
-  flex: 1;
-  margin-right: 0.5rem;
-`;
 
 const GroupedView = styled.div`
   padding-bottom: 1rem;

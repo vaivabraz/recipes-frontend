@@ -1,10 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import { Button } from "@mui/material";
+import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
 
 import { StepsListItemType } from "../../../types";
-import PlusButton from "../../../asset/svg/PlusButton";
-import { ButtonSvg } from "../../../ui";
-
 import Step from "./Step";
 
 type Props = {
@@ -37,18 +35,15 @@ const StepsListView = ({
           onRemove={handleRemoveStep}
         />
       ))}
-
-      <AddStepButton
+      <Button
+        startIcon={<AddCircleOutlineSharpIcon />}
         onClick={handleAddStepClick}
-        Icon={PlusButton}
-        text="Pridėti zingsni"
-      />
+        sx={{ justifyContent: "flex-start", marginLeft: "9px" }}
+      >
+        Pridėti zingsni
+      </Button>
     </>
   );
 };
 
 export default React.memo(StepsListView);
-
-const AddStepButton = styled(ButtonSvg)`
-  padding-left: 1rem;
-`;

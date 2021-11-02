@@ -1,8 +1,8 @@
 import React from "react";
+import { Box } from "@mui/system";
+import { Button, Typography } from "@mui/material";
 
 import { PreparationStepsInRecipeType } from "../../../types";
-import { TextButton, Text, HSpace, Column, Row } from "../../../ui";
-
 import StepsListView from "./StepsListView";
 import StepsGroupedView from "./StepsGroupedView";
 
@@ -92,12 +92,13 @@ const PreparationSteps = ({ steps, onChange }: Props) => {
       };
 
   return (
-    <Column>
-      <Row>
-        <Text type="h5">Paruosimas</Text>
-        <HSpace />
-        <TextButton {...groupsIngredientsButtonProps}></TextButton>
-      </Row>
+    <Box display="flex" flexDirection="column" paddingTop={"9px"}>
+      <Box display="flex" alignItems="center">
+        <Typography variant="h5">Paruosimas</Typography>
+        <Button onClick={groupsIngredientsButtonProps.onClick}>
+          {groupsIngredientsButtonProps.text}
+        </Button>
+      </Box>
 
       {steps.groupPreparationSteps ? (
         <StepsGroupedView
@@ -116,7 +117,7 @@ const PreparationSteps = ({ steps, onChange }: Props) => {
           handleAddStep={handleAddStep}
         />
       )}
-    </Column>
+    </Box>
   );
 };
 

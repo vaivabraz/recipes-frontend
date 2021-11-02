@@ -1,10 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import { Box } from "@mui/system";
+import { IconButton, TextField, Typography } from "@mui/material";
+import RemoveCircleOutlineSharpIcon from "@mui/icons-material/RemoveCircleOutlineSharp";
 
 import { StepsListItemType } from "../../../types";
-import { ButtonSvg, Text, Input } from "../../../ui";
-
-import MinusButton from "../../../asset/svg/MinusButton";
 
 type Props = {
   index: number;
@@ -24,29 +23,31 @@ const Step = ({ index, entry, onChange, onRemove }: Props) => {
   };
 
   return (
-    <Line>
-      <Text style={{ paddingTop: "0.5rem" }}>{index + 1 + "."}</Text>
-      <StepInput
+    <Box display="flex">
+      <Typography paddingTop={"14px"} paddingRight={"9px"}>
+        {index + 1 + "."}
+      </Typography>
+      <TextField
         placeholder="Kaip gaminti..."
         value={entry.step}
         onChange={onInputChange}
         autoComplete="off"
         multiline
-        containerStyle={{ padding: 0 }}
+        sx={{ m: "6px 0", display: "flex", flex: 1 }}
+        size="small"
+        minRows={3}
       />
-      <ButtonSvg onClick={onRemoveProduct} Icon={MinusButton} />
-    </Line>
+      <IconButton
+        aria-label="remove"
+        onClick={onRemoveProduct}
+        color="primary"
+        sx={{ margin: "6px 0", padding: "0", width: "40px" }}
+        size="large"
+      >
+        <RemoveCircleOutlineSharpIcon />
+      </IconButton>
+    </Box>
   );
 };
 
 export default React.memo(Step);
-
-const Line = styled.div`
-  display: flex;
-  margin-bottom: 0.5rem;
-`;
-
-const StepInput = styled(Input)`
-  flex: 1;
-  margin: 0 0.5rem;
-`;

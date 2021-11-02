@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import RecipeCard from "./RecipeCard";
 import { RecipesListHardcoded } from "../../hardcodedData";
+import SubMenu from "./SubMenu";
 
 const RecipesList = () => {
   return (
     <RecipesContainer>
+      <SubMenu />
       <RecipesGrid>
         {RecipesListHardcoded.map((recipe) => (
           <RecipeCard key={recipe.slug} recipe={recipe} />

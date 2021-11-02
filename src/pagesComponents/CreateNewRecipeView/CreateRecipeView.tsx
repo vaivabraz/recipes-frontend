@@ -7,6 +7,8 @@ import { Row, Column, Text, BREAKPOINTS, Button } from "../../ui";
 import RecipeForm from "./RecipeForm";
 import { initialRecipe } from "./initialRecipe";
 import validateRecipe from "./validateRecipe";
+import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 
 type FullRecipeViewProps = {
   recipe?: NewFullRecipeType;
@@ -25,18 +27,21 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
   );
 
   return (
-    <Container responsive={true}>
-      <Row>
-        <TitleContainer>
-          <Text type="h2" text="Sukurti nauja recepta" />
-        </TitleContainer>
-      </Row>
-      <Content>
-        <LeftColumn small={12} medium={4} responsive={true}>
+    <Box>
+      <Typography
+        variant="h2"
+        textAlign="center"
+        paddingTop={"48px"}
+        paddingBottom={"24px"}
+      >
+        Sukurti nauja recepta
+      </Typography>
+      <Box display="flex">
+        <Box padding={"24px"}>
           <Text type="h5" text="Pridėti nuotraukà " />
           <AttachmentsPlaceholder />
-        </LeftColumn>
-        <RightColumn small={12} medium={8} responsive={true}>
+        </Box>
+        <Box padding={"24px"}>
           <RecipeForm
             handleChange={handleChange}
             handleCustomChange={handleCustomChange}
@@ -44,22 +49,27 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
             values={values}
             errors={errors}
           />
-        </RightColumn>
-      </Content>
+        </Box>
+      </Box>
       <ButtonContainer>
         <Button disabled={false} text="Sukurti" onClick={handleSubmit} />
       </ButtonContainer>
-    </Container>
+    </Box>
   );
 };
 
 export default CreateRecipeView;
 
-const Container = styled(Column)`
-  @media (min-width: ${BREAKPOINTS.small}) {
-    border: var(--BorderLine);
-  }
+const SubMenuContainer = styled.div`
+  min-height: 112px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 36px;
+  align-items: center;
+  width: 100%;
 `;
+
 const Content = styled(Row)`
   flex-direction: column-reverse;
   @media (min-width: ${BREAKPOINTS.medium}) {

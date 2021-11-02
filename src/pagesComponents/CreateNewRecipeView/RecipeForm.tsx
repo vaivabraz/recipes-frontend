@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import styled from "styled-components";
 
 import { NewFullRecipeType } from "../../types";
@@ -27,7 +28,8 @@ const RecipeForm = ({
 
   return (
     <InputBox>
-      <Input
+      <TextField
+        size="small"
         label={"Pavadinimas"}
         onChange={handleChange}
         onBlur={handleBlur}

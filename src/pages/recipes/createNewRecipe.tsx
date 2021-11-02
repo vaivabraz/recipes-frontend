@@ -1,11 +1,11 @@
 import { CreateRecipeView } from "../../pagesComponents";
-import { Layout } from "../../ui";
+import { PrivatePage } from "../../ui";
 
 const CreateNewRecipe = () => {
   return (
-    <Layout>
+    <PrivatePage withMenu>
       <CreateRecipeView />
-    </Layout>
+    </PrivatePage>
   );
 };
 

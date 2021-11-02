@@ -1,8 +1,7 @@
 import React from "react";
-
+import { Typography, Button } from "@mui/material";
+import { Box } from "@mui/system";
 import { IngredientsInRecipeType } from "../../../types";
-import { TextButton, Text, HSpace, Column, Row } from "../../../ui";
-
 import IngredientsListView from "./IngredientsListView";
 import IngredientsGroupedView from "./IngredientsGroupedView";
 
@@ -81,12 +80,13 @@ const Ingredients = ({ ingredients, onChange }: Props) => {
       };
 
   return (
-    <Column>
-      <Row>
-        <Text type="h5">Ingridientai</Text>
-        <HSpace />
-        <TextButton {...groupsIngredientsButtonProps}></TextButton>
-      </Row>
+    <Box display="flex" flexDirection="column" paddingTop={"9px"}>
+      <Box display="flex" alignItems="center">
+        <Typography variant="h5">Ingridientai</Typography>
+        <Button onClick={groupsIngredientsButtonProps.onClick}>
+          {groupsIngredientsButtonProps.text}
+        </Button>
+      </Box>
       {ingredients.groupIngredients ? (
         <IngredientsGroupedView
           ingredients={ingredients}
@@ -104,7 +104,7 @@ const Ingredients = ({ ingredients, onChange }: Props) => {
           groupIndex={0}
         />
       )}
-    </Column>
+    </Box>
   );
 };
 

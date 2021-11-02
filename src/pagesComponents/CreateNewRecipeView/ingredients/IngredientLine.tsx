@@ -1,10 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import { IconButton, TextField } from "@mui/material";
+import { Box } from "@mui/system";
+import RemoveCircleOutlineSharpIcon from "@mui/icons-material/RemoveCircleOutlineSharp";
 
 import { IngredientsListItemType } from "../../../types";
-import { InputStyle, ButtonSvg, Row } from "../../../ui";
-
-import MinusButton from "../../../asset/svg/MinusButton";
 
 type Props = {
   key: any;
@@ -23,46 +22,38 @@ const IngredientLine = ({ entry, onChange, onRemove }: Props) => {
   };
 
   return (
-    <Line>
-      <ProductInput
+    <Box display="flex">
+      <TextField
+        size="small"
         placeholder="Produktas"
         value={entry.product}
         onChange={onInputChange}
         name={"product"}
         autoComplete="off"
+        sx={{ m: "6px 0", display: "flex", flex: 1 }}
       />
       <>
-        <QuantityInput
+        <TextField
+          size="small"
           placeholder="Kiekis"
           value={entry.quantity}
           onChange={onInputChange}
           name={"quantity"}
           autoComplete="off"
+          sx={{ m: "6px", width: "120px" }}
         />
-        <RemoveButton onClick={onRemoveProduct} Icon={MinusButton} />
+        <IconButton
+          aria-label="remove"
+          onClick={onRemoveProduct}
+          color="primary"
+          sx={{ margin: "6px 0", padding: "0", width: "40px" }}
+          size="large"
+        >
+          <RemoveCircleOutlineSharpIcon />
+        </IconButton>
       </>
-    </Line>
+    </Box>
   );
 };
 
 export default React.memo(IngredientLine);
-
-const Line = styled(Row)`
-  margin: 0 0.5rem;
-`;
-
-const ProductInput = styled.input`
-  ${InputStyle}
-  flex: 1;
-  margin-bottom: 0.5rem;
-`;
-
-const QuantityInput = styled.input`
-  ${InputStyle}
-  width: 10rem;
-  margin: 0 0.5rem 0.5rem 0.5rem;
-`;
-
-const RemoveButton = styled(ButtonSvg)`
-  margin-bottom: 0.5rem;
-`;

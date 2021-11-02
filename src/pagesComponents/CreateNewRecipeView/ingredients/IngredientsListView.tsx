@@ -1,10 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import { Button } from "@mui/material";
+import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
 
 import { IngredientsListItemType } from "../../../types";
-import PlusButton from "../../../asset/svg/PlusButton";
-import { ButtonSvg } from "../../../ui";
-
 import IngredientLine from "./IngredientLine";
 
 type Props = {
@@ -36,17 +34,15 @@ const IngredientsListView = ({
           onRemove={handleRemoveIngredient}
         />
       ))}
-      <AddIngredientButton
+      <Button
+        startIcon={<AddCircleOutlineSharpIcon />}
         onClick={handleAddIngredientClick}
-        Icon={PlusButton}
-        text="Pridėti ingridienta"
-      />
+        sx={{ justifyContent: "flex-start" }}
+      >
+        Pridėti ingridienta
+      </Button>
     </>
   );
 };
 
 export default React.memo(IngredientsListView);
-
-const AddIngredientButton = styled(ButtonSvg)`
-  padding-left: 1rem;
-`;

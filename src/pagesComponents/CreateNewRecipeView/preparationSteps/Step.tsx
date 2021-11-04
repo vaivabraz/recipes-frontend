@@ -29,11 +29,12 @@ const Step = ({ index, entry, onChange, onRemove }: Props) => {
       </Typography>
       <TextField
         placeholder="Kaip gaminti..."
+        margin="dense"
         value={entry.step}
         onChange={onInputChange}
         autoComplete="off"
         multiline
-        sx={{ m: "6px 0", display: "flex", flex: 1 }}
+        sx={{ display: "flex", flex: 1 }}
         size="small"
         minRows={3}
       />

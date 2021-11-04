@@ -80,7 +80,7 @@ const Ingredients = ({ ingredients, onChange }: Props) => {
       };
 
   return (
-    <Box display="flex" flexDirection="column" paddingTop={"9px"}>
+    <Box display="flex" flexDirection="column" paddingBottom={"9px"}>
       <Box display="flex" alignItems="center">
         <Typography variant="h5">Ingridientai</Typography>
         <Button onClick={groupsIngredientsButtonProps.onClick}>

@@ -25,22 +25,24 @@ const IngredientLine = ({ entry, onChange, onRemove }: Props) => {
     <Box display="flex">
       <TextField
         size="small"
+        margin="dense"
         placeholder="Produktas"
         value={entry.product}
         onChange={onInputChange}
         name={"product"}
         autoComplete="off"
-        sx={{ m: "6px 0", display: "flex", flex: 1 }}
+        sx={{ display: "flex", flex: 1 }}
       />
       <>
         <TextField
           size="small"
+          margin="dense"
           placeholder="Kiekis"
           value={entry.quantity}
           onChange={onInputChange}
           name={"quantity"}
           autoComplete="off"
-          sx={{ m: "6px", width: "120px" }}
+          sx={{ paddingLeft: "6px", width: "120px" }}
         />
         <IconButton
           aria-label="remove"

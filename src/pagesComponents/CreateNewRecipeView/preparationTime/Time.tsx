@@ -1,8 +1,8 @@
+import { Button, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 
 import { PreparationTimeInRecipeType } from "../../../types";
-import { TextButton, Text, HSpace, Column, Row, Input } from "../../../ui";
-
 import TimeRanges from "./TimeRanges";
 
 type Props = {
@@ -37,23 +37,25 @@ const Time = ({ time, onChange }: Props) => {
       };
 
   return (
-    <Column>
-      <Row>
-        <Text type="h5">Kiek laiko uztruks</Text>
-        <HSpace />
-        <TextButton {...splitTimeButtonProps}></TextButton>
-      </Row>
-
+    <Box display="flex" flexDirection="column" paddingBottom={"9px"}>
+      <Box display="flex" alignItems="center">
+        <Typography variant="h5">Kiek laiko uztruks</Typography>
+        <Button onClick={splitTimeButtonProps.onClick}>
+          {splitTimeButtonProps.text}
+        </Button>
+      </Box>
       {time.splitTime ? (
         <TimeRanges time={time} onChange={onChange} />
       ) : (
-        <Input
+        <TextField
+          size="small"
+          margin="dense"
+          placeholder="Laikas"
           onChange={handleTotalTimeChange}
           value={time.totalTime}
-          containerStyle={{ padding: 0 }}
         />
       )}
-    </Column>
+    </Box>
   );
 };
 

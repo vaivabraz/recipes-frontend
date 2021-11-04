@@ -1,9 +1,7 @@
-import { TextField } from "@mui/material";
-import styled from "styled-components";
-
+import { TextField, Box, Typography } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 import { NewFullRecipeType } from "../../types";
-import { Input, Row, BREAKPOINTS } from "../../ui";
-
 import Ingredients from "./ingredients/Ingredients";
 import PreparationSteps from "./preparationSteps/PreparationSteps";
 import Time from "./preparationTime/Time";
@@ -25,84 +23,86 @@ const RecipeForm = ({
 }: RecipeFormProps) => {
   //atpazinti linkus!
   //prideti private/public
-
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
   return (
-    <InputBox>
-      <TextField
-        size="small"
-        label={"Pavadinimas"}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        name="title"
-        value={values.title}
-        error={errors?.title}
-      />
-      <Ingredients
-        ingredients={values.ingredients}
-        onChange={handleCustomChange}
-      />
-      <PreparationSteps
-        steps={values.preparation}
-        onChange={handleCustomChange}
-      />
-      <Input
-        label={"Nuoroda"}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        name="link"
-        value={values.link}
-      />
-      <Input
-        label={"Pastabos"}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        name="notes"
-        value={values.notes}
-      />
-      <Input
-        label={"Trumpai apie recepta"}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        name="summary"
-        value={values.summary}
-      />
+    <Box display="flex" flexDirection={matches ? "row" : "column-reverse"}>
+      <Box
+        flex={2}
+        padding={"24px"}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
+        <Typography variant="h5">Pridėti nuotraukà</Typography>
+        <Box height={"200px"} width={"200px"} border={"var(--BorderLine)"} />
+        <TextField
+          size="small"
+          margin="dense"
+          label="Porciju skaicius"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="portions"
+          value={values.portions}
+          sx={{ paddingBottom: "9px" }}
+        />
+        <Time time={values.time} onChange={handleCustomChange} />
+      </Box>
+      <Box flex={3} padding={"24px"}>
+        <TextField
+          size="small"
+          margin="dense"
+          fullWidth
+          label="Pavadinimas"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="title"
+          value={values.title}
+          error={errors?.title}
+          sx={{ paddingBottom: "9px" }}
+        />
+        <Ingredients
+          ingredients={values.ingredients}
+          onChange={handleCustomChange}
+        />
+        <PreparationSteps
+          steps={values.preparation}
+          onChange={handleCustomChange}
+        />
 
-      <PortionsTimeContainer>
-        <PortionsContainer>
-          <Input
-            label={"Porciju skaicius"}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="portions"
-            value={values.portions}
-          />
-        </PortionsContainer>
-        <TimeContainer>
-          <Time time={values.time} onChange={handleCustomChange} />
-        </TimeContainer>
-      </PortionsTimeContainer>
-    </InputBox>
+        <TextField
+          size="small"
+          margin="dense"
+          fullWidth
+          label="Nuoroda"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="link"
+          value={values.link}
+        />
+        <TextField
+          size="small"
+          margin="dense"
+          fullWidth
+          label="Pastabos"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="notes"
+          value={values.notes}
+        />
+        <TextField
+          size="small"
+          margin="dense"
+          fullWidth
+          label="Trumpai apie recepta"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="summary"
+          value={values.summary}
+        />
+      </Box>
+    </Box>
   );
 };
 
 export default RecipeForm;
-
-const InputBox = styled.form`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-`;
-const PortionsContainer = styled.div`
-  display: inline;
-  flex: 1;
-`;
-const TimeContainer = styled.div`
-  display: flex;
-  flex: 2;
-`;
-
-const PortionsTimeContainer = styled(Row)`
-  @media (max-width: ${BREAKPOINTS.small}) {
-    flex-direction: column;
-  }
-`;

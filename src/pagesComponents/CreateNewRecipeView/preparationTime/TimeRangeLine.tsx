@@ -1,9 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 
+import RemoveCircleOutlineSharpIcon from "@mui/icons-material/RemoveCircleOutlineSharp";
 import { PreparationTimeRangeType } from "../../../types";
-import { ButtonSvg, Row, InputStyle } from "../../../ui";
-import MinusButton from "../../../asset/svg/MinusButton";
+
+import { IconButton, TextField } from "@mui/material";
+import { Box } from "@mui/system";
 
 type Props = {
   timeRange: PreparationTimeRangeType;
@@ -21,49 +22,38 @@ const TimeRangeLine = ({ timeRange, index, onChange, onRemove }: Props) => {
   };
 
   return (
-    <Container>
-      <ProcessInput
-        placeholder={"Procesas"}
+    <Box display="flex">
+      <TextField
+        size="small"
+        margin="dense"
+        placeholder="Procesas"
         onChange={handleChange}
         name="processName"
         value={timeRange.processName}
-        containerStyle={{ padding: 0 }}
+        sx={{ display: "flex", flex: 1 }}
       />
-      <TimeContainer>
-        <TimeInput
-          placeholder={"Laikas"}
+      <>
+        <TextField
+          size="small"
+          margin="dense"
+          placeholder="Laikas"
           onChange={handleChange}
           name="time"
           value={timeRange.time}
-          containerStyle={{ padding: 0 }}
+          sx={{ paddingLeft: "6px", width: "120px" }}
         />
-
-        <ButtonSvg onClick={onRemoveTimeRange} Icon={MinusButton} />
-      </TimeContainer>
-    </Container>
+        <IconButton
+          aria-label="remove"
+          onClick={onRemoveTimeRange}
+          color="primary"
+          sx={{ margin: "6px 0", padding: "0", width: "40px" }}
+          size="large"
+        >
+          <RemoveCircleOutlineSharpIcon />
+        </IconButton>
+      </>
+    </Box>
   );
 };
 
 export default React.memo(TimeRangeLine);
-
-const Container = styled(Row)`
-  margin: 0 0.5rem;
-`;
-
-const ProcessInput = styled.input`
-  ${InputStyle}
-  flex: 1;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-`;
-
-const TimeContainer = styled.div`
-  display: flex;
-  margin-bottom: 0.5rem;
-`;
-
-const TimeInput = styled.input`
-  ${InputStyle}
-  width: 15rem;
-  margin: 0 0.5rem;
-`;

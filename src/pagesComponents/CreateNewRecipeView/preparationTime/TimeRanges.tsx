@@ -1,9 +1,8 @@
 import React from "react";
+import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
+import { Button } from "@mui/material";
 
 import { PreparationTimeInRecipeType } from "../../../types";
-import { ButtonSvg } from "../../../ui";
-import PlusButton from "../../../asset/svg/PlusButton";
-
 import TimeRangeLine from "./TimeRangeLine";
 
 type Props = {
@@ -60,7 +59,13 @@ const TimeRanges = ({ time, onChange }: Props) => {
           onRemove={handleRemoveTimeRange}
         />
       ))}
-      <ButtonSvg onClick={handleAddTimeRange} Icon={PlusButton} />
+      <Button
+        startIcon={<AddCircleOutlineSharpIcon />}
+        onClick={handleAddTimeRange}
+        sx={{ justifyContent: "flex-start" }}
+      >
+        Pridėti laiko tarpa
+      </Button>
     </>
   );
 };

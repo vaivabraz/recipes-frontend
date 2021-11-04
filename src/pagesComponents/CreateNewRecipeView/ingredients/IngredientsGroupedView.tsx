@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Box } from "@mui/system";
 import { Button, IconButton, TextField } from "@mui/material";
 import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
@@ -121,16 +120,17 @@ const IngredientsGroupedView = ({
   return (
     <>
       {ingredients.ingredientsGroups.map((i) => (
-        <GroupedView key={i.index}>
+        <div key={i.index}>
           <Box display="flex">
             <TextField
               size="small"
+              margin="dense"
               placeholder="Grupes pavadinimas"
               value={i.groupName}
               onChange={handleChangeGroupName}
               name={i.index.toString()}
               autoComplete="off"
-              sx={{ m: "6px 0", display: "flex", flex: 1 }}
+              sx={{ display: "flex", flex: 1 }}
             />
             <IconButton
               aria-label="remove"
@@ -153,7 +153,7 @@ const IngredientsGroupedView = ({
               groupIndex={i.index}
             />
           </Box>
-        </GroupedView>
+        </div>
       ))}
       <Button
         startIcon={<AddCircleOutlineSharpIcon />}
@@ -167,7 +167,3 @@ const IngredientsGroupedView = ({
 };
 
 export default React.memo(IngredientsGroupedView);
-
-const GroupedView = styled.div`
-  padding-bottom: 1rem;
-`;

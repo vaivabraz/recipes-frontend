@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Button, Box, IconButton, TextField } from "@mui/material";
 import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
 import RemoveCircleOutlineSharpIcon from "@mui/icons-material/RemoveCircleOutlineSharp";
@@ -104,16 +103,17 @@ const StepsGroupedView = ({
   return (
     <>
       {steps.stepsGroups.map((i) => (
-        <GroupedView key={i.index}>
+        <div key={i.index}>
           <Box display="flex">
             <TextField
               size="small"
+              margin="dense"
               placeholder="Grupes pavadinimas"
               value={i.groupName}
               onChange={handleChangeGroupName}
               name={i.index.toString()}
               autoComplete="off"
-              sx={{ m: "6px 0", display: "flex", flex: 1 }}
+              sx={{ display: "flex", flex: 1 }}
             />
             <IconButton
               aria-label="remove"
@@ -134,7 +134,7 @@ const StepsGroupedView = ({
             handleAddStep={handleAddStep}
             groupIndex={i.index}
           />
-        </GroupedView>
+        </div>
       ))}
       <Button
         startIcon={<AddCircleOutlineSharpIcon />}
@@ -148,7 +148,3 @@ const StepsGroupedView = ({
 };
 
 export default React.memo(StepsGroupedView);
-
-const GroupedView = styled.div`
-  padding-bottom: 1rem;
-`;

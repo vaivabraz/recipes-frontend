@@ -1,5 +1,4 @@
-import { Layout } from "../../ui";
-import { RecipeView } from "../../pagesComponents";
+import { RecipesHistoryLayout, RecipeView } from "../../pagesComponents";
 import { useRouter } from "next/router";
 import { FullRecipeType } from "../../types";
 import { userRecipeHardcoded } from "../../hardcodedData";
@@ -11,8 +10,8 @@ export default function Recipe() {
   // <p>Recipe id: {router.query.id}</p>
 
   return (
-    <Layout>
+    <RecipesHistoryLayout>
       <RecipeView recipe={recipe} />
-    </Layout>
+    </RecipesHistoryLayout>
   );
 }

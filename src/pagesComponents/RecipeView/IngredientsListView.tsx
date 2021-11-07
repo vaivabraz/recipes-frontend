@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { TextSection, Text, Row } from "../../ui";
+import { Typography, Box } from "@mui/material";
+import { TextSection } from "../../ui";
 import { IngredientsInRecipeType, IngredientsListItemType } from "../../types";
 
 const IngredientsListGrouped: React.FC<Props> = ({ ingredients }) => {
   return (
-    <Container>
+    <Box paddingLeft="24px">
       {ingredients.ingredientsGroups.map((g) => (
         <>
-          <Text text={g.groupName} type={"h5"} />
+          <Typography variant="h5">{g.groupName}</Typography>
           <IngredientsList
             ingredientsList={ingredients.ingredientsList.filter(
               (a) => a.groupIndex === g.index
@@ -16,7 +17,7 @@ const IngredientsListGrouped: React.FC<Props> = ({ ingredients }) => {
           />
         </>
       ))}
-    </Container>
+    </Box>
   );
 };
 
@@ -28,17 +29,16 @@ const IngredientsList: React.FC<IngredientsListProps> = ({
   ingredientsList,
 }) => {
   return (
-    <Container>
+    <Box paddingLeft="24px">
       {ingredientsList.map((r) => (
-        <ListItem>
+        <Box display="flex" key={r.product + r.quantity}>
           <ListItemDot />
-          <Text
-            key={r.product + r.quantity}
-            text={r.product + " " + r.quantity}
-          />
-        </ListItem>
+          <Typography variant="body1">
+            {r.product + " " + r.quantity}
+          </Typography>
+        </Box>
       ))}
-    </Container>
+    </Box>
   );
 };
 
@@ -63,21 +63,13 @@ const IngredientsListView: React.FC<Props> = ({ ingredients }) => {
 
 export default IngredientsListView;
 
-const Container = styled.div`
-  padding-left: 1rem;
-`;
-
-const ListItem = styled(Row)`
-  display: flex;
-  align-items: center;
-`;
-
 const ListItemDot = styled.div`
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
   border: 1px solid var(--BorderDarker);
-  width: 8px;
-  height: 8px;
+  background-color: var(--AccentColor);
+  width: 4px;
+  height: 4px;
   margin: 0.5rem;
 `;

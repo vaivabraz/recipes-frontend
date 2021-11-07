@@ -86,7 +86,20 @@ export const userRecipe: FullRecipeType = {
   preparation: {
     groupPreparationSteps: false,
     stepsGroups: [],
-    stepsList: [],
+    stepsList: [
+      {
+        groupIndex: 1,
+        step: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quidem totam praesentium culpa a alias dolore excepturi facilis? A, unde. Sit suscipit fugiat eos dolor ratione. Corporis accusantium accusamus temporibus.",
+      },
+      {
+        groupIndex: 2,
+        step: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quidem totam praesentium culpa a alias dolore excepturi facilis? A, unde. Sit suscipit fugiat eos dolor ratione. Corporis accusantium accusamus temporibus.",
+      },
+      {
+        groupIndex: 3,
+        step: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quidem totam praesentium culpa a alias dolore excepturi facilis? A, unde. Sit suscipit fugiat eos dolor ratione. Corporis accusantium accusamus temporibus.",
+      },
+    ],
   },
 
   image: "",

@@ -1,6 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-import Text from "./Text";
+import { Typography, Box } from "@mui/material";
 
 type TextSectionType = {
   title?: string;
@@ -11,16 +10,16 @@ type TextSectionType = {
 
 const TextSection = ({ title, text, children, style }: TextSectionType) => {
   return (
-    <Paragraph style={style}>
-      <Text type={"h4"} text={title} />
-      {text ? <Text style={{ paddingLeft: "1rem" }} text={text} /> : null}
+    <Box paddingBottom="24px">
+      <Typography variant="h5">{title}</Typography>
+      {text && (
+        <Typography variant="body1" style={{ paddingLeft: "1rem" }}>
+          {text}
+        </Typography>
+      )}
       {children}
-    </Paragraph>
+    </Box>
   );
 };
-
-const Paragraph = styled.div`
-  padding-bottom: 1rem;
-`;
 
 export default TextSection;

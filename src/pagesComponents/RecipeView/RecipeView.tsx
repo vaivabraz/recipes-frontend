@@ -1,12 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
+import { Typography, Box, Link as MuiLink, Button } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { FullRecipeType } from "../../types";
-import { Row, Column, Button, TextSection, Text, HSpace } from "../../ui";
+import { TextSection, HSpace } from "../../ui";
 
 import CategoriesList from "./CategoriesList";
 import IngredientsListView from "./IngredientsListView";
 import RecipeTime from "./RecipeTime";
+import PreparationStepsView from "./PreparationStepsView";
 
 type FullRecipeViewProps = {
   recipe: FullRecipeType;
@@ -18,93 +23,76 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
   //TODO: add ability to show separated times
   //TODO: add ability to show preparation steps
   //TODO: image is not correct
-
+  const theme = useTheme();
+  const isBigScreen = useMediaQuery(theme.breakpoints.up("md"));
   return (
-    <Container>
-      <Row>
-        <TitleContainer>
-          <Text type="h2" text={recipe.title} />
-          <Text text={recipe.summary} />
-        </TitleContainer>
-      </Row>
-      <Row>
-        <LeftColumn large={5}>
+    <Box>
+      <Box>
+        <Typography
+          variant="h2"
+          textAlign="center"
+          paddingTop="48px"
+          paddingBottom="9px"
+        >
+          {recipe.title}
+        </Typography>
+        <Typography variant="body1" textAlign="center" paddingBottom="24px">
+          {recipe.summary}
+        </Typography>
+      </Box>
+      <Box display="flex" flexDirection={isBigScreen ? "row" : "column"}>
+        <Box
+          flex={2}
+          padding="24px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
           <Image src={image} title={recipe.title} alt={recipe.title} />
-          <Info>
+          <Box>
             {recipe.portions && (
-              <>
-                <Text type="h5" text="PORCIJU SKAIČIUS: " />
-                <Text text={recipe.portions} />
-              </>
+              <Box display="flex">
+                <Typography variant="h5">PORCIJU SKAIČIUS:</Typography>
+                <Typography variant="body1" paddingLeft="9px">
+                  {recipe.portions}
+                </Typography>
+              </Box>
             )}
-            {/* {recipe.time && <RecipeTime time={recipe.time} />} */}
-          </Info>
-        </LeftColumn>
-        <RightColumn large={7}>
+            {recipe.time && <RecipeTime time={recipe.time} />}
+          </Box>
+        </Box>
+        <Box flex={3} padding={"24px"}>
           <IngredientsListView ingredients={recipe.ingredients} />
-          {/* <TextSection title="PARUOŠIMAS: " text={recipe.preparation} /> */}
+          <PreparationStepsView steps={recipe.preparation} />
           {recipe.notes && (
             <TextSection title="PASTABOS: " text={recipe.notes} />
           )}
           <CategoriesList categories={recipe.categories} />
-          <BottomContainer>
-            <Row>
-              <Text type="h5" text="AUTORIUS: " />
+          <Box>
+            <Box display="flex" alignItems="center">
+              <Typography variant="h5">AUTORIUS: </Typography>
               <HSpace />
-              <a href="">
-                <Text text={recipe.author} color="accent" />
-              </a>
-            </Row>
-            <ButtonsBox>
-              <Button onClick={() => {}} text="Redaguoti" />
-              <HSpace />
-              <Button onClick={() => {}} text="Istrinti" />
-            </ButtonsBox>
-          </BottomContainer>
-        </RightColumn>
-      </Row>
-    </Container>
+              <Link href="" passHref>
+                <MuiLink underline="none">{recipe.author}</MuiLink>
+              </Link>
+            </Box>
+            <Box padding="24px">
+              <Button variant="contained" type="submit">
+                Redaguoti
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
 export default FullRecipeView;
-
-const Container = styled(Column)`
-  border: var(--BorderLine);
-`;
-
-const TitleContainer = styled(Column)`
-  align-items: center;
-`;
-
-const LeftColumn = styled(Column)`
-  align-items: flex-end;
-  padding-left: 1rem;
-`;
-
-const RightColumn = styled(Column)`
-  padding-left: 1rem;
-`;
 
 const Image = styled.img`
   max-width: 100%;
   min-width: 250px;
   margin-bottom: 1rem;
   border: var(--BorderLine);
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin: 1rem 0;
-`;
-
-const BottomContainer = styled.div`
-  padding-top: 40px;
-`;
-
-const ButtonsBox = styled.div`
-  display: flex;
-  padding-top: 8px;
 `;

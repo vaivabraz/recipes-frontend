@@ -49,7 +49,8 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
 
 const Image = styled.img`
   width: 100%;
-  padding-top: 30px;
+  margin-top: 30px;
+  border-radius: 12px;
 `;
 
 const TitleContainer = styled.div`
@@ -67,6 +68,7 @@ const TitleContainer = styled.div`
   right: 0;
   left: 0;
   max-height: 90px;
+  min-height: 42px;
 `;
 
 export default React.memo(RecipeCard);

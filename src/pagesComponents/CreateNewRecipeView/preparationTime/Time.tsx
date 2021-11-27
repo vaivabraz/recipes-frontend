@@ -38,7 +38,7 @@ const Time = ({ time, onChange }: Props) => {
 
   return (
     <Box display="flex" flexDirection="column" paddingBottom={"9px"}>
-      <Box display="flex" alignItems="center">
+      <Box display="flex" alignItems="center" minWidth="370px">
         <Typography variant="h5">Kiek laiko uztruks</Typography>
         <Button onClick={splitTimeButtonProps.onClick}>
           {splitTimeButtonProps.text}

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { Box } from "@mui/system";
 interface ILink {
   href: string;
   title: string;
@@ -15,6 +16,17 @@ export default ({ href, title, bold }: ILink) => {
   return (
     <Link href={href} passHref>
       <Item className={className} bold={bold}>
+        <Box
+          sx={{
+            backgroundColor: router.pathname.startsWith(href)
+              ? "var(--new-york-pink)"
+              : "",
+            width: "10px",
+            height: "10px",
+            borderRadius: "5px",
+            margin: "3px",
+          }}
+        />
         {title}
       </Item>
     </Link>
@@ -22,6 +34,7 @@ export default ({ href, title, bold }: ILink) => {
 };
 
 const Item = styled.a`
+  display: flex;
   font-weight: ${(props) => (props.bold ? 500 : null)};
   color: var(--Text);
   &.Accent {

@@ -23,18 +23,18 @@ const Page: React.FC<PageProps> = ({ children, withMenu, rightColumn }) => {
           <PostHeaderRow />
           {withMenu && (
             <>
-              <Bubble
+              {/* <Bubble
                 color="var(--tuscan-red)"
                 radius={34}
                 top={60}
                 left={130}
-              />
-              <Bubble
+              /> */}
+              {/* <Bubble
                 color="var(--new-york-pink)"
                 radius={50}
                 top={80}
                 left={210}
-              />
+              /> */}
             </>
           )}
         </>
@@ -78,7 +78,7 @@ const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: -webkit-fill-available;
-  margin-top: -112px;
+  margin-top: -135px;
   margin-bottom: 30px;
   margin-right: 90px;
   margin-left: 90px;

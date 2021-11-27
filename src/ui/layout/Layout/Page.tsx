@@ -65,10 +65,10 @@ const EmptyHeaderRow = styled.div`
 
 const PostHeaderRow = styled.div`
   min-height: 168px;
-  background-image: linear-gradient(
-    to bottom right,
-    var(--BackgroundDark),
-    var(--Secondary)
+  background: linear-gradient(
+    90.62deg,
+    var(--BackgroundDark) 0.82%,
+    var(--Secondary) 100%
   );
 `;
 

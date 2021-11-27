@@ -49,12 +49,10 @@ h5 {
 }
 
 :root {
-  --BorderColor: #DBDBDB;
+  --BorderColor: var(--grullo_light);
 
   --BorderDarker: #c4c2c2;
- 
-  --DarkGrey: #888179;
- 
+  
   --HeaderBackground: #fff8f0;
  
   --AccentColor: var(--tuscan-red);
@@ -67,7 +65,6 @@ h5 {
   --BackgroundDark: var(--grullo);
  
   --Text: var(--smoky-black);
-  --TextOld: #4C3F2F;
  
   --ShadowNude: #c4a399;
  
@@ -84,6 +81,7 @@ h5 {
   --tuscan-red: #7d4f50ff;
   --khaki-web: #d1be9cff;
   --grullo: #aa998fff;
+  --grullo_light:#E5E0DC;
   --smoky-black: #171412ff;
 }
   

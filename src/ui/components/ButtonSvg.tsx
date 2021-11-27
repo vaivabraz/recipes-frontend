@@ -26,10 +26,10 @@ const ButtonBox = styled.button`
   display: flex;
   align-items: center;
   svg {
-    fill: var(--DarkGrey); //TODO: negrazi spalva!!!
+    fill: var(--smoky-black); //TODO: negrazi spalva!!!
   }
   svg:hover {
-    fill: var(--DarkGrey);
+    fill: var(--smoky-black);
   }
   h5 {
     padding-left: 0.5rem;

@@ -1,7 +1,9 @@
+import { QueryClient, QueryClientProvider } from "react-query";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import GlobalStyles from "../ui/styles/global";
 import { AppProvider } from "../store/context";
 import { WithAxios } from "../services/axios";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function MyApp({ Component, pageProps }) {
   const theme = createTheme({
@@ -56,12 +58,22 @@ export default function MyApp({ Component, pageProps }) {
     },
   });
 
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
+
   return (
     <AppProvider>
       <WithAxios>
         <GlobalStyles />
         <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
+          <QueryClientProvider client={queryClient}>
+            <Component {...pageProps} />
+          </QueryClientProvider>
         </ThemeProvider>
       </WithAxios>
     </AppProvider>

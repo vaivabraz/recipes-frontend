@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { ShortRecipeType } from "../../types";
@@ -12,12 +13,8 @@ interface IRecipeCard {
 
 const RecipeCard = ({ recipe }: IRecipeCard) => {
   const router = useRouter();
-  const image = recipe.image || "/salad.jpg";
+  const image = recipe.image || "/soup2.jpg";
   const title = recipe.title;
-
-  const handleOnClick = () => {
-    router.replace(`/recipes/${recipe.slug}`);
-  };
 
   return (
     <Box
@@ -26,22 +23,22 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
         flexDirection: "column",
       }}
     >
-      <Box
-        component="button"
-        onClick={handleOnClick}
-        sx={{
-          border: "none",
-          backgroundColor: "transparent",
-          position: "relative",
-        }}
-      >
-        <TitleContainer>
-          <Typography variant="subtitle2" textAlign="center">
-            {title}
-          </Typography>
-        </TitleContainer>
-        <Image src={image} title={title} alt={title} />
-      </Box>
+      <Link href="/recipes/[slug]" as={`/recipes/${recipe.slug}`}>
+        <Box
+          sx={{
+            border: "none",
+            backgroundColor: "transparent",
+            position: "relative",
+          }}
+        >
+          <TitleContainer>
+            <Typography variant="subtitle2" textAlign="center">
+              {title}
+            </Typography>
+          </TitleContainer>
+          <Image src={image} title={title} alt={title} />
+        </Box>
+      </Link>
       <TagsList categories={recipe.categories} />
     </Box>
   );

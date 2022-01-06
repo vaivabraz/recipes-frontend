@@ -7,6 +7,7 @@ import { NewFullRecipeType } from "../../types";
 import RecipeForm from "./RecipeForm";
 import { initialRecipe } from "./initialRecipe";
 import validateRecipe from "./validateRecipe";
+import { createNewRecipe } from "../../services";
 
 type FullRecipeViewProps = {
   recipe?: NewFullRecipeType;
@@ -20,8 +21,14 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
     handleBlur,
     values,
     errors,
-  } = useFormValidation<NewFullRecipeType>(initialRecipe, validateRecipe, () =>
-    console.log("submit! ups!")
+  } = useFormValidation<NewFullRecipeType>(
+    initialRecipe,
+    validateRecipe,
+    async () => {
+      console.log("submit! ups!, values", values);
+
+      await createNewRecipe(values);
+    }
   );
 
   return (

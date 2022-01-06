@@ -3,21 +3,44 @@ import styled from "styled-components";
 import RecipeCard from "./RecipeCard";
 import { RecipesListHardcoded } from "../../hardcodedData";
 import SubMenu from "./SubMenu";
+import { FullRecipeType } from "../../types";
+import { Box, Typography } from "@mui/material";
 
-const RecipesList = () => {
-  return (
-    <RecipesContainer>
-      <SubMenu />
-      <RecipesGrid>
-        {RecipesListHardcoded.map((recipe) => (
-          <RecipeCard key={recipe.slug} recipe={recipe} />
-        ))}
-      </RecipesGrid>
-    </RecipesContainer>
-  );
+type RecipesListProps = {
+  recipesList: FullRecipeType[];
+  isLoading: boolean;
+  isError: boolean;
 };
 
-const RecipesContainer = styled.div``;
+const RecipesList = ({
+  recipesList = [],
+  isLoading,
+  isError,
+}: RecipesListProps) => {
+  const recipesExists = recipesList?.length > 0;
+
+  return (
+    <Box width={"100%"}>
+      <SubMenu />
+      <RecipesGrid>
+        {isLoading && (
+          <Typography variant="h2" textAlign="center">
+            Loading...
+          </Typography>
+        )}
+        {!isLoading && recipesExists ? (
+          recipesList.map((recipe) => (
+            <RecipeCard key={recipe.slug} recipe={recipe} />
+          ))
+        ) : (
+          <Typography variant="h2" textAlign="center">
+            No recipes yet, create your first one!
+          </Typography>
+        )}
+      </RecipesGrid>
+    </Box>
+  );
+};
 
 const RecipesGrid = styled.div`
   display: grid;

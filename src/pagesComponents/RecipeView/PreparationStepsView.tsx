@@ -25,10 +25,10 @@ type StepsListProps = {
 const StepsList: React.FC<StepsListProps> = ({ stepsList }) => {
   return (
     <Box paddingLeft="24px">
-      {stepsList.map((i) => (
+      {stepsList.map((i, index) => (
         <Box display="flex" paddingBottom="9px" key={i.groupIndex}>
           <Typography variant="body1" paddingRight="9px">
-            {i.groupIndex}
+            {`${index + 1}.`}
           </Typography>
           <Typography variant="body1">{i.step}</Typography>
         </Box>

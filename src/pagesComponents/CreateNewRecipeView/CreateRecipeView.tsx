@@ -2,18 +2,36 @@ import React from "react";
 import { Typography, Box, Button } from "@mui/material";
 
 import useFormValidation from "../../utils/useFormValidation";
-import { NewFullRecipeType } from "../../types";
+import { FullRecipeType, NewFullRecipeType } from "../../types";
 
 import RecipeForm from "./RecipeForm";
 import { initialRecipe } from "./initialRecipe";
 import validateRecipe from "./validateRecipe";
 import { createNewRecipe } from "../../services";
+import { useMutation, useQueryClient } from "react-query";
+import { useRouter } from "next/router";
 
 type FullRecipeViewProps = {
   recipe?: NewFullRecipeType;
 };
 
 const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const mutation = useMutation(createNewRecipe, {
+    onSuccess: (response) => {
+      const allRecipes = queryClient.getQueryData<FullRecipeType[] | undefined>(
+        "recipes"
+      );
+      if (response.createdRecipe) {
+        allRecipes.unshift(response.createdRecipe);
+        queryClient.setQueryData("recipes", allRecipes);
+        router.replace("/recipes");
+      }
+      //TODO: else
+    },
+  });
+
   const {
     handleSubmit,
     handleChange,
@@ -25,9 +43,7 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
     initialRecipe,
     validateRecipe,
     async () => {
-      console.log("submit! ups!, values", values);
-
-      await createNewRecipe(values);
+      mutation.mutate(values);
     }
   );
 

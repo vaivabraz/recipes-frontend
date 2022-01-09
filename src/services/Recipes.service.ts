@@ -1,22 +1,19 @@
 import axios from "./axios";
-import { NewFullRecipeType } from "../types";
+import { FullRecipeType, NewFullRecipeType } from "../types";
 
-type CreateNewRecipeResponse = {};
+type CreateNewRecipeResponse = { createdRecipe: FullRecipeType };
 
 export const createNewRecipe = async (
   recipe: NewFullRecipeType
 ): Promise<CreateNewRecipeResponse> => {
   try {
-    const response = await axios.post("recipes/createNew", {
+    const response = await axios.post<FullRecipeType>("recipes/createNew", {
       ...recipe,
     });
-    return response.data;
+    return { createdRecipe: response.data };
   } catch (e) {
-    if (e.status === 400 && e.data.errorCode) {
-      return { error: e.data.errorCode };
-    }
     console.log("error:", e);
-    return {};
+    //
   }
 };
 

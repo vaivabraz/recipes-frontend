@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useQuery, useQueryClient } from "react-query";
 import { FullRecipeType } from "../../types";
 import { getRecipeBySlug } from "../../services";
+import { Typography } from "@mui/material";
 
 export default function Recipe() {
   const router = useRouter();
@@ -12,19 +13,23 @@ export default function Recipe() {
     "recipes"
   );
   const cachedRecipe = recipes?.filter((i) => i.slug === slug)[0];
-  const { data } = useQuery(["recipes", slug], () => getRecipeBySlug(slug), {
-    enabled: !!slug && !cachedRecipe,
-  });
+  const { data, isLoading } = useQuery(
+    ["recipes", slug],
+    () => getRecipeBySlug(slug),
+    {
+      enabled: !!slug && !cachedRecipe,
+    }
+  );
 
   const recipeFound = cachedRecipe || data?.[0];
-  //TODO: recipe does not exist
-  if (!recipeFound) {
-    return "Loading...";
-  }
 
   return (
     <RecipesHistoryLayout>
-      <RecipeView recipe={recipeFound} />
+      {isLoading && <Typography>Kraunasi...</Typography>}
+      {data?.length === 0 && (
+        <Typography>Toks receptas neegzistuoja</Typography>
+      )}
+      {recipeFound && <RecipeView recipe={recipeFound} />}
     </RecipesHistoryLayout>
   );
 }

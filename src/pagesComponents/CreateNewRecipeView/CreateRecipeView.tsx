@@ -2,7 +2,12 @@ import React from "react";
 import { Typography, Box, Button } from "@mui/material";
 
 import useFormValidation from "../../utils/useFormValidation";
-import { FullRecipeType, NewFullRecipeType } from "../../types";
+import {
+  FullRecipeType,
+  IngredientsInRecipeType,
+  NewFullRecipeType,
+  PreparationStepsInRecipeType,
+} from "../../types";
 
 import RecipeForm from "./RecipeForm";
 import { initialRecipe } from "./initialRecipe";
@@ -24,8 +29,10 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
         "recipes"
       );
       if (response.createdRecipe) {
-        allRecipes.unshift(response.createdRecipe);
-        queryClient.setQueryData("recipes", allRecipes);
+        if (allRecipes) {
+          allRecipes.unshift(response.createdRecipe);
+          queryClient.setQueryData("recipes", allRecipes);
+        }
         router.replace("/recipes");
       }
       //TODO: else
@@ -43,7 +50,25 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
     initialRecipe,
     validateRecipe,
     async () => {
-      mutation.mutate(values);
+      const cleanedIngredients = values.ingredients.ingredientsList.filter(
+        (i) => i.product
+      );
+      const finalIngredients: IngredientsInRecipeType = {
+        ...values.ingredients,
+        ingredientsList: cleanedIngredients,
+      };
+      const cleanedSteps = values.preparation.stepsList.filter((i) => i.step);
+      const finalSteps: PreparationStepsInRecipeType = {
+        ...values.preparation,
+        stepsList: cleanedSteps,
+      };
+      const finalRecipe: NewFullRecipeType = {
+        ...values,
+        ingredients: finalIngredients,
+        preparation: finalSteps,
+      };
+
+      mutation.mutate(finalRecipe);
     }
   );
 

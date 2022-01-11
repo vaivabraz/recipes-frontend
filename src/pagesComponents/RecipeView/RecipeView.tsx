@@ -15,14 +15,16 @@ import PreparationStepsView from "./PreparationStepsView";
 
 type FullRecipeViewProps = {
   recipe: FullRecipeType;
+  onEdit: () => void;
 };
 
-const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
+const FullRecipeView = ({ recipe, onEdit }: FullRecipeViewProps) => {
   const image = recipe.image || "/soup2.jpg";
   //TODO: change alignment on small screens
   //TODO: add ability to show separated times
   //TODO: add ability to show preparation steps
   //TODO: image is not correct
+
   const theme = useTheme();
   const isBigScreen = useMediaQuery(theme.breakpoints.up("md"));
   return (
@@ -77,7 +79,7 @@ const FullRecipeView = ({ recipe }: FullRecipeViewProps) => {
               </Link>
             </Box>
             <Box padding="24px">
-              <Button variant="contained" type="submit">
+              <Button variant="contained" type="submit" onClick={onEdit}>
                 Redaguoti
               </Button>
             </Box>

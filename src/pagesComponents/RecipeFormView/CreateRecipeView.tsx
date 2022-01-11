@@ -20,7 +20,7 @@ type FullRecipeViewProps = {
   recipe?: NewFullRecipeType;
 };
 
-const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
+export const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const mutation = useMutation(createNewRecipe, {
@@ -97,5 +97,3 @@ const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
     </Box>
   );
 };
-
-export default CreateRecipeView;

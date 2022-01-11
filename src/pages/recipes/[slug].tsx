@@ -4,6 +4,7 @@ import { useQuery, useQueryClient } from "react-query";
 import { FullRecipeType } from "../../types";
 import { getRecipeBySlug } from "../../services";
 import { Typography } from "@mui/material";
+import { useCallback } from "react";
 
 export default function Recipe() {
   const router = useRouter();
@@ -22,6 +23,9 @@ export default function Recipe() {
   );
 
   const recipeFound = cachedRecipe || data?.[0];
+  const onEdit = useCallback(() => {
+    router.push(`/recipes/edit/${slug}`);
+  }, [slug]);
 
   return (
     <RecipesHistoryLayout>
@@ -29,7 +33,7 @@ export default function Recipe() {
       {data?.length === 0 && (
         <Typography>Toks receptas neegzistuoja</Typography>
       )}
-      {recipeFound && <RecipeView recipe={recipeFound} />}
+      {recipeFound && <RecipeView recipe={recipeFound} onEdit={onEdit} />}
     </RecipesHistoryLayout>
   );
 }

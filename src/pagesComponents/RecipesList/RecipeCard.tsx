@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
@@ -12,10 +11,8 @@ interface IRecipeCard {
 }
 
 const RecipeCard = ({ recipe }: IRecipeCard) => {
-  const router = useRouter();
   const image = recipe.image || "/soup2.jpg";
   const title = recipe.title;
-
   return (
     <Box
       sx={{

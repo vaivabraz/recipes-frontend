@@ -30,15 +30,14 @@ export const getMyRecipes = async () => {
   }
 };
 
-export const getRecipeBySlug = async (slug: string) => {
+export const getRecipeBySlug = async (
+  slug: string
+): Promise<FullRecipeType[]> => {
   try {
     const response = await axios.get(`recipes/${slug}`);
     return response.data;
   } catch (e) {
-    if (e.status === 400 && e.data.errorCode) {
-      return { error: e.data.errorCode };
-    }
     console.log("error:", e);
-    return {};
+    // return {};
   }
 };

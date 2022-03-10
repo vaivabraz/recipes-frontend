@@ -2,15 +2,16 @@ import React from "react";
 import { Typography, Box, Button } from "@mui/material";
 
 import useFormValidation from "../../utils/useFormValidation";
-import { FullRecipeType, NewFullRecipeType } from "../../types";
+import { FullRecipeType } from "../../types";
 
 import RecipeForm from "./RecipeForm";
 import validateRecipe from "./validateRecipe";
 import { initialRecipe } from "./initialRecipe";
+import { cleanEmptyValues } from "./utils";
 
 type FullRecipeViewProps = {
   recipe: FullRecipeType;
-  onSave: () => void;
+  onSave: (recipe: FullRecipeType) => void;
   onCancel: () => void;
   onDelete: () => void;
 };
@@ -28,12 +29,12 @@ export const EditRecipeView = ({
     handleBlur,
     values,
     errors,
-  } = useFormValidation<NewFullRecipeType>(
+  } = useFormValidation<FullRecipeType>(
     { ...initialRecipe, ...recipe },
     validateRecipe,
-    async () => {
-      //TODO: cia reik async?
-      onSave();
+    async (values) => {
+      const finalRecipe = cleanEmptyValues(values);
+      onSave(finalRecipe);
     }
   );
 

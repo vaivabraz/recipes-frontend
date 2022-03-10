@@ -1,8 +1,32 @@
 import axios from "./axios";
 import { FullRecipeType, NewFullRecipeType } from "../types";
 
-type CreateNewRecipeResponse = { createdRecipe: FullRecipeType };
+export const getMyRecipes = async () => {
+  try {
+    const response = await axios.get("recipes/getMyRecipes");
+    return response.data;
+  } catch (e) {
+    if (e.status === 400 && e.data.errorCode) {
+      return { error: e.data.errorCode };
+    }
+    console.log("error:", e);
+  }
+};
 
+export const getRecipeBySlug = async (
+  slug: string
+): Promise<FullRecipeType> => {
+  try {
+    const response = await axios.post(`recipes/getRecipe`, {
+      recipeSlug: slug,
+    });
+    return response.data;
+  } catch (e) {
+    console.log("error:", e);
+  }
+};
+
+type CreateNewRecipeResponse = { createdRecipe: FullRecipeType };
 export const createNewRecipe = async (
   recipe: NewFullRecipeType
 ): Promise<CreateNewRecipeResponse> => {
@@ -17,27 +41,33 @@ export const createNewRecipe = async (
   }
 };
 
-export const getMyRecipes = async () => {
+type EditRecipeResponse = { updatedRecipe: FullRecipeType };
+export const editRecipe = async (
+  recipe: FullRecipeType
+): Promise<EditRecipeResponse> => {
   try {
-    const response = await axios.get("recipes/getMyRecipes");
-    return response.data;
+    const response = await axios.post<{ updatedRecipe: FullRecipeType }>(
+      "recipes/edit",
+      {
+        recipe,
+      }
+    );
+    return { updatedRecipe: response.data.updatedRecipe };
   } catch (e) {
-    if (e.status === 400 && e.data.errorCode) {
-      return { error: e.data.errorCode };
-    }
     console.log("error:", e);
-    return {};
   }
 };
 
-export const getRecipeBySlug = async (
-  slug: string
-): Promise<FullRecipeType[]> => {
+export const deleteRecipe = async (recipeSlug: string) => {
   try {
-    const response = await axios.get(`recipes/${slug}`);
-    return response.data;
+    const response = await axios.post<{ deletedRecipe: FullRecipeType }>(
+      "recipes/delete",
+      {
+        slug: recipeSlug,
+      }
+    );
+    return { deletedRecipe: response.data.deletedRecipe };
   } catch (e) {
     console.log("error:", e);
-    // return {};
   }
 };

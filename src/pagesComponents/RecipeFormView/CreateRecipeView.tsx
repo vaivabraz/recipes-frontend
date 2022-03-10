@@ -2,12 +2,7 @@ import React from "react";
 import { Typography, Box, Button } from "@mui/material";
 
 import useFormValidation from "../../utils/useFormValidation";
-import {
-  FullRecipeType,
-  IngredientsInRecipeType,
-  NewFullRecipeType,
-  PreparationStepsInRecipeType,
-} from "../../types";
+import { FullRecipeType, NewFullRecipeType } from "../../types";
 
 import RecipeForm from "./RecipeForm";
 import { initialRecipe } from "./initialRecipe";
@@ -15,6 +10,7 @@ import validateRecipe from "./validateRecipe";
 import { createNewRecipe } from "../../services";
 import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
+import { cleanEmptyValues } from "./utils";
 
 type FullRecipeViewProps = {
   recipe?: NewFullRecipeType;
@@ -49,25 +45,8 @@ export const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
   } = useFormValidation<NewFullRecipeType>(
     initialRecipe,
     validateRecipe,
-    async () => {
-      const cleanedIngredients = values.ingredients.ingredientsList.filter(
-        (i) => i.product
-      );
-      const finalIngredients: IngredientsInRecipeType = {
-        ...values.ingredients,
-        ingredientsList: cleanedIngredients,
-      };
-      const cleanedSteps = values.preparation.stepsList.filter((i) => i.step);
-      const finalSteps: PreparationStepsInRecipeType = {
-        ...values.preparation,
-        stepsList: cleanedSteps,
-      };
-      const finalRecipe: NewFullRecipeType = {
-        ...values,
-        ingredients: finalIngredients,
-        preparation: finalSteps,
-      };
-
+    async (values) => {
+      const finalRecipe = cleanEmptyValues(values);
       mutation.mutate(finalRecipe);
     }
   );

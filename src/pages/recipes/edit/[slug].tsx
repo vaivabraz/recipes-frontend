@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { EditRecipeView } from "../../../pagesComponents";
-import { editRecipe } from "../../../services";
+import { editRecipe, deleteRecipe } from "../../../services";
 import { FullRecipeType } from "../../../types";
 import { PrivatePage } from "../../../ui";
 import { useRecipeFromCacheOrFetch } from "../../../utils";
@@ -13,15 +13,16 @@ const EditRecipe = () => {
   const { recipeFound } = useRecipeFromCacheOrFetch(slug);
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(editRecipe, {
+  const mutationToEdit = useMutation(editRecipe, {
     onSuccess: (response) => {
       const allRecipes = queryClient.getQueryData<FullRecipeType[] | undefined>(
         "recipes"
       );
       if (response.updatedRecipe) {
         if (allRecipes) {
-          allRecipes.unshift(response.updatedRecipe);
-          queryClient.setQueryData("recipes", allRecipes);
+          const filteredRecipes = allRecipes.filter(e => e.slug !== slug)
+          filteredRecipes.unshift(response.updatedRecipe);
+          queryClient.setQueryData("recipes", filteredRecipes);
         }
         router.replace("/recipes/[slug]", `/recipes/${slug}`);
       }
@@ -29,16 +30,32 @@ const EditRecipe = () => {
     },
   });
 
-  const saveChanges = useCallback((recipe) => {
-    mutation.mutate(recipe);
+  const mutationToDelete = useMutation(deleteRecipe, {
+    onSuccess: (response) => {
+      const allRecipes = queryClient.getQueryData<FullRecipeType[] | undefined>(
+        "recipes"
+      );
+      if (response) {
+        if (allRecipes) {
+          const updatedRecipes = allRecipes.filter(e => e.slug !== slug)
+          queryClient.setQueryData("recipes", updatedRecipes);
+        }
+        router.replace("/recipes");
+      }
+      //TODO: error message
+    },
+  });
+
+  const handleSaveChanges = useCallback((recipe) => {
+    mutationToEdit.mutate(recipe);
   }, []);
 
-  const goToRecipePage = useCallback(() => {
+  const handleCancelEditing = useCallback(() => {
     router.replace("/recipes/[slug]", `/recipes/${slug}`);
   }, [recipeFound]);
 
-  const deleteRecipe = useCallback(() => {
-    console.log("deleting");
+  const handleDeleteRecipe = useCallback(() => {
+    mutationToDelete.mutate(slug)
   }, []);
 
   return (
@@ -46,9 +63,9 @@ const EditRecipe = () => {
       {recipeFound && (
         <EditRecipeView
           recipe={recipeFound}
-          onSave={saveChanges}
-          onCancel={goToRecipePage}
-          onDelete={deleteRecipe}
+          onSave={handleSaveChanges}
+          onCancel={handleCancelEditing}
+          onDelete={handleDeleteRecipe}
         />
       )}
     </PrivatePage>

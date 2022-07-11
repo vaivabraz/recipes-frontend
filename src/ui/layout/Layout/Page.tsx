@@ -67,7 +67,7 @@ const PostHeaderRow = styled.div`
   min-height: 168px;
   background: linear-gradient(
     90.62deg,
-    var(--BackgroundDark) 0.82%,
+    var(--AccentColorStrong) 0.82%,
     var(--Secondary) 100%
   );
 `;

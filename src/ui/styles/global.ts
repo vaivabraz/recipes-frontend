@@ -56,6 +56,7 @@ h5 {
   --HeaderBackground: #fff8f0;
  
   --AccentColor: var(--tuscan-red);
+  --AccentColorStrong: var(--bloody-red);
   --AccentColorOld: #b75114;
 
   --Secondary:var(--khaki-web);
@@ -79,6 +80,7 @@ h5 {
   --white: #ffffffff;
   --cultured: #f6f3f3ff;
   --tuscan-red: #7d4f50ff;
+  --bloody-red: #790e0e;
   --khaki-web: #d1be9cff;
   --grullo: #aa998fff;
   --grullo_light:#E5E0DC;

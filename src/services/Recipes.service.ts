@@ -3,12 +3,12 @@ import { FullRecipeType, NewFullRecipeType } from "../types";
 
 export const getMyRecipes = async () => {
   try {
-    const response = await axios.get("recipes/getMyRecipes");
+    const response = await axios.get<any, {data: FullRecipeType[]}>("recipes/getMyRecipes");
     return response.data;
   } catch (e) {
-    if (e.status === 400 && e.data.errorCode) {
-      return { error: e.data.errorCode };
-    }
+    // if (e.status === 400 && e.data.errorCode) {
+    //   return { error: e.data.errorCode };
+    // }
     console.log("error:", e);
   }
 };

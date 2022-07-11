@@ -28,7 +28,7 @@ const LoginView: React.FC<LoginViewType> = ({
 
   return (
     <Page>
-      <VSpace height={2} />
+      <VSpace height={5} />
       <Typography variant="h2" textAlign="center">
         Tavo asmeninė receptų knyga!
       </Typography>

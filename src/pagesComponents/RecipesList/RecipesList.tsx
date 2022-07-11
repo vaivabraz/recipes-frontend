@@ -1,22 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import RecipeCard from "./RecipeCard";
-import { RecipesListHardcoded } from "../../hardcodedData";
-import SubMenu from "./SubMenu";
-import { FullRecipeType } from "../../types";
+import { useQuery } from "react-query";
 import { Box, Typography } from "@mui/material";
 
-type RecipesListProps = {
-  recipesList: FullRecipeType[];
-  isLoading: boolean;
-  isError: boolean;
-};
+import { getMyRecipes } from "../../services";
+import RecipeCard from "./RecipeCard";
+import SubMenu from "./SubMenu";
 
-const RecipesList = ({
-  recipesList = [],
-  isLoading,
-  isError,
-}: RecipesListProps) => {
+const RecipesList = () => {
+
+  const { isLoading, isError, data: recipesList} = useQuery("recipes", getMyRecipes);
   const recipesExists = recipesList?.length > 0;
 
   return (

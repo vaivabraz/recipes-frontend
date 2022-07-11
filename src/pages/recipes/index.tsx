@@ -1,14 +1,17 @@
-import { useQuery } from "react-query";
-import { RecipesList, RecipesHistoryLayout } from "../../pagesComponents";
-import { getMyRecipes } from "../../services";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+import { RecipesList } from "../../pagesComponents";
+import { PrivatePage } from "../../ui";
 
 const Recipes = () => {
-  const { isLoading, isError, data } = useQuery("recipes", getMyRecipes);
+  const theme = useTheme();
+  const isBigScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
-    <RecipesHistoryLayout>
-      <RecipesList recipesList={data} isLoading={isLoading} isError={isError} />
-    </RecipesHistoryLayout>
+    <PrivatePage withMenu rightColumn={isBigScreen ? <h2>Right Column</h2> : null}>
+      <RecipesList />
+    </PrivatePage>
   );
 };
 

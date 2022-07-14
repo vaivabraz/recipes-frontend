@@ -4,12 +4,13 @@ import { useQuery } from "react-query";
 import { Box, Typography } from "@mui/material";
 
 import { getMyRecipes } from "../../services";
+import { reactQueryKeys } from "../../constants/reactQueryKeys";
 import RecipeCard from "./RecipeCard";
 import SubMenu from "./SubMenu";
 
 const RecipesList = () => {
 
-  const { isLoading, isError, data: recipesList} = useQuery("recipes", getMyRecipes);
+  const { isLoading, isError, data: recipesList} = useQuery(reactQueryKeys.recipes, getMyRecipes);
   const recipesExists = recipesList?.length > 0;
 
   return (

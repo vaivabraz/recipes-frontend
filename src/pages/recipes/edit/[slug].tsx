@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { useMutation, useQueryClient } from "react-query";
+import { reactQueryKeys } from "../../../constants/reactQueryKeys";
 import { EditRecipeView } from "../../../pagesComponents";
 import { editRecipe, deleteRecipe } from "../../../services";
 import { FullRecipeType } from "../../../types";
@@ -16,13 +17,13 @@ const EditRecipe = () => {
   const mutationToEdit = useMutation(editRecipe, {
     onSuccess: (response) => {
       const allRecipes = queryClient.getQueryData<FullRecipeType[] | undefined>(
-        "recipes"
+        reactQueryKeys.recipes
       );
       if (response.updatedRecipe) {
         if (allRecipes) {
-          const filteredRecipes = allRecipes.filter(e => e.slug !== slug)
+          const filteredRecipes = allRecipes.filter((e) => e.slug !== slug);
           filteredRecipes.unshift(response.updatedRecipe);
-          queryClient.setQueryData("recipes", filteredRecipes);
+          queryClient.setQueryData(reactQueryKeys.recipes, filteredRecipes);
         }
         router.replace("/recipes/[slug]", `/recipes/${slug}`);
       }
@@ -33,12 +34,12 @@ const EditRecipe = () => {
   const mutationToDelete = useMutation(deleteRecipe, {
     onSuccess: (response) => {
       const allRecipes = queryClient.getQueryData<FullRecipeType[] | undefined>(
-        "recipes"
+        reactQueryKeys.recipes
       );
       if (response) {
         if (allRecipes) {
-          const updatedRecipes = allRecipes.filter(e => e.slug !== slug)
-          queryClient.setQueryData("recipes", updatedRecipes);
+          const updatedRecipes = allRecipes.filter((e) => e.slug !== slug);
+          queryClient.setQueryData(reactQueryKeys.recipes, updatedRecipes);
         }
         router.replace("/recipes");
       }
@@ -55,7 +56,7 @@ const EditRecipe = () => {
   }, [recipeFound]);
 
   const handleDeleteRecipe = useCallback(() => {
-    mutationToDelete.mutate(slug)
+    mutationToDelete.mutate(slug);
   }, []);
 
   return (

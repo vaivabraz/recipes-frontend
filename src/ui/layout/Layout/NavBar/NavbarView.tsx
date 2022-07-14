@@ -1,12 +1,13 @@
 import { useQueryClient } from "react-query";
 import useWindowSize from "../../../../hooks/useWindowSize";
 import { GetMeApiResponse } from "../../../../services/User";
+import { reactQueryKeys } from "../../../../constants/reactQueryKeys";
 import MobileNavbar from "./MobileNavbar";
 import DesktopNavbar from "./DesktopNavbar";
 
 const NavbarView = () => {
   const queryClient = useQueryClient();
-  const user = queryClient.getQueryData<GetMeApiResponse>("user");
+  const user = queryClient.getQueryData<GetMeApiResponse>(reactQueryKeys.user);
 
   const NavBarItems: { href: string; title: string }[] = [
     {

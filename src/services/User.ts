@@ -1,9 +1,9 @@
 import axios from "./axios";
 
-type GetMeApiResponse = {
+export type GetMeApiResponse = {
   username: string;
   recipesList: [];
-  userCategories: string[];
+  userCategories: { id: number, title: string }[];
 };
 
 class UserService {

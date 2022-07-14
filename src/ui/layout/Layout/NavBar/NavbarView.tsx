@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useQueryClient } from "react-query";
 import useWindowSize from "../../../../hooks/useWindowSize";
-import { AppContext } from "../../../../store";
+import { GetMeApiResponse } from "../../../../services/User";
 import MobileNavbar from "./MobileNavbar";
 import DesktopNavbar from "./DesktopNavbar";
 
 const NavbarView = () => {
-  const { state } = useContext(AppContext);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<GetMeApiResponse>("user");
+
   const NavBarItems: { href: string; title: string }[] = [
     {
       href: "/recipes",
@@ -21,7 +23,7 @@ const NavbarView = () => {
     },
     {
       href: "/profile",
-      title: state.user.username,
+      title: user.username,
     },
   ];
   const size = useWindowSize();

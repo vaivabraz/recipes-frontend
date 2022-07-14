@@ -1,37 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Page, { PageProps } from "./Page";
-import { Actions, AppContext } from "../../../store";
+import { useQuery } from "react-query";
+
 import { UserService } from "../../../services";
+import Page, { PageProps } from "./Page";
 
 const PrivatePage: React.FC<PageProps> = ({ ...props }) => {
-  const [loading, setLoading] = useState(false);
-  const { state, dispatch } = useContext(AppContext);
+
   const router = useRouter();
+  const { isLoading, data } = useQuery("user", UserService.getCurrentUser);
 
-  useEffect(() => {
-    async function fetchMe() {
-      const response = await UserService.getCurrentUser();
-      if (response?.username) {
-        dispatch({
-          type: Actions.AddUsername,
-          payload: { username: response.username },
-        });
-      } else {
-        router.push("/login");
-      }
-      setLoading(false);
-    }
+  if (!isLoading && !data?.username){
+    router.push("/login");
+  }
 
-    if (!state.user.username) {
-      setLoading(true);
-      fetchMe();
-    }
-  }, []);
-
-  if (!loading && state.user.username) {
+  if (!isLoading && data?.username) {
     return <Page {...props}></Page>;
   }
-  return <div>loading</div>;
+  return <div>Authenticating</div>;
 };
 export default PrivatePage;

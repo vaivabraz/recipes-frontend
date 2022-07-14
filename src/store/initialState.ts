@@ -6,7 +6,6 @@ export type ProductType = {
 
 export type UserType = {
   token: string;
-  username: string;
 };
 
 export type InitialStateType = {
@@ -18,6 +17,5 @@ export const initialState: InitialStateType = {
   products: [],
   user: {
     token: "",
-    username: "",
   },
 };

@@ -26,6 +26,7 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
             border: "none",
             backgroundColor: "transparent",
             position: "relative",
+            cursor: "pointer",  
           }}
         >
           <TitleContainer>

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useRouter } from "next/router";
-import { Layout, TextButton } from "../ui";
+import { PrivatePage, TextButton } from "../ui";
 import { Actions, AppContext } from "../store";
 import { AuthenticationService } from "../services";
 
@@ -15,8 +15,8 @@ export default function Profile() {
   };
 
   return (
-    <Layout>
+    <PrivatePage withMenu>
       <TextButton text={"Atsijungti"} onClick={logout} />
-    </Layout>
+    </PrivatePage>
   );
 }

@@ -1,9 +1,9 @@
-import { Row, Column, Layout } from "../../ui";
+import { Row, Column, PrivatePage } from "../../ui";
 import styled from "styled-components";
 
 export default function Columns() {
   return (
-    <Layout>
+    <PrivatePage withMenu>
       <Row>
         <StyledColumn>
           <p>
@@ -66,7 +66,7 @@ export default function Columns() {
           </p>
         </StyledColumn>
       </Row>
-    </Layout>
+    </PrivatePage>
   );
 }
 

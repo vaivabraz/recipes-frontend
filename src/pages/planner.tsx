@@ -1,16 +1,16 @@
 import Head from "next/head";
-import { Layout } from "../ui";
+import { PrivatePage } from "../ui";
 
 export default function Planner() {
   return (
-    <Layout>
+    <PrivatePage withMenu>
       Cia bus: 1. Sarasas receptu, kuriuos planuoja gaminti ( gal ir su
       kalorijom ar kazkokiu skaiciavimu?) 2. Pirkiniu krepselis
-    </Layout>
+    </PrivatePage>
   );
 }
 // return (
-//   <Layout>
+//   <PrivatePage>
 //     <Head>
 //       <title>Create Next App</title>
 //       <link rel="icon" href="/favicon.ico" />
@@ -21,5 +21,5 @@ export default function Planner() {
 //     </main>
 
 //     <footer></footer>
-//   </Layout>
+//   </PrivatePage>
 // );

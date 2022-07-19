@@ -1,16 +1,18 @@
 import React from "react";
 import { Box } from "@mui/system";
+import { CategoryType } from "../../types";
+
 import Tag from "./Tag";
 
 type TagsListProps = {
-  categories: string[];
+  categories: CategoryType[];
 };
 
 const TagsList: React.FC<TagsListProps> = ({ categories }) => {
   return (
     <Box sx={{ height: "96px", overflow: "hidden" }}>
       {categories.map((i) => (
-        <Tag text={i} />
+        <Tag key={i.id} text={i.title} />
       ))}
     </Box>
   );

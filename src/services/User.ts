@@ -1,9 +1,10 @@
 import axios from "./axios";
+import { CategoryType } from "../types";
 
 export type GetMeApiResponse = {
   username: string;
   recipesList: [];
-  userCategories: { id: number, title: string }[];
+  userCategories: CategoryType[];
 };
 
 class UserService {

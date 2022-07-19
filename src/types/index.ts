@@ -2,7 +2,7 @@ export type ShortRecipeType = {
   image: string;
   title: string;
   slug: string;
-  categories: string[];
+  categories: CategoryType[];
 };
 
 export type NewFullRecipeType = {
@@ -12,7 +12,7 @@ export type NewFullRecipeType = {
   ingredients: IngredientsInRecipeType;
   preparation: PreparationStepsInRecipeType;
   image: string;
-  categories: string[];
+  categories: CategoryType[];
   notes?: string;
   summary: string;
   link: string;
@@ -25,6 +25,11 @@ export type FullRecipeType = NewFullRecipeType & {
   slug: string;
   recipeId: number;
   _id: string;
+};
+
+export type CategoryType = {
+  id: string;
+  title: string;
 };
 
 export type IngredientsInRecipeType = {

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { CategoryType } from "../../types";
 import { TextSection, Row } from "../../ui";
 import Tag from "../../ui/components/Tag";
@@ -13,10 +12,8 @@ const CategoriesList: React.FC<Props> = ({ categories }) => {
   return (
     <TextSection title="KATEGORIJOS: ">
       <Row>
-        {categories?.map((category) => (
-          <CategoryItem key={category.id} href="">
-            <Tag key={category.id} text={category.title} />
-          </CategoryItem>
+        {categories?.map((i) => (
+          <Tag key={i.id} id={i.id} text={i.title} />
         ))}
       </Row>
     </TextSection>
@@ -24,9 +21,3 @@ const CategoriesList: React.FC<Props> = ({ categories }) => {
 };
 
 export default CategoriesList;
-
-const CategoryItem = styled.a`
-  display: flex;
-  flex-direction: row;
-  margin-right: 0.5rem;
-`;

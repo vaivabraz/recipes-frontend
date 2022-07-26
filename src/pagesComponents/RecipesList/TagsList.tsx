@@ -11,7 +11,7 @@ const TagsList: React.FC<TagsListProps> = ({ categories }) => {
   return (
     <Box sx={{ height: "96px", overflow: "hidden" }}>
       {categories.map((i) => (
-        <Tag key={i.id} text={i.title} />
+        <Tag key={i.id} id={i.id} text={i.title} />
       ))}
     </Box>
   );

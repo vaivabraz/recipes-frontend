@@ -1,9 +1,29 @@
 import axios from "./axios";
 import { FullRecipeType, NewFullRecipeType } from "../types";
 
-export const getMyRecipes = async () => {
+type RecipesQueriesType = {
+  categories?: string
+}
+
+export const getMyRecipes = async (query: RecipesQueriesType) => {
+  let url = "recipes/getMyRecipes";
   try {
-    const response = await axios.get<any, {data: FullRecipeType[]}>("recipes/getMyRecipes");
+    if (query.categories) {
+      url = url + "?categories=" + query.categories
+    }
+    const response = await axios.get<any, { data: FullRecipeType[] }>(url);
+    return response.data;
+  } catch (e) {
+    // if (e.status === 400 && e.data.errorCode) {
+    //   return { error: e.data.errorCode };
+    // }
+    console.log("error:", e);
+  }
+}
+  ;
+export const getMyRecipesByCategory = async (category: string) => {
+  try {
+    const response = await axios.get<any, { data: FullRecipeType[] }>("recipes/getMyRecipes?categories=" + category);
     return response.data;
   } catch (e) {
     // if (e.status === 400 && e.data.errorCode) {

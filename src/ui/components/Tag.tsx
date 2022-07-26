@@ -1,24 +1,28 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { useRouter } from "next/router";
 
 type TagProps = {
   text: string;
+  id?: string;
 };
 
-const Tag: React.FC<TagProps> = ({ text }) => {
+const Tag: React.FC<TagProps> = ({ text, id }) => {
+  const router = useRouter();
   const handleOnClick = () => {
-    //filter recipes by tag
+    router.push("/recipes?categories=" + id);
   };
   return (
     <Box
       component="button"
-      onClick={handleOnClick}
+      onClick={id ? handleOnClick : null}
       sx={{
         border: "none",
         margin: "3px 6px",
         padding: "3px 6px",
         backgroundColor: "var(--Background)",
         color: "var(--tuscan-red)",
+        cursor: id ? "pointer" : "default",
       }}
     >
       <Typography variant="body2">{text}</Typography>

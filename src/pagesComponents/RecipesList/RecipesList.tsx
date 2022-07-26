@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useQuery } from "react-query";
+import { useRouter } from "next/router";
 import { Box, Typography } from "@mui/material";
 
 import { getMyRecipes } from "../../services";
@@ -9,8 +10,12 @@ import RecipeCard from "./RecipeCard";
 import SubMenu from "./SubMenu";
 
 const RecipesList = () => {
-
-  const { isLoading, isError, data: recipesList} = useQuery(reactQueryKeys.recipes, getMyRecipes);
+  const { query } = useRouter();
+  const {
+    isLoading,
+    isError,
+    data: recipesList,
+  } = useQuery([reactQueryKeys.recipes, query], () => getMyRecipes(query));
   const recipesExists = recipesList?.length > 0;
 
   return (

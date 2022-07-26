@@ -5,6 +5,7 @@ import { NewFullRecipeType } from "../../types";
 import Ingredients from "./ingredients/Ingredients";
 import PreparationSteps from "./preparationSteps/PreparationSteps";
 import Time from "./preparationTime/Time";
+import CategoriesSelector from "./categories/CategoriesSelector";
 
 type RecipeFormProps = {
   handleChange: any;
@@ -43,7 +44,7 @@ const RecipeForm = ({
           onChange={handleChange}
           onBlur={handleBlur}
           name="portions"
-          value={values.portions}
+          value={values.portions || ''}
           sx={{ paddingBottom: "9px" }}
         />
         <Time time={values.time} onChange={handleCustomChange} />
@@ -69,7 +70,7 @@ const RecipeForm = ({
           steps={values.preparation}
           onChange={handleCustomChange}
         />
-
+        <CategoriesSelector selectedCategories={values.categories} onChange={handleCustomChange} />
         <TextField
           size="small"
           margin="dense"

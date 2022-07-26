@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { TextSection, Row, Text } from "../../ui";
+import { CategoryType } from "../../types";
+import { TextSection, Row } from "../../ui";
+import Tag from "../RecipesList/Tag";
 
 type Props = {
-  categories: string[];
+  categories: CategoryType[];
 };
 
 const CategoriesList: React.FC<Props> = ({ categories }) => {
@@ -11,10 +13,9 @@ const CategoriesList: React.FC<Props> = ({ categories }) => {
   return (
     <TextSection title="KATEGORIJOS: ">
       <Row>
-        {categories?.map((category, index) => (
-          <CategoryItem key={category} href="">
-            <Text text={category} color="accent" />
-            {index + 1 !== categories?.length ? ",  " : "."}
+        {categories?.map((category) => (
+          <CategoryItem key={category.id} href="">
+            <Tag key={category.id} text={category.title} />
           </CategoryItem>
         ))}
       </Row>

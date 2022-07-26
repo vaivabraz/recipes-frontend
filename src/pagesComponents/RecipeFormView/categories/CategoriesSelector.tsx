@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, MenuItem, Select, Typography } from "@mui/material";
-
 import { useQueryClient } from "react-query";
+
+import Tag from "../../../ui/components/Tag";
 import { reactQueryKeys } from "../../../constants/reactQueryKeys";
 import { GetMeApiResponse } from "../../../services/User";
 import { CategoryType } from "../../../types";
-import Tag from "../../RecipesList/Tag";
 
 type Props = {
   selectedCategories: CategoryType[];

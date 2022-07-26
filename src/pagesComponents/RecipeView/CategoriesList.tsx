@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { CategoryType } from "../../types";
 import { TextSection, Row } from "../../ui";
-import Tag from "../RecipesList/Tag";
+import Tag from "../../ui/components/Tag";
 
 type Props = {
   categories: CategoryType[];

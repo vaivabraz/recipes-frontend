@@ -1,8 +1,7 @@
 import React from "react";
 import { Box } from "@mui/system";
 import { CategoryType } from "../../types";
-
-import Tag from "./Tag";
+import Tag from "../../ui/components/Tag";
 
 type TagsListProps = {
   categories: CategoryType[];

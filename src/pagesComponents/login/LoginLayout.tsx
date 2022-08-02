@@ -1,16 +1,17 @@
 import React from "react";
-import styled from "styled-components";
 import { Formik, Form } from "formik";
 import {
   Typography,
   TextField,
   Button,
   Link as MuiLink,
-  Box,
 } from "@mui/material";
 import Link from "next/link";
+
 import { VSpace, ErrorText, LoadingOverlay, Page } from "../../ui";
 import { LoginDataType, validate } from "./validation";
+import { DemoUserInfo } from "./DemoUserInfo";
+import styles from './login.module.scss';
 
 type LoginViewType = {
   handleLoginFormSubmit: (values: LoginDataType) => Promise<void>;
@@ -40,33 +41,9 @@ const LoginView: React.FC<LoginViewType> = ({
         onSubmit={handleLoginFormSubmit}
       >
         {(formik) => (
-          <StyledForm>
+          <Form className={styles.form}>
             {formik.isSubmitting && <LoadingOverlay />}
-            <Box
-              sx={{
-                backgroundColor: "#CC8B86",
-                height: "210px",
-                width: "210px",
-                borderRadius: "105px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                position: "absolute",
-                right: {
-                  xs: "unset",
-                  sm: "-160px",
-                },
-                top: {
-                  xs: "315px",
-                  sm: "99px",
-                },
-                justifyContent: "center",
-              }}
-            >
-              <Typography variant="subtitle1">Demo useris</Typography>
-              <Typography variant="body2">demoUser@demo.com</Typography>
-              <Typography variant="body2">demo1234</Typography>
-            </Box>
+            <DemoUserInfo/>
             <TextField
               id="email"
               name="email"
@@ -94,7 +71,7 @@ const LoginView: React.FC<LoginViewType> = ({
             <Button variant="contained" type="submit">
               Prisijungti
             </Button>
-          </StyledForm>
+          </Form>
         )}
       </Formik>
       <VSpace height={2} />
@@ -107,13 +84,5 @@ const LoginView: React.FC<LoginViewType> = ({
     </Page>
   );
 };
-
-const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 20rem;
-  position: relative;
-`;
 
 export default LoginView;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Router from "next/router";
 import { AuthenticationService } from "../../services";
 
-import LoginView from "./LoginView";
+import LoginLayout from "./LoginLayout";
 import { LoginDataType } from "./validation";
 
 const Login = () => {
@@ -25,7 +25,7 @@ const Login = () => {
   };
 
   return (
-    <LoginView
+    <LoginLayout
       handleLoginFormSubmit={startLogin}
       serverValidationError={serverValidationError}
     />

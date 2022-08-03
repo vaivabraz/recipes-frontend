@@ -32,6 +32,10 @@ export const muiTheme = createTheme({
     h6: {
       fontSize: "24px",
     },
+    fontFamily: "Montserrat, sans-serif",
+    fontWeightLight: 400,
+    fontWeightRegular: 500,
+    fontWeightMedium: 600
   },
   components: {
     MuiButton: {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, MenuItem, Select, Typography } from "@mui/material";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 import Tag from "../../../ui/components/Tag";
 import { reactQueryKeys } from "../../../constants/reactQueryKeys";
@@ -14,9 +14,9 @@ type Props = {
 
 const CategoriesSelector = ({ selectedCategories = [], onChange }: Props) => {
   const queryClient = useQueryClient();
-  const { userCategories } = queryClient.getQueryData<GetMeApiResponse>(
-    reactQueryKeys.user
-  );
+  const { userCategories } = queryClient.getQueryData<GetMeApiResponse>([
+    reactQueryKeys.user,
+  ]);
 
   const [selectedCategoriesIds, setSelectedCategoriesIds] = React.useState<
     string[]

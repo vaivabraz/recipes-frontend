@@ -1,16 +1,18 @@
 import { useRouter } from "next/router";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { reactQueryKeys } from "../../../constants/reactQueryKeys";
 import { UserService } from "../../../services";
 import Page, { PageProps } from "./Page";
 
 const PrivatePage: React.FC<PageProps> = ({ ...props }) => {
-
   const router = useRouter();
-  const { isLoading, data } = useQuery(reactQueryKeys.user, UserService.getCurrentUser);
+  const { isLoading, data } = useQuery(
+    [reactQueryKeys.user],
+    UserService.getCurrentUser
+  );
 
-  if (!isLoading && !data?.username){
+  if (!isLoading && !data?.username) {
     router.push("/login");
   }
 

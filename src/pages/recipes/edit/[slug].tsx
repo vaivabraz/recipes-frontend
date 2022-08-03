@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { reactQueryKeys } from "../../../constants/reactQueryKeys";
 import { EditRecipeView } from "../../../pagesComponents";
 import { editRecipe, deleteRecipe } from "../../../services";
@@ -17,13 +17,13 @@ const EditRecipe = () => {
   const mutationToEdit = useMutation(editRecipe, {
     onSuccess: (response) => {
       const allRecipes = queryClient.getQueryData<FullRecipeType[] | undefined>(
-        reactQueryKeys.recipes
+        [reactQueryKeys.recipes]
       );
       if (response.updatedRecipe) {
         if (allRecipes) {
           const filteredRecipes = allRecipes.filter((e) => e.slug !== slug);
           filteredRecipes.unshift(response.updatedRecipe);
-          queryClient.setQueryData(reactQueryKeys.recipes, filteredRecipes);
+          queryClient.setQueryData([reactQueryKeys.recipes], filteredRecipes);
         }
         router.replace("/recipes/[slug]", `/recipes/${slug}`);
       }
@@ -34,12 +34,12 @@ const EditRecipe = () => {
   const mutationToDelete = useMutation(deleteRecipe, {
     onSuccess: (response) => {
       const allRecipes = queryClient.getQueryData<FullRecipeType[] | undefined>(
-        reactQueryKeys.recipes
+        [reactQueryKeys.recipes]
       );
       if (response) {
         if (allRecipes) {
           const updatedRecipes = allRecipes.filter((e) => e.slug !== slug);
-          queryClient.setQueryData(reactQueryKeys.recipes, updatedRecipes);
+          queryClient.setQueryData([reactQueryKeys.recipes], updatedRecipes);
         }
         router.replace("/recipes");
       }

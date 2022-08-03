@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useRouter } from "next/router";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { PrivatePage, TextButton } from "../ui";
 import { Actions, AppContext } from "../store";
 import { AuthenticationService } from "../services";

@@ -8,7 +8,7 @@ import RecipeForm from "./RecipeForm";
 import { initialRecipe } from "./initialRecipe";
 import validateRecipe from "./validateRecipe";
 import { createNewRecipe } from "../../services";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { cleanEmptyValues } from "./utils";
 import { reactQueryKeys } from "../../constants/reactQueryKeys";
@@ -23,12 +23,12 @@ export const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
   const mutation = useMutation(createNewRecipe, {
     onSuccess: (response) => {
       const allRecipes = queryClient.getQueryData<FullRecipeType[] | undefined>(
-        reactQueryKeys.recipes
+        [reactQueryKeys.recipes]
       );
       if (response.createdRecipe) {
         if (allRecipes) {
           allRecipes.unshift(response.createdRecipe);
-          queryClient.setQueryData(reactQueryKeys.recipes, allRecipes);
+          queryClient.setQueryData([reactQueryKeys.recipes], allRecipes);
         }
         router.replace("/recipes");
       }

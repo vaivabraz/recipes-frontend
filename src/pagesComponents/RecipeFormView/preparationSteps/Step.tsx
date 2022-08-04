@@ -38,15 +38,22 @@ const Step = ({ index, entry, onChange, onRemove }: Props) => {
         size="small"
         minRows={3}
       />
-      <IconButton
-        aria-label="remove"
-        onClick={onRemoveProduct}
-        color="primary"
-        sx={{ margin: "6px 0", padding: "0", width: "40px" }}
-        size="large"
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
       >
-        <RemoveCircleOutlineSharpIcon />
-      </IconButton>
+        <IconButton
+          aria-label="remove"
+          onClick={onRemoveProduct}
+          color="primary"
+          sx={{ margin: "6px 0", padding: "0", width: "40px", height: "40px" }}
+          size="large"
+        >
+          <RemoveCircleOutlineSharpIcon />
+        </IconButton>
+      </Box>
     </Box>
   );
 };

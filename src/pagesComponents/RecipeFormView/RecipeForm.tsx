@@ -6,6 +6,7 @@ import Ingredients from "./ingredients/Ingredients";
 import PreparationSteps from "./preparationSteps/PreparationSteps";
 import Time from "./preparationTime/Time";
 import CategoriesSelector from "./categories/CategoriesSelector";
+import PrivateRecipeCheckBox from "./PrivateRecipeCheckbox";
 
 type RecipeFormProps = {
   handleChange: any;
@@ -23,7 +24,7 @@ const RecipeForm = ({
   errors,
 }: RecipeFormProps) => {
   //atpazinti linkus!
-  //prideti private/public
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   return (
@@ -44,7 +45,7 @@ const RecipeForm = ({
           onChange={handleChange}
           onBlur={handleBlur}
           name="portions"
-          value={values.portions || ''}
+          value={values.portions || ""}
           sx={{ paddingBottom: "9px" }}
         />
         <Time time={values.time} onChange={handleCustomChange} />
@@ -70,7 +71,10 @@ const RecipeForm = ({
           steps={values.preparation}
           onChange={handleCustomChange}
         />
-        <CategoriesSelector selectedCategories={values.categories} onChange={handleCustomChange} />
+        <CategoriesSelector
+          selectedCategories={values.categories}
+          onChange={handleCustomChange}
+        />
         <TextField
           size="small"
           margin="dense"
@@ -100,6 +104,10 @@ const RecipeForm = ({
           onBlur={handleBlur}
           name="summary"
           value={values.summary}
+        />
+        <PrivateRecipeCheckBox
+          isRecipePrivate={values.private}
+          onChange={handleCustomChange}
         />
       </Box>
     </Box>

@@ -36,7 +36,6 @@ const TimeRanges = ({ time, onChange }: Props) => {
 
   const handleChangeTimeRange = ({ target }, index) => {
     const timeRangesCopy = time.timeRanges.slice();
-    console.log("target", target);
     timeRangesCopy[index] = {
       ...timeRangesCopy[index],
       [target.name]: target.value,

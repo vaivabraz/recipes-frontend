@@ -22,12 +22,11 @@ const RecipesList = () => {
     <Box width={"100%"}>
       <SubMenu />
       <RecipesGrid>
-        {isLoading && (
+        {isLoading ? (
           <Typography variant="h2" textAlign="center">
             Loading...
           </Typography>
-        )}
-        {!isLoading && recipesExists ? (
+        ) : recipesExists ? (
           recipesList.map((recipe) => (
             <RecipeCard key={recipe.slug} recipe={recipe} />
           ))

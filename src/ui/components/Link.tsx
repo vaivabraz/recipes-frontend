@@ -9,7 +9,7 @@ interface ILink {
   bold?: boolean;
 }
 
-export default ({ href, title, bold }: ILink) => {
+const EnhancedLink = ({ href, title, bold }: ILink) => {
   const router = useRouter();
   const className = router.pathname.startsWith(href) ? "Accent" : "";
 
@@ -32,7 +32,7 @@ export default ({ href, title, bold }: ILink) => {
     </Link>
   );
 };
-
+export default EnhancedLink;
 const Item = styled.a`
   display: flex;
   font-weight: ${(props) => (props.bold ? 500 : null)};

@@ -12,7 +12,7 @@ const TimeRanges: React.FC<TimeRangesProps> = ({ timeRanges }) => {
   return (
     <Box paddingLeft="24px">
       {timeRanges.map((g) => (
-        <Box display="flex">
+        <Box display="flex" key={g.processName}>
           <Typography variant="h5">{g.processName}</Typography>
           <Typography variant="body1" paddingLeft="9px">
             {g.time}

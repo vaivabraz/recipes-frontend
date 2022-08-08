@@ -11,11 +11,15 @@ import SubMenu from "./SubMenu";
 
 const RecipesList = () => {
   const { query } = useRouter();
+  const queryKey = [reactQueryKeys.recipes];
+  if (Object.keys(query).length !== 0) {
+    queryKey.push(JSON.stringify(query));
+  }
   const {
     isLoading,
     isError,
     data: recipesList,
-  } = useQuery([reactQueryKeys.recipes, query], () => getMyRecipes(query));
+  } = useQuery(queryKey, () => getMyRecipes(query));
   const recipesExists = recipesList?.length > 0;
 
   return (

@@ -24,5 +24,6 @@ export const useRecipeFromCacheOrFetch = (slug: string) => {
   );
 
   const recipeFound = cachedRecipe || data;
-  return { recipeFound, status };
+  const finalStatus = !cachedRecipe && status;
+  return { recipeFound, status: finalStatus };
 };

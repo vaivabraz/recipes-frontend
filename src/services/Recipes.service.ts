@@ -20,19 +20,7 @@ export const getMyRecipes = async (query: RecipesQueriesType) => {
     console.log("error:", e);
   }
 }
-  ;
-export const getMyRecipesByCategory = async (category: string) => {
-  try {
-    const response = await axios.get<any, { data: FullRecipeType[] }>("recipes/getMyRecipes?categories=" + category);
-    return response.data;
-  } catch (e) {
-    // if (e.status === 400 && e.data.errorCode) {
-    //   return { error: e.data.errorCode };
-    // }
-    console.log("error:", e);
-  }
-};
-
+  
 export const getRecipeBySlug = async (
   slug: string
 ): Promise<FullRecipeType> => {

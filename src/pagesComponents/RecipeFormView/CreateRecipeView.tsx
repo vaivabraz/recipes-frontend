@@ -1,17 +1,18 @@
 import React from "react";
 import { Typography, Box, Button } from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 
 import useFormValidation from "../../utils/useFormValidation";
+import { invalidateFilteredRecipeQueries } from "../../utils/reactQueryHelpers";
+import { reactQueryKeys } from "../../constants/reactQueryKeys";
 import { FullRecipeType, NewFullRecipeType } from "../../types";
+import { createNewRecipe } from "../../services";
 
 import RecipeForm from "./RecipeForm";
 import { initialRecipe } from "./initialRecipe";
 import validateRecipe from "./validateRecipe";
-import { createNewRecipe } from "../../services";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 import { cleanEmptyValues } from "./utils";
-import { reactQueryKeys } from "../../constants/reactQueryKeys";
 
 type FullRecipeViewProps = {
   recipe?: NewFullRecipeType;
@@ -30,6 +31,7 @@ export const CreateRecipeView = ({ recipe }: FullRecipeViewProps) => {
           allRecipes.unshift(response.createdRecipe);
           queryClient.setQueryData([reactQueryKeys.recipes], allRecipes);
         }
+        invalidateFilteredRecipeQueries(queryClient);
         router.replace("/recipes");
       }
       //TODO: else

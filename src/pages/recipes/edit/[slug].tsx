@@ -7,6 +7,7 @@ import { editRecipe, deleteRecipe } from "../../../services";
 import { FullRecipeType } from "../../../types";
 import { PrivatePage } from "../../../ui";
 import { useRecipeFromCacheOrFetch } from "../../../utils";
+import { invalidateFilteredRecipeQueries } from "../../../utils/reactQueryHelpers";
 
 const EditRecipe = () => {
   const router = useRouter();
@@ -21,10 +22,17 @@ const EditRecipe = () => {
       );
       if (response.updatedRecipe) {
         if (allRecipes) {
-          const filteredRecipes = allRecipes.filter((e) => e.slug !== slug);
-          filteredRecipes.unshift(response.updatedRecipe);
-          queryClient.setQueryData([reactQueryKeys.recipes], filteredRecipes);
+          const updatedRecipes = allRecipes.map((e) =>
+            e.slug === slug ? response.updatedRecipe : e
+          );
+          queryClient.setQueryData([reactQueryKeys.recipes], updatedRecipes);
+        } else {
+          queryClient.setQueryData(
+            [reactQueryKeys.recipes, slug],
+            response.updatedRecipe
+          );
         }
+        invalidateFilteredRecipeQueries(queryClient);
         router.replace("/recipes/[slug]", `/recipes/${slug}`);
       }
       //TODO: error message
@@ -41,6 +49,7 @@ const EditRecipe = () => {
           const updatedRecipes = allRecipes.filter((e) => e.slug !== slug);
           queryClient.setQueryData([reactQueryKeys.recipes], updatedRecipes);
         }
+        invalidateFilteredRecipeQueries(queryClient);
         router.replace("/recipes");
       }
       //TODO: error message

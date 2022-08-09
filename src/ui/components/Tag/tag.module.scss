@@ -1,0 +1,17 @@
+.tag {
+    border: none;
+    margin: 3px 6px;
+    padding: 3px 6px;
+    background-color: var(--Background);
+    color: var(--tuscan-red);
+    display: inline-flex;
+    align-items: center;
+
+    &--clear-btn {
+        min-width: unset !important;
+    }
+
+    &--clear-btn-icon {
+        height: 18px !important;
+    }
+}

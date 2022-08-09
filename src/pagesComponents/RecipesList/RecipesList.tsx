@@ -24,7 +24,7 @@ const RecipesList = () => {
 
   return (
     <Box width={"100%"}>
-      <SubMenu />
+      <SubMenu query={query} />
       <RecipesGrid>
         {isLoading ? (
           <Typography variant="h2" textAlign="center">

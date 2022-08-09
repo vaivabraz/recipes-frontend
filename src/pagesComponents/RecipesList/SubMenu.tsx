@@ -1,28 +1,42 @@
 import { Button, Typography } from "@mui/material";
-import styled from "styled-components";
+import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import { ParsedUrlQueryInput } from "querystring";
+import { reactQueryKeys } from "../../constants/reactQueryKeys";
+import { GetMeApiResponse } from "../../services/User";
+import { Tag } from "../../ui";
+import styles from "./subMenu.module.scss";
 
-const SubMenu = () => (
-  <SubMenuContainer>
-    <Typography variant="h2" textAlign="center">
-      Receptai
-    </Typography>
-    <Link href="/recipes/createNewRecipe">
-      <Button variant="contained">Sukurti nauja</Button>
-    </Link>
-  </SubMenuContainer>
-);
+type SubMenuProps = {
+  query?: ParsedUrlQueryInput;
+};
 
-const SubMenuContainer = styled.div`
-  min-height: 112px;
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  padding: 0 36px;
-  align-items: center;
-  width: 100%;
-  @media screen and (max-width: 940px) {
-  }
-`;
+const SubMenu = ({ query }: SubMenuProps) => {
+  const queryClient = useQueryClient();
+  const { userCategories } = queryClient.getQueryData<GetMeApiResponse>([
+    reactQueryKeys.user,
+  ]);
+  const selectedCategory = userCategories.find(
+    (j) => j.id === query.categories
+  );
+
+  return (
+    <div className={styles["sub-menu"]}>
+      <div className={styles["sub-menu--main-line"]}>
+        <Typography variant="h2" textAlign="center">
+          Receptai
+        </Typography>
+        <Link href="/recipes/createNewRecipe">
+          <Button variant="contained">Sukurti nauja</Button>
+        </Link>
+      </div>
+      {selectedCategory && (
+        <div className={styles["sub-menu--second-line"]}>
+          <Tag text={selectedCategory?.title} removable />
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default SubMenu;

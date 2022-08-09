@@ -1,0 +1,23 @@
+.sub-menu {
+    min-height: 112px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 36px;
+    align-items: center;
+    width: 100%;
+
+    &--main-line {
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        align-items: center;
+        width: 100%;
+    }
+
+    &--second-line {
+        display: flex;
+        width: 100%;
+    }
+}

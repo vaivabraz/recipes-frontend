@@ -2,7 +2,7 @@ import React from "react";
 import { Box, MenuItem, Select, Typography } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
 
-import Tag from "../../../ui/components/Tag";
+import { Tag } from "../../../ui";
 import { reactQueryKeys } from "../../../constants/reactQueryKeys";
 import { GetMeApiResponse } from "../../../services/User";
 import { CategoryType } from "../../../types";

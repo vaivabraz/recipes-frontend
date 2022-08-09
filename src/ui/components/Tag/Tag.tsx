@@ -7,7 +7,7 @@ type TagProps = {
   id?: string;
 };
 
-const Tag: React.FC<TagProps> = ({ text, id }) => {
+export const Tag: React.FC<TagProps> = ({ text, id }) => {
   const router = useRouter();
   const handleOnClick = () => {
     router.push("/recipes?categories=" + id);
@@ -29,5 +29,3 @@ const Tag: React.FC<TagProps> = ({ text, id }) => {
     </Box>
   );
 };
-
-export default Tag;

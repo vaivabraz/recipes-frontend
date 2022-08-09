@@ -1,7 +1,7 @@
 import React from "react";
 import { CategoryType } from "../../types";
 import { TextSection, Row } from "../../ui";
-import Tag from "../../ui/components/Tag";
+import { Tag } from "../../ui";
 
 type Props = {
   categories: CategoryType[];

@@ -53,11 +53,8 @@ h5 {
 
   --BorderDarker: #c4c2c2;
   
-  --HeaderBackground: #fff8f0;
- 
   --AccentColor: var(--tuscan-red);
   --AccentColorStrong: var(--bloody-red);
-  --AccentColorOld: #b75114;
 
   --Secondary:var(--khaki-web);
  
@@ -66,13 +63,16 @@ h5 {
   --BackgroundDark: var(--grullo);
  
   --Text: var(--smoky-black);
+  --SecondaryText: var(--grullo_light);
  
   --ShadowNude: #c4a399;
  
   --errorsRed: #b63333;
 
   --Shadow: 0 0.4rem 0.375rem -0.375rem var(--ShadowNude);
+  --DarkShadow: -3px 2px 15px 0px var(--very-dark-red);
   --BorderLine: 1px var(--BorderColor) solid;
+  --DarkBorderLine: 1px var(--very-dark-red) solid;
   --BorderRadius:15px;
 
 
@@ -85,6 +85,7 @@ h5 {
   --grullo: #aa998fff;
   --grullo_light:#E5E0DC;
   --smoky-black: #171412ff;
+  --very-dark-red: #551b1d;
 }
   
 `;

@@ -1,11 +1,21 @@
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 import { useQueryClient } from "@tanstack/react-query";
-import useWindowSize from "../../../../hooks/useWindowSize";
+
 import { GetMeApiResponse } from "../../../../services/User";
 import { reactQueryKeys } from "../../../../constants/reactQueryKeys";
-import MobileNavbar from "./MobileNavbar";
 import DesktopNavbar from "./DesktopNavbar";
+import MobileNavbar from "./MobileNavbar";
+import styles from "./header.module.scss";
 
-const NavbarView = () => {
+type HeaderProps = {
+  withMenu?: boolean;
+};
+
+export const Header = ({ withMenu }: HeaderProps) => {
+  const theme = useTheme();
+  const mediumBigSizeScreen = useMediaQuery(theme.breakpoints.up("sm"));
+
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData<GetMeApiResponse>([
     reactQueryKeys.user,
@@ -29,12 +39,19 @@ const NavbarView = () => {
       title: user.username,
     },
   ];
-  const size = useWindowSize();
 
-  if (size === "small") {
+  if (!mediumBigSizeScreen) {
     return <MobileNavbar NavBarItems={NavBarItems} />;
   }
-  return <DesktopNavbar NavBarItems={NavBarItems} />;
-};
 
-export default NavbarView;
+  return (
+    <>
+      {withMenu ? (
+        <DesktopNavbar NavBarItems={NavBarItems} />
+      ) : (
+        <div className={styles["header--empty-navbar-row"]} />
+      )}
+      <div className={styles["header--post-header-gradient-row"]} />
+    </>
+  );
+};

@@ -4,8 +4,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { TextField } from "@mui/material";
 import { BREAKPOINTS } from "../../utils";
-import Navbar from "./NavBar";
-import Bubble from "./Bubble";
+import { Header } from "./Header";
 
 export type PageProps = {
   withMenu?: boolean;
@@ -15,30 +14,10 @@ export type PageProps = {
 const Page: React.FC<PageProps> = ({ children, withMenu, rightColumn }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  console.log("matches", matches);
   return (
     <ScreenContainer>
-      {matches && (
-        <>
-          {withMenu ? <Navbar /> : <EmptyHeaderRow />}
-          <PostHeaderRow />
-          {withMenu && (
-            <>
-              {/* <Bubble
-                color="var(--tuscan-red)"
-                radius={34}
-                top={60}
-                left={130}
-              /> */}
-              {/* <Bubble
-                color="var(--new-york-pink)"
-                radius={50}
-                top={80}
-                left={210}
-              /> */}
-            </>
-          )}
-        </>
-      )}
+      <Header withMenu={withMenu} />
       <ContentContainer>
         <LeftColumnContainer>{children}</LeftColumnContainer>
         {rightColumn && (
@@ -57,19 +36,6 @@ const ScreenContainer = styled.div`
   flex: 1;
   flex-direction: column;
   margin: 0;
-`;
-
-const EmptyHeaderRow = styled.div`
-  min-height: 30px;
-`;
-
-const PostHeaderRow = styled.div`
-  min-height: 168px;
-  background: linear-gradient(
-    90.62deg,
-    var(--AccentColorStrong) 0.82%,
-    var(--Secondary) 100%
-  );
 `;
 
 const ContentContainer = styled.div`

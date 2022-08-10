@@ -1,0 +1,68 @@
+.header {
+    &--post-header-gradient-row {
+        min-height: 168px;
+        background: linear-gradient(90.62deg, var(--AccentColorStrong) 0.82%, var(--Secondary) 100%);
+    }
+
+    &--empty-navbar-row {
+        min-height: 30px;
+    }
+}
+
+.mobile-navBar {
+    &--container {
+        min-height: 64px;
+        background: linear-gradient(90.62deg, var(--AccentColorStrong) 0.82%, var(--Secondary) 100%);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    &--menu-button {
+        border: 1px solid var(--AccentColor) !important;
+        height: 40px;
+        width: 40px;
+        box-shadow: 0px 0px 20px 1px var(--AccentColor);
+    }
+
+    &--menu-overlay {
+        flex-direction: column;
+        position: fixed;
+        background-color: var(--AccentColor);
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+    }
+
+    &--menu-body {
+        display: flex;
+        flex-direction: column;
+        padding-top: 10rem;
+        height: 100%;
+    }
+
+    &--back-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+    }
+}
+
+.mobile-navBar-item {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 1rem 3rem;
+    margin: 0.5rem 2rem;
+    border: var(--DarkBorderLine);
+    box-shadow: var(--DarkShadow);
+    border-radius: var(--BorderRadius);
+
+    &--link {
+        padding-left: 12px;
+    }
+}

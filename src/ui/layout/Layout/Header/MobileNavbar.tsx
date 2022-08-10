@@ -9,9 +9,13 @@ import styles from "./header.module.scss";
 
 type MobileNavbarProps = {
   NavBarItems: { href: string; title: string }[];
+  withMenu?: boolean;
 };
 
-const MobileNavbar: React.FC<MobileNavbarProps> = ({ NavBarItems }) => {
+const MobileNavbar: React.FC<MobileNavbarProps> = ({
+  NavBarItems,
+  withMenu,
+}) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const router = useRouter();
 
@@ -21,7 +25,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ NavBarItems }) => {
     }
   };
 
-  return (
+  return withMenu ? (
     <div className={styles["mobile-navBar--container"]}>
       <IconButton
         aria-label="menu"
@@ -32,6 +36,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ NavBarItems }) => {
       >
         <MenuIcon />
       </IconButton>
+
       {menuIsOpen && (
         <div className={styles["mobile-navBar--menu-overlay"]}>
           <div className={styles["mobile-navBar--menu-body"]}>
@@ -56,6 +61,8 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ NavBarItems }) => {
         </div>
       )}
     </div>
+  ) : (
+    <div className={styles["mobile-navBar--thin-container"]} />
   );
 };
 

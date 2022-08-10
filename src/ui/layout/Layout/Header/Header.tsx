@@ -36,12 +36,12 @@ export const Header = ({ withMenu }: HeaderProps) => {
     },
     {
       href: "/profile",
-      title: user.username,
+      title: user?.username,
     },
   ];
 
   if (!mediumBigSizeScreen) {
-    return <MobileNavbar NavBarItems={NavBarItems} />;
+    return <MobileNavbar NavBarItems={NavBarItems} withMenu={withMenu} />;
   }
 
   return (

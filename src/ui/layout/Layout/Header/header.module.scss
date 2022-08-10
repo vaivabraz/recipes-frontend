@@ -19,6 +19,11 @@
         padding: 0 20px;
     }
 
+    &--thin-container {
+        min-height: 24px;
+        background: linear-gradient(90.62deg, var(--AccentColorStrong) 0.82%, var(--Secondary) 100%);
+    }
+
     &--menu-button {
         border: 1px solid var(--AccentColor) !important;
         height: 40px;

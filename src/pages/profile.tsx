@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { useRouter } from "next/router";
 import { useQueryClient } from "@tanstack/react-query";
-import { PrivatePage, TextButton } from "../ui";
+import { Button } from "@mui/material";
+
+import { PrivatePage } from "../ui";
 import { Actions, AppContext } from "../store";
 import { AuthenticationService } from "../services";
 
@@ -19,7 +21,9 @@ export default function Profile() {
 
   return (
     <PrivatePage withMenu>
-      <TextButton text={"Atsijungti"} onClick={logout} />
+      <Button variant="outlined" onClick={logout}>
+        Atsijungti
+      </Button>
     </PrivatePage>
   );
 }

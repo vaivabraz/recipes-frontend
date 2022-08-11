@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
-import { Text } from "../../ui";
+import { Typography } from "@mui/material";
 
 const useCreatePortalInBody = () => {
   const wrapperRef = useRef(null);
@@ -28,7 +28,7 @@ const LoadingOverlay: React.FC = () => {
   const createBodyPortal = useCreatePortalInBody();
   const OverlayComponent = (
     <OverlayBackground>
-      <Text>Kraunasi.....</Text>
+      <Typography>Kraunasi.....</Typography>
     </OverlayBackground>
   );
   return createBodyPortal(OverlayComponent);

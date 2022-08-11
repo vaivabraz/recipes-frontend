@@ -14,7 +14,7 @@ export type PageProps = {
 const Page: React.FC<PageProps> = ({ children, withMenu, rightColumn }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-  console.log("matches", matches);
+
   return (
     <ScreenContainer>
       <Header withMenu={withMenu} />

@@ -35,6 +35,7 @@ const EnhancedLink = ({ href, title, bold }: ILink) => {
 export default EnhancedLink;
 const Item = styled.a`
   display: flex;
+  align-items: center;
   font-weight: ${(props) => (props.bold ? 500 : null)};
   color: var(--Text);
   &.Accent {

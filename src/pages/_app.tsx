@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "@mui/material/styles";
@@ -23,16 +24,18 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   );
 
   return (
-    <AppProvider>
-      <WithAxios>
-        <GlobalStyles />
-        <ThemeProvider theme={muiTheme}>
-          <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools />
-            <Component {...pageProps} />
-          </QueryClientProvider>
-        </ThemeProvider>
-      </WithAxios>
-    </AppProvider>
+    <SessionProvider session={pageProps.session}>
+      <AppProvider>
+        <WithAxios>
+          <GlobalStyles />
+          <ThemeProvider theme={muiTheme}>
+            <QueryClientProvider client={queryClient}>
+              <ReactQueryDevtools />
+              <Component {...pageProps} />
+            </QueryClientProvider>
+          </ThemeProvider>
+        </WithAxios>
+      </AppProvider>
+    </SessionProvider>
   );
 }

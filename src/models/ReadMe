@@ -1,0 +1,9 @@
+Models - model how data in mongo db should look like
+
+Model exported from model file is equal to the model 
+that was get from mongo db
+
+to see examined documents: 
+ const userRecipes = await RecipeModel.where('author')
+      .equals(req.body.payload.username)
+      .setOptions({ explain: 'executionStats' });

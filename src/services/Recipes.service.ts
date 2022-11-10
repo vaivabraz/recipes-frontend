@@ -6,7 +6,7 @@ type RecipesQueriesType = {
 }
 
 export const getMyRecipes = async (query: RecipesQueriesType) => {
-  let url = "recipes/getMyRecipes";
+  let url = "api/recipes/getMyRecipes";
   try {
     if (query.categories) {
       url = url + "?categories=" + query.categories

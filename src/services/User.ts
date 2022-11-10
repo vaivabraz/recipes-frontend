@@ -10,7 +10,7 @@ export type GetMeApiResponse = {
 class UserService {
   async getCurrentUser(): Promise<GetMeApiResponse> {
     try {
-      const response = await axios.get<GetMeApiResponse>("user/me");
+      const response = await axios.get<GetMeApiResponse>("api/user/me");
       return response?.data;
     } catch (e) {
       console.log("getCurrentUser error", e);

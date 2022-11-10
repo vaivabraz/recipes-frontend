@@ -1,4 +1,5 @@
 import axios from "./axios";
+import { signIn } from "next-auth/react";
 
 // = {
 //   email: "testinis@test.com",
@@ -7,7 +8,7 @@ import axios from "./axios";
 
 type LoginResponse = {
   // accessToken?: string;
-  // error?: "USER_NOT_FOUND" | "INVALID_PASSWORD";
+  error?: string; //"USER_NOT_FOUND" | "INVALID_PASSWORD";
 };
 
 type LoginAPIResponse = {
@@ -26,12 +27,16 @@ class AuthenticationService {
     email: string;
     password: string;
   }): Promise<LoginResponse> {
-    const response = await axios.post<LoginAPIResponse>("user/loginUser", {
-      email: formData.email,
-      password: formData.password,
-      loginType: "simple",
-    });
-    return response.data;
+    try {
+      const response = await signIn("credentials", {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
+      });
+      return response;
+    } catch (e) {
+      console.log("error", e);
+    }
   }
 
   async refreshSession(): Promise<RefreshSessionResponse> {

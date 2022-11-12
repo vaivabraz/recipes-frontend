@@ -39,7 +39,7 @@ export const createNewRecipe = async (
   recipe: NewFullRecipeType
 ): Promise<CreateNewRecipeResponse> => {
   try {
-    const response = await axios.post<FullRecipeType>("recipes/createNew", {
+    const response = await axios.post<FullRecipeType>("api/recipes/createNew", {
       ...recipe,
     });
     return { createdRecipe: response.data };
@@ -55,7 +55,7 @@ export const editRecipe = async (
 ): Promise<EditRecipeResponse> => {
   try {
     const response = await axios.post<{ updatedRecipe: FullRecipeType }>(
-      "recipes/edit",
+      "api/recipes/edit",
       {
         recipe,
       }
@@ -69,7 +69,7 @@ export const editRecipe = async (
 export const deleteRecipe = async (recipeSlug: string) => {
   try {
     const response = await axios.post<{ deletedRecipe: FullRecipeType }>(
-      "recipes/delete",
+      "api/recipes/delete",
       {
         slug: recipeSlug,
       }

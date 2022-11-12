@@ -1,5 +1,5 @@
 import axios from "./axios";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 // = {
 //   email: "testinis@test.com",
@@ -40,6 +40,7 @@ class AuthenticationService {
   }
 
   async refreshSession(): Promise<RefreshSessionResponse> {
+    //TODO:
     try {
       const response = await axios.post<RefreshSessionAPIResponse>(
         "refresh_session"
@@ -53,7 +54,7 @@ class AuthenticationService {
 
   async logout() {
     try {
-      await axios.get("user/logout");
+      await signOut({redirect:false});
     } catch (e) {
       console.log("-AuthenticationService-logout", e);
     }

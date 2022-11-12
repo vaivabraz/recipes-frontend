@@ -9,26 +9,19 @@ import { authOptions } from "../auth/[...nextauth]";
 const handler = nextConnect();
 handler.use(middleware);
 
-handler.get<NextApiRequest, NextApiResponse>(async (req, res) => {
+handler.post<NextApiRequest, NextApiResponse>(async (req, res) => {
   try {
     const session = await unstable_getServerSession(req, res, authOptions);
     if (session) {
-      if (req.query.categories) {
-        const userRecipes = await RecipeModel.where("author")
-          .equals(session.user.username)
-          .where("categories.id")
-          .equals(req.query.categories)
-          .sort({ _id: -1 })
-          .limit(20);
-        return res.send(userRecipes);
+      if (!req?.body?.recipeSlug) {
+        res.status(400).json({ errorMessage: "Recipe slug was not provided" });
       }
 
-      const userRecipes = await RecipeModel.where("author")
-        .equals(session.user.username)
-        .sort({ _id: -1 })
-        .limit(20);
-
-      res.send(userRecipes);
+      const recipe = await RecipeModel.where("slug")
+        .equals(req.body.recipeSlug)
+        .limit(1);
+        
+      res.send(recipe[0]);
     } else {
       res.status(401).json({ success: false });
     }

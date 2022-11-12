@@ -25,7 +25,7 @@ export const getRecipeBySlug = async (
   slug: string
 ): Promise<FullRecipeType> => {
   try {
-    const response = await axios.post(`recipes/getRecipe`, {
+    const response = await axios.post(`api/recipes/getRecipe`, {
       recipeSlug: slug,
     });
     return response.data;

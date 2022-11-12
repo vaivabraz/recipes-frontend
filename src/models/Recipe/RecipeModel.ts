@@ -34,4 +34,4 @@ const RecipeSchema = new Schema<RecipeInterface>(
 
 // RecipeSchema.index({ name: 1 });
 
-export const RecipeModel = models.Recipe ||  model<RecipeDocument>('Recipe', RecipeSchema);
+export const RecipeModel = models.Recipe as mongoose.Model<RecipeDocument> ||  model<RecipeDocument>('Recipe', RecipeSchema);

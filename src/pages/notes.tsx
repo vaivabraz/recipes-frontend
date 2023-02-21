@@ -16,6 +16,15 @@ export default function Planner() {
       <Typography variant="body2">typography body2</Typography>
       <Typography variant="subtitle1">typography subtitle1</Typography>
       <Typography variant="subtitle2">typography subtitle2</Typography>
+      <p>-------------------</p>
+      <h1>laba diena h1</h1>
+      <h2>laba diena h2</h2>
+      <h3>laba diena h3</h3>
+      <h4>laba diena h4</h4>
+      <h5>laba diena h5</h5>
+      <h6>laba diena h6</h6>
+      <p>pppppp pppp pp pppp</p>
+      <label>labelis cia </label>
     </PrivatePage>
   );
 }

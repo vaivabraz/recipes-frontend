@@ -14,13 +14,13 @@ const RecipeCard = ({ recipe }: IRecipeCard) => {
   return (
     <Container>
       <Link href="/recipes/[slug]" as={`/recipes/${recipe.slug}`}>
-        <>
+        <div>
           <Image src={image} title={title} alt={title} />
           <Information>
             <h5>{title}</h5>
             <TagsList categories={recipe.categories} />
           </Information>
-        </>
+        </div>
       </Link>
     </Container>
   );
@@ -35,6 +35,7 @@ const Container = styled.div`
     rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
   border-radius: 6px;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const Image = styled.img`

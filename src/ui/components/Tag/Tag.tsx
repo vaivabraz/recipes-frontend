@@ -12,7 +12,8 @@ type TagProps = {
 
 export const Tag: React.FC<TagProps> = ({ text, id, removable }) => {
   const router = useRouter();
-  const handleOnClick = () => {
+  const handleOnClick = (e) => {
+    e.stopPropagation();
     router.push("/recipes?categories=" + id);
   };
 

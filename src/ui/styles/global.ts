@@ -1,52 +1,81 @@
 import { createGlobalStyle } from "styled-components";
 
+export const theme = {
+  colors: {},
+  fontSize: {},
+  fontWeight: {
+    bold: 700,
+    medium: 400,
+  },
+  lineHeight: {},
+  borders: {},
+};
+
 export default createGlobalStyle`
   * {
     font-family: "Montserrat", sans-serif; 
     letter-spacing: 0.1em;
   }
+
   *:focus {
     outline: 0;
   }
+
   html, body, #root ,  div#__next {
     min-height: 100%;
     margin:0;
     display:flex;
     flex:1;
   }
+
   body {
     -webkit-font-smoothing: antialiased;
   }
+
+  h1,h2,h3,h4,h5,h6,p {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  h5 {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 8px 0;
+  }
+
+  p {
+    
+  }
+
   a {
     text-decoration: none;
   }
+
   ul {
     list-style: none;
     list-style-type: none;
   }
+
   button {
     cursor: pointer;
   }
-  h1 {
-  font-size: 39.06px;
-}
 
-h2 {
-  font-size: 31.25px;
-}
-
-h3 {
-  font-size: 25px;
-}
-
-h4 {
-  font-size: 20px;
-}
-
-h5 {
-  font-size: 16px;
-  line-height: 24px;
-}
+ 
 
 :root {
   --BorderColor: var(--grullo_light);

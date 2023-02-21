@@ -1,9 +1,8 @@
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { GetMeApiResponse } from "../../../../services/User";
 import { reactQueryKeys } from "../../../../constants/reactQueryKeys";
+import { useScreenSizeUp } from "../../../../utils";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
 import styles from "./header.module.scss";
@@ -13,9 +12,7 @@ type HeaderProps = {
 };
 
 export const Header = ({ withMenu }: HeaderProps) => {
-  const theme = useTheme();
-  const mediumBigSizeScreen = useMediaQuery(theme.breakpoints.up("sm"));
-
+  const mediumBigSizeScreen = useScreenSizeUp("sm");
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData<GetMeApiResponse>([
     reactQueryKeys.user,

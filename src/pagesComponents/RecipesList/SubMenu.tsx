@@ -1,11 +1,14 @@
-import { Button, Typography } from "@mui/material";
-import { useQueryClient } from "@tanstack/react-query";
+import { Button, TextField } from "@mui/material";
+import styled from "styled-components";
+import CreateIcon from "@mui/icons-material/Create";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { ParsedUrlQueryInput } from "querystring";
 import { reactQueryKeys } from "../../constants/reactQueryKeys";
 import { GetMeApiResponse } from "../../services/User";
-import { Tag } from "../../ui";
-import styles from "./subMenu.module.scss";
+import { BREAKPOINTS, Tag } from "../../ui";
+import { useScreenSizeUp } from "../../utils";
+import { UserService } from "../../services";
 
 type SubMenuProps = {
   query?: ParsedUrlQueryInput;
@@ -13,30 +16,83 @@ type SubMenuProps = {
 
 const SubMenu = ({ query }: SubMenuProps) => {
   const queryClient = useQueryClient();
-  const { userCategories } = queryClient.getQueryData<GetMeApiResponse>([
-    reactQueryKeys.user,
-  ]);
-  const selectedCategory = userCategories.find(
+  // const { userCategories } = queryClient.getQueryData<GetMeApiResponse>([
+  //   reactQueryKeys.user,
+  // ]);
+
+  const { data } = useQuery([reactQueryKeys.user], UserService.getCurrentUser);
+
+  const selectedCategory = data?.userCategories?.find(
     (j) => j.id === query.categories
   );
 
+  const isBigScreen = useScreenSizeUp("md");
+
   return (
-    <div className={styles["sub-menu"]}>
-      <div className={styles["sub-menu--main-line"]}>
-        <Typography variant="h2" textAlign="center">
-          Receptai
-        </Typography>
-        <Link href="/recipes/createNewRecipe">
-          <Button variant="contained">Sukurti nauja</Button>
-        </Link>
-      </div>
+    <Container>
+      <FirstLineContainer>
+        <h2>Receptai</h2>
+        <RightColumnContainer>
+          <Link href="/recipes/createNewRecipe">
+            {isBigScreen ? (
+              <Button variant="contained">Sukurti nauja</Button>
+            ) : (
+              <Button variant="contained" size="large">
+                <CreateIcon />
+              </Button>
+            )}
+          </Link>
+          <SearchContainer>
+            <TextField label="Paieska..." fullWidth />
+          </SearchContainer>
+        </RightColumnContainer>
+      </FirstLineContainer>
       {selectedCategory && (
-        <div className={styles["sub-menu--second-line"]}>
+        <SecondLineContainer>
           <Tag text={selectedCategory?.title} removable />
-        </div>
+        </SecondLineContainer>
       )}
-    </div>
+    </Container>
   );
 };
 
 export default SubMenu;
+
+const Container = styled.div`
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 36px;
+  align-items: center;
+  width: 100%;
+`;
+
+const SearchContainer = styled.div`
+  padding-left: 24px;
+  max-width: 230px;
+  height: 100%;
+`;
+
+const RightColumnContainer = styled.div`
+  display: flex;
+`;
+
+const FirstLineContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  padding-bottom: 12px;
+  @media (max-width: ${BREAKPOINTS.small}) {
+    flex-direction: column;
+  }
+`;
+
+const SecondLineContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;

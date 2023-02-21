@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 import { TextField } from "@mui/material";
 import { BREAKPOINTS } from "../../utils";
 import { Header } from "./Header";
@@ -12,9 +10,6 @@ export type PageProps = {
 };
 
 const Page: React.FC<PageProps> = ({ children, withMenu, rightColumn }) => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
-
   return (
     <ScreenContainer>
       <Header withMenu={withMenu} />

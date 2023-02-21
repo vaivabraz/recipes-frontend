@@ -2,11 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { Typography, Box, Link as MuiLink, Button } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { FullRecipeType } from "../../types";
 import { TextSection, HSpace } from "../../ui";
+import { useScreenSizeUp } from "../../utils";
 
 import CategoriesList from "./CategoriesList";
 import IngredientsListView from "./IngredientsListView";
@@ -25,8 +24,7 @@ const FullRecipeView = ({ recipe, onEdit }: FullRecipeViewProps) => {
   //TODO: add ability to show preparation steps
   //TODO: image is not correct
 
-  const theme = useTheme();
-  const isBigScreen = useMediaQuery(theme.breakpoints.up("md"));
+  const isBigScreen = useScreenSizeUp("md");
   return (
     <Box>
       <Box>

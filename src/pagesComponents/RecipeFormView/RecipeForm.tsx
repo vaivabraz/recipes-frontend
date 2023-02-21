@@ -1,7 +1,6 @@
 import { TextField, Box, Typography } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 import { NewFullRecipeType } from "../../types";
+import { useScreenSizeUp } from "../../utils";
 import Ingredients from "./ingredients/Ingredients";
 import PreparationSteps from "./preparationSteps/PreparationSteps";
 import Time from "./preparationTime/Time";
@@ -25,8 +24,7 @@ const RecipeForm = ({
 }: RecipeFormProps) => {
   //atpazinti linkus!
 
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const matches = useScreenSizeUp("md");
   return (
     <Box display="flex" flexDirection={matches ? "row" : "column-reverse"}>
       <Box

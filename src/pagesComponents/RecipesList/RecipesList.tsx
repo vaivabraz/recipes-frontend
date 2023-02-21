@@ -46,7 +46,7 @@ const RecipesList = () => {
 
 const RecipesGrid = styled.div`
   display: grid;
-  gap: 16px;
+  gap: 24px;
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   box-sizing: border-box;

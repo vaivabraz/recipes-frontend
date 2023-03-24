@@ -11,9 +11,8 @@ async function database(req, res, next) {
   };
   await mongoose
     .connect(process.env.MONGODB_URI, options)
-    .then(() =>
-      console.log(`----Successfully connected to database-----`)
-    );
+    .then(() => console.log(`----Successfully connected to database-----`))
+    .catch((e) => console.log("----Not connected to the database-----: ", e));
   return next();
 }
 

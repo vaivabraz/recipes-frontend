@@ -1,12 +1,11 @@
 import { Button, TextField } from "@mui/material";
 import styled from "styled-components";
 import CreateIcon from "@mui/icons-material/Create";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { ParsedUrlQueryInput } from "querystring";
 import { reactQueryKeys } from "../../constants/reactQueryKeys";
-import { GetMeApiResponse } from "../../services/User";
-import { BREAKPOINTS, Tag } from "../../ui";
+import { BREAKPOINTS, Tag, CategoriesList } from "../../ui";
 import { useScreenSizeUp } from "../../utils";
 import { UserService } from "../../services";
 
@@ -15,11 +14,6 @@ type SubMenuProps = {
 };
 
 const SubMenu = ({ query }: SubMenuProps) => {
-  const queryClient = useQueryClient();
-  // const { userCategories } = queryClient.getQueryData<GetMeApiResponse>([
-  //   reactQueryKeys.user,
-  // ]);
-
   const { data } = useQuery([reactQueryKeys.user], UserService.getCurrentUser);
 
   const selectedCategory = data?.userCategories?.find(
@@ -47,6 +41,7 @@ const SubMenu = ({ query }: SubMenuProps) => {
           </SearchContainer>
         </RightColumnContainer>
       </FirstLineContainer>
+      <CategoriesList categoriesList={data.userCategories} />
       {selectedCategory && (
         <SecondLineContainer>
           <Tag text={selectedCategory?.title} removable />

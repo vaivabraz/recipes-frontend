@@ -1,4 +1,9 @@
-import { Button, TextField } from "@mui/material";
+import {
+  Button,
+  ButtonTypeMap,
+  ExtendButtonBase,
+  TextField,
+} from "@mui/material";
 import styled from "styled-components";
 import CreateIcon from "@mui/icons-material/Create";
 import { useQuery } from "@tanstack/react-query";
@@ -29,15 +34,15 @@ const SubMenu = ({ query }: SubMenuProps) => {
         <RightColumnContainer>
           <Link href="/recipes/createNewRecipe">
             {isBigScreen ? (
-              <Button variant="contained">Sukurti nauja</Button>
+              <ButtonStyled variant="contained">Sukurti nauja</ButtonStyled>
             ) : (
-              <Button variant="contained" size="large">
+              <ButtonStyled variant="contained" size="small">
                 <CreateIcon />
-              </Button>
+              </ButtonStyled>
             )}
           </Link>
           <SearchContainer>
-            <TextField label="Paieska..." fullWidth />
+            <TextField label="Paieska..." fullWidth size="small" />
           </SearchContainer>
         </RightColumnContainer>
       </FirstLineContainer>
@@ -62,16 +67,26 @@ const Container = styled.div`
   padding: 36px;
   align-items: center;
   width: 100%;
+  @media (max-width: ${BREAKPOINTS.small}) {
+    padding: 24px 24px 12px 24px;
+  }
 `;
 
 const SearchContainer = styled.div`
-  padding-left: 24px;
+  padding-left: 12px;
   max-width: 230px;
   height: 100%;
+  @media (max-width: ${BREAKPOINTS.small}) {
+    width: 100%;
+    max-width: unset;
+  }
 `;
 
 const RightColumnContainer = styled.div`
   display: flex;
+  @media (max-width: ${BREAKPOINTS.small}) {
+    width: 100%;
+  }
 `;
 
 const FirstLineContainer = styled.div`
@@ -80,8 +95,8 @@ const FirstLineContainer = styled.div`
   box-sizing: border-box;
   align-items: center;
   width: 100%;
-  gap: 12px;
-  padding-bottom: 12px;
+  gap: 16px;
+  padding-bottom: 6px;
   @media (max-width: ${BREAKPOINTS.small}) {
     flex-direction: column;
   }
@@ -90,4 +105,12 @@ const FirstLineContainer = styled.div`
 const SecondLineContainer = styled.div`
   display: flex;
   width: 100%;
+`;
+
+const ButtonStyled: ExtendButtonBase<ButtonTypeMap<{}, "button">> = styled(
+  Button
+)`
+  && {
+    min-width: unset;
+  }
 `;

@@ -60,7 +60,7 @@ export const CategoriesList: React.FC<CategoriesListProps> = ({
 
 const Container = styled.div`
   width: 100%;
-  padding-bottom: 12px;
+  padding-bottom: 6px;
 `;
 
 const ButtonStyled: ExtendButtonBase<ButtonTypeMap<{}, "button">> = styled(

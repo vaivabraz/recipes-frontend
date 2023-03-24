@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { Box, Typography } from "@mui/material";
 
 import { getMyRecipes } from "../../services";
 import { reactQueryKeys } from "../../constants/reactQueryKeys";
@@ -23,26 +22,26 @@ const RecipesList = () => {
   const recipesExists = recipesList?.length > 0;
 
   return (
-    <Box width={"100%"}>
+    <RecipesPageLayout>
       <SubMenu query={query} />
       <RecipesGrid>
         {isLoading ? (
-          <Typography variant="h2" textAlign="center">
-            Loading...
-          </Typography>
+          <h2>Loading...</h2>
         ) : recipesExists ? (
           recipesList.map((recipe) => (
             <RecipeCard key={recipe.slug} recipe={recipe} />
           ))
         ) : (
-          <Typography variant="h2" textAlign="center">
-            No recipes yet, create your first one!
-          </Typography>
+          <h2>No recipes yet, create your first one!</h2>
         )}
       </RecipesGrid>
-    </Box>
+    </RecipesPageLayout>
   );
 };
+
+const RecipesPageLayout = styled.div`
+  width: 100%;
+`;
 
 const RecipesGrid = styled.div`
   display: grid;

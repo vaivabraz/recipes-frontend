@@ -32,7 +32,6 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({
         onClick={() => setMenuIsOpen(!menuIsOpen)}
         color="primary"
         size="large"
-        className={styles["mobile-navBar--menu-button"]}
       >
         <MenuIcon />
       </IconButton>

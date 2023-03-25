@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 import { getMyRecipes } from "../../services";
 import { reactQueryKeys } from "../../constants/reactQueryKeys";
+import { BREAKPOINTS } from "../../ui";
 import RecipeCard from "./RecipeCard";
 import SubMenu from "./SubMenu";
 
@@ -50,6 +51,11 @@ const RecipesGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   box-sizing: border-box;
   padding: 0 24px;
+
+  @media (max-width: ${BREAKPOINTS.small}) {
+    grid-template-columns: unset;
+    padding: 0 16px;
+  }
 `;
 
 export default RecipesList;

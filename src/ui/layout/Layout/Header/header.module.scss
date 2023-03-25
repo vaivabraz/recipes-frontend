@@ -11,7 +11,7 @@
 
 .mobile-navBar {
     &--container {
-        min-height: 64px;
+        min-height: 56px;
         background: linear-gradient(90.62deg, var(--AccentColorStrong) 0.82%, var(--Secondary) 100%);
         display: flex;
         justify-content: flex-end;
@@ -22,13 +22,6 @@
     &--thin-container {
         min-height: 24px;
         background: linear-gradient(90.62deg, var(--AccentColorStrong) 0.82%, var(--Secondary) 100%);
-    }
-
-    &--menu-button {
-        border: 1px solid var(--AccentColor) !important;
-        height: 40px;
-        width: 40px;
-        box-shadow: 0px 0px 20px 1px var(--AccentColor);
     }
 
     &--menu-overlay {
